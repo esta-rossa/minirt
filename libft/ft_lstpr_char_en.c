@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   circle.c                                           :+:      :+:    :+:   */
+/*   ft_lstpr_char_en.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/05 02:17:19 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/07 02:02:37 by arraji           ###   ########.fr       */
+/*   Created: 2019/10/29 00:13:15 by arraji            #+#    #+#             */
+/*   Updated: 2019/10/29 03:18:03 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-void	circle(t_cord o, double ray, void *init, void *wind)
+void	ft_lstpr_char_en(t_list *first)
 {
-	double a;
-	double x;
-	double y;
-
-	a = 0;
-	while (a <= 360)
+	while (first)
 	{
-		x = o.x + ray * cos(a);
-		y = o.y + ray * sin(a);
-		mlx_pixel_put(init, wind, x, y, 255);
-		a += (2 * M_PI) / (8 * ray);
+		ft_putstr_fd((char *)first->content, 1);
+		ft_putchar_fd('\n', 1);
+		first = first->next;
 	}
 }

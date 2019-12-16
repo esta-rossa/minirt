@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   circle.c                                           :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/05 02:17:19 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/07 02:02:37 by arraji           ###   ########.fr       */
+/*   Created: 2019/10/20 04:41:06 by arraji            #+#    #+#             */
+/*   Updated: 2019/11/05 22:32:15 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-void	circle(t_cord o, double ray, void *init, void *wind)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	double a;
-	double x;
-	double y;
+	t_list *tmp;
 
-	a = 0;
-	while (a <= 360)
+	if (!lst || !del)
+		return ;
+	while (*lst)
 	{
-		x = o.x + ray * cos(a);
-		y = o.y + ray * sin(a);
-		mlx_pixel_put(init, wind, x, y, 255);
-		a += (2 * M_PI) / (8 * ray);
+		tmp = (*lst)->next;
+		del((*lst)->content);
+		free(*lst);
+		*lst = tmp;
 	}
 }

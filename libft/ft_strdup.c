@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   circle.c                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/05 02:17:19 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/07 02:02:37 by arraji           ###   ########.fr       */
+/*   Created: 2019/10/18 01:31:03 by arraji            #+#    #+#             */
+/*   Updated: 2019/11/06 00:57:42 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-void	circle(t_cord o, double ray, void *init, void *wind)
+char	*ft_strdup(const char *src)
 {
-	double a;
-	double x;
-	double y;
+	int		len;
+	char	*str;
+	int		i;
 
-	a = 0;
-	while (a <= 360)
+	len = 0;
+	i = 0;
+	str = 0;
+	while (src[len] != '\0')
+		len++;
+	str = (char*)malloc((len + 1));
+	if (!str)
+		return (NULL);
+	while (src[i] != '\0')
 	{
-		x = o.x + ray * cos(a);
-		y = o.y + ray * sin(a);
-		mlx_pixel_put(init, wind, x, y, 255);
-		a += (2 * M_PI) / (8 * ray);
+		str[i] = src[i];
+		i++;
 	}
+	str[i] = '\0';
+	return (str);
 }

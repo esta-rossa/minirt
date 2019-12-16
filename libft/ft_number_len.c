@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   circle.c                                           :+:      :+:    :+:   */
+/*   ft_number_len.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/05 02:17:19 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/07 02:02:37 by arraji           ###   ########.fr       */
+/*   Created: 2019/11/24 03:52:32 by arraji            #+#    #+#             */
+/*   Updated: 2019/11/24 03:59:27 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-void	circle(t_cord o, double ray, void *init, void *wind)
+size_t	ft_number_len(long num)
 {
-	double a;
-	double x;
-	double y;
+	size_t len;
 
-	a = 0;
-	while (a <= 360)
+	len = 0;
+	if (num == 0)
+		return (1);
+	if (num < 0)
 	{
-		x = o.x + ray * cos(a);
-		y = o.y + ray * sin(a);
-		mlx_pixel_put(init, wind, x, y, 255);
-		a += (2 * M_PI) / (8 * ray);
+		len++;
+		num = num * -1;
 	}
+	while (num)
+	{
+		num = num / 10;
+		len++;
+	}
+	return (len);
 }

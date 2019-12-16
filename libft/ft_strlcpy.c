@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   circle.c                                           :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/05 02:17:19 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/07 02:02:37 by arraji           ###   ########.fr       */
+/*   Created: 2019/10/17 19:14:50 by arraji            #+#    #+#             */
+/*   Updated: 2019/11/05 21:17:37 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-void	circle(t_cord o, double ray, void *init, void *wind)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	double a;
-	double x;
-	double y;
+	size_t i;
+	size_t src_len;
 
-	a = 0;
-	while (a <= 360)
+	i = 0;
+	src_len = 0;
+	while (src[src_len] != '\0')
+		src_len++;
+	if (!dest)
+		return (src_len);
+	while (src[i] != '\0' && i < (size - 1) && size != 0)
 	{
-		x = o.x + ray * cos(a);
-		y = o.y + ray * sin(a);
-		mlx_pixel_put(init, wind, x, y, 255);
-		a += (2 * M_PI) / (8 * ray);
+		dest[i] = src[i];
+		i++;
 	}
+	while (dest[i] != '\0' && size != 0)
+	{
+		dest[i] = '\0';
+	}
+	return (src_len);
 }

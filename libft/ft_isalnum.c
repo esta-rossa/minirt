@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   circle.c                                           :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/05 02:17:19 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/07 02:02:37 by arraji           ###   ########.fr       */
+/*   Created: 2019/10/18 00:48:52 by arraji            #+#    #+#             */
+/*   Updated: 2019/10/20 22:45:30 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-
-void	circle(t_cord o, double ray, void *init, void *wind)
+int	ft_isalnum(int car)
 {
-	double a;
-	double x;
-	double y;
-
-	a = 0;
-	while (a <= 360)
+	if ((car >= 65 && car <= 90) || (car >= 97 && car <= 122) ||
+	(car >= 48 && car <= 57))
 	{
-		x = o.x + ray * cos(a);
-		y = o.y + ray * sin(a);
-		mlx_pixel_put(init, wind, x, y, 255);
-		a += (2 * M_PI) / (8 * ray);
+		return (1);
 	}
+	else
+		return (0);
 }

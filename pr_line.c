@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 10:49:26 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/05 03:51:10 by arraji           ###   ########.fr       */
+/*   Updated: 2019/12/07 02:02:37 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 
 
-static	void	line_case_one(t_point a, t_point b, void *init, void* wind)
+static	void	line_case_one(t_cord a, t_cord b, void *init, void* wind)
 {
 	int x;
 
@@ -28,7 +28,7 @@ static	void	line_case_one(t_point a, t_point b, void *init, void* wind)
 		x++;
 	}
 }
-static	void	line_case_two(t_point a, t_point b, void *init, void* wind)
+static	void	line_case_two(t_cord a, t_cord b, void *init, void* wind)
 {
 	int y;
 
@@ -41,7 +41,7 @@ static	void	line_case_two(t_point a, t_point b, void *init, void* wind)
 	}
 
 }
-void	draw_line(t_point a, t_point b, void *init, void* wind)
+void	draw_line(t_cord a, t_cord b, void *init, void* wind)
 {
 	if (a.x <= b.x && (b.x - a.x) >= fabs(b.y - a.y))
 		line_case_one(a, b, init, wind);
@@ -59,8 +59,8 @@ void	draw_line(t_point a, t_point b, void *init, void* wind)
 
 	init = mlx_init();
 	wind = mlx_new_window(init,500,500,"hey");
-	t_point *a;
-	t_point *b;
+	t_cord *a;
+	t_cord *b;
 
 	a = new_point(0, 0);
 	b = new_point(500, 500);

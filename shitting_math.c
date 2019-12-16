@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 00:33:51 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/05 03:02:23 by arraji           ###   ########.fr       */
+/*   Updated: 2019/12/07 02:02:37 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ double	twod_func(double a, double b, double c)
 	double delta;
 	double x;
 	double x2;
-	delta = pow(b, 2) - 4 * a * c;
+	delta = b * b - 4 * a * c;
 	if (delta < -1)
 		return (0);
 	if (delta == 0)
@@ -30,36 +30,36 @@ double	twod_func(double a, double b, double c)
 	return (x);
 }
 
-double		distance(t_point a, t_point b)
+double		distance(t_cord a, t_cord b)
 {
 	return (sqrt(pow((b.x - a.x), 2) + pow((b.y - a.y), 2)));
 }
 
-void		set_point(t_point *point, double x, double y)
+void		set_cord(t_cord *point, double x, double y, double z)
 {
 	point->x = x;
 	point->y = y;
+	point->z = z;
 }
 
-t_point		*new_point(double x, double y)
+double		dot_pr(t_cord u, t_cord v)
 {
-	t_point	*new;
+	return (u.x * v.x + u.y * v.y + u.z * v.z);
+}
+t_cord		*new_point(double x, double y, double z)
+{
+	t_cord	*new;
 
-	new = malloc(sizeof(t_point));
+	new = malloc(sizeof(t_cord));
 	new->x = x;
 	new->y = y;
+	new->z = z;
 	return (new);
 }
 
-int		closest(double val, double comp1, double comp2)
+void		set_vector(t_cord *vector ,t_cord a, t_cord b)
 {
-	double arg1;
-	double arg2;
-
-	arg1 = (val > comp1) ? val - comp1 : comp1 - val;
-	arg2 = (val > comp2) ? val - comp2 : comp2 - val;
-	if (arg1 < arg2)
-		return (1);
-	else
-		return (2);
+	vector->x = b.x - a.x;
+	vector->y = b.y - a.y;
+	vector->z = b.z - a.z;
 }

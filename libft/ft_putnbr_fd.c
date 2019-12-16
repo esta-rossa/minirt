@@ -1,29 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   circle.c                                           :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/05 02:17:19 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/07 02:02:37 by arraji           ###   ########.fr       */
+/*   Created: 2019/10/19 18:36:37 by arraji            #+#    #+#             */
+/*   Updated: 2019/10/22 08:43:59 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-void	circle(t_cord o, double ray, void *init, void *wind)
+static	void	ft_putcar_fd(char c, int fd)
 {
-	double a;
-	double x;
-	double y;
+	write(fd, &c, 1);
+}
 
-	a = 0;
-	while (a <= 360)
+void			ft_putnbr_fd(int n, int fd)
+{
+	long lnbr;
+
+	lnbr = n;
+	if (lnbr >= -2147483648 && lnbr <= 2147483648)
 	{
-		x = o.x + ray * cos(a);
-		y = o.y + ray * sin(a);
-		mlx_pixel_put(init, wind, x, y, 255);
-		a += (2 * M_PI) / (8 * ray);
+		if (lnbr < 0)
+		{
+			lnbr = -lnbr;
+			ft_putcar_fd('-', fd);
+		}
+		if (lnbr > 9)
+		{
+			ft_putnbr_fd(lnbr / 10, fd);
+			ft_putcar_fd(lnbr % 10 + '0', fd);
+		}
+		else
+		{
+			ft_putcar_fd(lnbr + '0', fd);
+		}
 	}
 }

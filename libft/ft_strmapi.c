@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   circle.c                                           :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/05 02:17:19 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/07 02:02:37 by arraji           ###   ########.fr       */
+/*   Created: 2019/10/19 16:01:42 by arraji            #+#    #+#             */
+/*   Updated: 2019/10/22 05:13:05 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-void	circle(t_cord o, double ray, void *init, void *wind)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	double a;
-	double x;
-	double y;
+	int		index;
+	int		size;
+	char	*tab;
 
-	a = 0;
-	while (a <= 360)
+	if (!s)
+		return (NULL);
+	index = 0;
+	size = 0;
+	while (s[size])
+		size++;
+	tab = (char *)malloc(size + 1);
+	if (!tab)
+		return (NULL);
+	while (s[index])
 	{
-		x = o.x + ray * cos(a);
-		y = o.y + ray * sin(a);
-		mlx_pixel_put(init, wind, x, y, 255);
-		a += (2 * M_PI) / (8 * ray);
+		tab[index] = (*f)(index, s[index]);
+		index++;
 	}
+	tab[index] = 0;
+	return (tab);
 }

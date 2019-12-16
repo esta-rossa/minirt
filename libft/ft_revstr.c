@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   circle.c                                           :+:      :+:    :+:   */
+/*   ft_revstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/05 02:17:19 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/07 02:02:37 by arraji           ###   ########.fr       */
+/*   Created: 2019/11/22 15:36:09 by arraji            #+#    #+#             */
+/*   Updated: 2019/11/22 15:59:58 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
+#include <stdio.h>
 
-void	circle(t_cord o, double ray, void *init, void *wind)
+char	*ft_revstr(char *str)
 {
-	double a;
-	double x;
-	double y;
+	int		count;
+	int		i;
+	char	c;
 
-	a = 0;
-	while (a <= 360)
+	count = 0;
+	while (str[count] != '\0')
+		count++;
+	count = count - 1;
+	i = 0;
+	while (i < ((count + 1) / 2))
 	{
-		x = o.x + ray * cos(a);
-		y = o.y + ray * sin(a);
-		mlx_pixel_put(init, wind, x, y, 255);
-		a += (2 * M_PI) / (8 * ray);
+		c = str[i];
+		str[i] = str[count - i];
+		str[count - i] = c;
+		i++;
 	}
+	return (str);
 }
