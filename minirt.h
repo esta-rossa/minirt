@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 22:35:13 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/16 04:52:49 by arraji           ###   ########.fr       */
+/*   Updated: 2019/12/19 06:26:02 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,47 +20,10 @@
 # include <unistd.h>
 # include "libft/libft.h"
 # include "vector_op.h"
+# include "struct.h"
+# include "matrix.h"
 # define vibe_check write(1,"v",1);
 
-typedef struct	s_cord
-{
-	double x;
-	double y;
-	double z;
-}				t_cord;
-
-typedef struct	s_sphere
-{
-	t_cord	centre;
-	double	ray;
-}				t_sphere;
-
-typedef	struct	s_wind
-{
-	void *init;
-	void *wind_p;
-	int wind_x;
-	int wind_y;
-}				t_wind;
-
-typedef	struct	s_line
-{
-	double xa;
-	double xb;
-	double ya;
-	double yb;
-	double za;
-	double zb;
-}				t_line;
-
-typedef	struct	s_object
-{
-	t_cord camera;
-	t_cord curr;
-	t_cord v_ray;
-	t_sphere sphere;
-
-}				t_obj;
 t_cord		*new_point(double x, double y, double z);
 double		distance(t_cord a, t_cord b);
 void		set_cord(t_cord *point, double x, double y, double z);

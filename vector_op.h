@@ -6,13 +6,14 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 04:48:17 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/16 04:51:25 by arraji           ###   ########.fr       */
+/*   Updated: 2019/12/16 05:28:10 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_VECTOR_OP_H
 # define FT_VECTOR_OP_H
-# include "minirt.h"
+#include "struct.h"
+
 double	vector_size(t_cord vector);
 t_cord	vector_add(t_cord vec_1, t_cord vec_2);
 t_cord	vector_sub(t_cord vec_1, t_cord vec_2);

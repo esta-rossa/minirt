@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_operations.c                                :+:      :+:    :+:   */
+/*   vector_op.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 03:35:45 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/16 03:44:25 by arraji           ###   ########.fr       */
+/*   Updated: 2019/12/18 05:01:37 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,10 @@ t_cord	vector_div(t_cord vec, double num)
 {
 	t_cord	v_new;
 
-	v_new.x = num / vec.x;
-	v_new.y = num / vec.y;
-	v_new.z = num / vec.z;
+	v_new.x = vec.x / num;
+	v_new.y = vec.y / num;
+	v_new.z = vec.z / num;
+	return (v_new);
 }
 
 t_cord	 vector_norm(t_cord vec)
@@ -66,3 +67,11 @@ t_cord	 vector_norm(t_cord vec)
 	return (v_new);
 }
 
+t_cord	cross_prod(t_cord u, t_cord v)
+{
+	t_cord new;
+
+	new.x = u.y * v.z - u.z * v.y;
+	new.y = u.x * v.z - u.z * v.x;
+	new.z = u.x * v.y - u.y * v.x;
+}
