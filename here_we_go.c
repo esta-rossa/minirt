@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 12:27:22 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/19 13:04:37 by arraji           ###   ########.fr       */
+/*   Updated: 2019/12/20 18:18:07 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int		main()
 	t_cord curr;
 	t_cord v_ray;
 	distance = 100;
-	set_cord(&light,0,100,0);
+	set_cord(&light,150,0,0);
 	set_cord(&(obj.camera), 0, 0, 0);
 	x = 0;
 	init_func(wind, 500, 500);
@@ -106,7 +106,7 @@ int		main()
 				alfa = (dt / (vector_size(v_l) * vector_size(N)) > 0) ? dt / (vector_size(v_l) * vector_size(N)) : 0;
 				// printf("|%d| %f	%f  %f\n", i, obj.v_ray.y, obj.v_ray.z, t);
 				// printf("|%d| %f	%f  %f\n", i, v_l.x, v_l.y, v_l.z);
-				set_cord(&color, 255, 0, 0);
+				set_cord(&color, 199,67,117);
 				color = vector_mltp(color, alfa);
 				printf("%f		%d\n", dt,   get_color(color));
 				mlx_pixel_put(wind->init, wind->wind_p, x, y, get_color(color));

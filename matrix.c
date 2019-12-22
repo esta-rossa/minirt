@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 05:35:21 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/19 07:41:30 by arraji           ###   ########.fr       */
+/*   Updated: 2019/12/20 12:03:22 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,88 @@ int		cmp_matrix(t_matrix matrix_a, t_matrix matrix_b)
 		row++;
 	}
 	return (1);
+}
+
+void	mtx_fill(t_matrix *matrix, double value)
+{
+	int row;
+	int column;
+
+	row = 0;
+	while (row < matrix->row)
+	{
+		column = 0;
+		while (column < matrix->column)
+		{
+			matrix->mtrx[row][column] = value;
+			column++;
+		}
+		row++;
+	}
+}
+
+int		mult_matrix(t_matrix *new_mtx, t_matrix mtx_a, t_matrix mtx_b)
+{
+	int			row;
+	int			column;
+	int			lst_row;
+	int			lst_column;
+
+	lst_row = 0;
+	mtx_fill(new_mtx, 0);
+	while (lst_row < mtx_a.row)
+	{
+		lst_column = 0;
+		while (lst_column < mtx_a.column)
+		{
+			row = 0;
+			column = 0;
+			while (row < mtx_a.row)
+			{
+				new_mtx->mtrx[lst_row][lst_column] +=
+				mtx_a.mtrx[row][lst_column] * mtx_b.mtrx[lst_row][column];
+				row++;
+				column++;
+			}
+			lst_column++;
+		}
+		lst_row++;
+	}
+}
+
+t_matrix	copy_matrix(t_matrix matrix)
+{
+	t_matrix	new_matrix;
+	int			row;
+	int			column;
+
+	new_matrix.row = matrix.row;
+	new_matrix.column = matrix.column;
+	creat_matrix(&new_matrix, matrix.row, matrix.column);
+	row = 0;
+	while (row < matrix.row)
+	{
+		column = 0;
+		while (column < matrix.column)
+		{
+			new_matrix.mtrx[row][column] = matrix.mtrx[row][column];
+			column++;
+		}
+		row++;
+	}
+	return (new_matrix);
+}
+
+void		transp_matrix(t_matrix *matrix)
+{
+	t_matrix	copy;
+	int			row;
+	int			column;
+	int			lst_column;
+	int			lst_row;
+
+	row = 0;
+	column = 0;
+	copy = copy_matrix(*matrix);
+	while ()
 }
