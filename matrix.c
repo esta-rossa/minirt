@@ -153,11 +153,59 @@ void		transp_matrix(t_matrix *matrix)
 	t_matrix	copy;
 	int			row;
 	int			column;
-	int			lst_column;
-	int			lst_row;
 
 	row = 0;
-	column = 0;
 	copy = copy_matrix(*matrix);
-	while ()
+	while (row < copy.row)
+	{
+		column = 0;
+		while (column < copy.column)
+		{
+			matrix->mtrx[column][row] = copy.mtrx[row][column];
+			column++;
+		}
+		row++;
+	}
+}
+
+double		determinant(t_matrix matrix)
+{
+	double	det;
+
+	det = matrix.mtrx[0][0] * matrix.mtrx[1][1] -
+	matrix.mtrx[0][1] * matrix.mtrx[1][0];
+	return (det);
+}
+
+t_matrix	submatrixe(t_matrix matrix, int del_row, int del_column)
+{
+	t_matrix	new_matrix;
+	int			row;
+	int			column;
+	int			new_row;
+	int			new_column;
+
+	row = 0;
+	new_row = 0;
+	creat_matrix(&new_matrix, matrix.row - 1, matrix.column - 1);
+	while (row < matrix.row)
+	{
+		column = 0;
+		new_column = 0;
+		while (column < matrix.column)
+		{
+			if (column != del_column && row != del_row)
+			{
+				new_matrix.mtrx[new_row][new_column] =
+				matrix.mtrx[row][column];
+				new_column++;
+
+			}
+			column++;
+		}
+		if (row != del_row)
+			new_row++;
+		row++;
+	}
+	return (new_matrix);
 }
