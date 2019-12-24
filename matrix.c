@@ -96,15 +96,17 @@ void	mtx_fill(t_matrix *matrix, double value)
 	}
 }
 
-int		mult_matrix(t_matrix *new_mtx, t_matrix mtx_a, t_matrix mtx_b)
+t_matrix		mult_matrix(t_matrix mtx_a, t_matrix mtx_b)
 {
 	int			row;
 	int			column;
 	int			lst_row;
 	int			lst_column;
+	t_matrix	new_mtx;
 
 	lst_row = 0;
-	mtx_fill(new_mtx, 0);
+	creat_matrix(&new_mtx, mtx_a.row, mtx_a.column);
+	mtx_fill(&new_mtx, 0);
 	while (lst_row < mtx_a.row)
 	{
 		lst_column = 0;
@@ -114,7 +116,7 @@ int		mult_matrix(t_matrix *new_mtx, t_matrix mtx_a, t_matrix mtx_b)
 			column = 0;
 			while (row < mtx_a.row)
 			{
-				new_mtx->mtrx[lst_row][lst_column] +=
+				new_mtx.mtrx[lst_row][lst_column] +=
 				mtx_a.mtrx[row][lst_column] * mtx_b.mtrx[lst_row][column];
 				row++;
 				column++;
@@ -123,6 +125,7 @@ int		mult_matrix(t_matrix *new_mtx, t_matrix mtx_a, t_matrix mtx_b)
 		}
 		lst_row++;
 	}
+	return (new_mtx);
 }
 
 t_matrix	copy_matrix(t_matrix matrix)
@@ -171,13 +174,27 @@ void		transp_matrix(t_matrix *matrix)
 double		determinant(t_matrix matrix)
 {
 	double	det;
+	int column;
 
-	det = matrix.mtrx[0][0] * matrix.mtrx[1][1] -
-	matrix.mtrx[0][1] * matrix.mtrx[1][0];
+	if (matrix.row <= 2)
+	{
+		det = matrix.mtrx[0][0] * matrix.mtrx[1][1] -
+		matrix.mtrx[0][1] * matrix.mtrx[1][0];
+	}
+	else
+	{
+		column = 0;
+		det = 0;
+		while (column < matrix.column)
+		{
+			det += matrix.mtrx[0][column] * cofactors(matrix, 0, column);
+			column++;
+		}
+	}
 	return (det);
 }
 
-t_matrix	submatrixe(t_matrix matrix, int del_row, int del_column)
+t_matrix	submatrix(t_matrix matrix, int del_row, int del_column)
 {
 	t_matrix	new_matrix;
 	int			row;
@@ -187,7 +204,8 @@ t_matrix	submatrixe(t_matrix matrix, int del_row, int del_column)
 
 	row = 0;
 	new_row = 0;
-	creat_matrix(&new_matrix, matrix.row - 1, matrix.column - 1);
+	creat_matrix(&new_matrix, matrix.row - (matrix.row > del_row)
+	, matrix.column - (matrix.column > del_column));
 	while (row < matrix.row)
 	{
 		column = 0;
@@ -208,4 +226,98 @@ t_matrix	submatrixe(t_matrix matrix, int del_row, int del_column)
 		row++;
 	}
 	return (new_matrix);
+}
+
+double		matrix_minor(t_matrix matrix, int row, int column)
+{
+	t_matrix	new_matrix;
+	double		det;
+
+	new_matrix = submatrix(matrix, row, column);
+	det = determinant(new_matrix);
+	return (det);
+}
+
+double		cofactors(t_matrix matrix, int row, int column)
+{
+	t_matrix	new_matrix;
+	double		det;
+	int			sign;
+
+	new_matrix = submatrix(matrix, row, column);
+	det = determinant(new_matrix);
+	sign = ((row - column) % 2) == 0 ? 1 : -1;
+	return (det * sign);
+}
+
+t_matrix	inversion(t_matrix matrix)
+{
+	t_matrix	inverted;
+	double		det;
+	int			row;
+	int			column;
+
+	det = determinant(matrix);
+	creat_matrix(&inverted, matrix.row, matrix.column);
+	row = 0;
+	while (row < matrix.row)
+	{
+		column = 0;
+		while (column < matrix.column)
+		{
+			inverted.mtrx[row][column] = cofactors(matrix, row, column) / det;
+			column++;
+		}
+		row++;
+	}
+	transp_matrix(&inverted);
+	return (inverted);
+}
+
+t_matrix	mult_tuple(t_matrix matrix, t_matrix tuple)
+{
+	t_matrix	new_tuple;
+	int			row;
+	int			column;
+
+	row = 0;
+	creat_matrix(&new_tuple, 4, 1);
+	mtx_fill(&new_tuple, 0);
+	while (row < matrix.row)
+	{
+		column = 0;
+		while (column < matrix.column)
+		{
+			new_tuple.mtrx[row][0] += matrix.mtrx[row][column] * tuple.mtrx[row][0];
+			column++;
+		}
+		row++;
+	}
+	return (new_tuple);
+}
+
+t_matrix	indentity_mtx()
+{
+	t_matrix	new_identity;
+	int			row;
+	int			column;
+
+	creat_matrix(&new_identity, 4, 4);
+	row = 0;
+	while (row < 4)
+	{
+		column = 0;
+		while (column < 4)
+		{
+			new_identity.mtrx[row][column] = (row == column) ? 1 : 0;
+			column++;
+		}
+		row++;
+	}
+	return (new_identity);
+}
+
+t_matrix	translation(double x, double y, double z)
+{
+
 }
