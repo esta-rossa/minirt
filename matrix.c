@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 05:35:21 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/20 12:03:22 by arraji           ###   ########.fr       */
+/*   Updated: 2019/12/25 20:57:35 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int		creat_matrix(t_matrix *mtx, int row, int column)
 		r++;
 	}
 	mtx->mtrx = new_mtrx;
+	mtx_fill(mtx, 0);
 	return (1);
 }
 
@@ -106,7 +107,6 @@ t_matrix		mult_matrix(t_matrix mtx_a, t_matrix mtx_b)
 
 	lst_row = 0;
 	creat_matrix(&new_mtx, mtx_a.row, mtx_a.column);
-	mtx_fill(&new_mtx, 0);
 	while (lst_row < mtx_a.row)
 	{
 		lst_column = 0;
@@ -117,9 +117,7 @@ t_matrix		mult_matrix(t_matrix mtx_a, t_matrix mtx_b)
 			while (row < mtx_a.row)
 			{
 				new_mtx.mtrx[lst_row][lst_column] +=
-				mtx_a.mtrx[row][lst_column] * mtx_b.mtrx[lst_row][column];
-				row++;
-				column++;
+				mtx_a.mtrx[row++][lst_column] * mtx_b.mtrx[lst_row][column++];
 			}
 			lst_column++;
 		}
@@ -174,7 +172,7 @@ void		transp_matrix(t_matrix *matrix)
 double		determinant(t_matrix matrix)
 {
 	double	det;
-	int column;
+	int		column;
 
 	if (matrix.row <= 2)
 	{
@@ -213,17 +211,12 @@ t_matrix	submatrix(t_matrix matrix, int del_row, int del_column)
 		while (column < matrix.column)
 		{
 			if (column != del_column && row != del_row)
-			{
-				new_matrix.mtrx[new_row][new_column] =
+				new_matrix.mtrx[new_row][new_column++] =
 				matrix.mtrx[row][column];
-				new_column++;
-
-			}
 			column++;
 		}
-		if (row != del_row)
+		if (row++ != del_row)
 			new_row++;
-		row++;
 	}
 	return (new_matrix);
 }
@@ -288,7 +281,8 @@ t_matrix	mult_tuple(t_matrix matrix, t_matrix tuple)
 		column = 0;
 		while (column < matrix.column)
 		{
-			new_tuple.mtrx[row][0] += matrix.mtrx[row][column] * tuple.mtrx[row][0];
+			new_tuple.mtrx[row][0] += matrix.mtrx[row][column]
+			* tuple.mtrx[column][0];
 			column++;
 		}
 		row++;
@@ -296,7 +290,7 @@ t_matrix	mult_tuple(t_matrix matrix, t_matrix tuple)
 	return (new_tuple);
 }
 
-t_matrix	indentity_mtx()
+t_matrix	indentity_mtx(void)
 {
 	t_matrix	new_identity;
 	int			row;
@@ -319,5 +313,83 @@ t_matrix	indentity_mtx()
 
 t_matrix	translation(double x, double y, double z)
 {
+	t_matrix	new_matrix;
 
+	new_matrix = indentity_mtx();
+	new_matrix.mtrx[0][3] = x;
+	new_matrix.mtrx[1][3] = y;
+	new_matrix.mtrx[2][3] = z;
+	return (new_matrix);
 }
+
+t_matrix	point(double x, double y, double z)
+{
+	t_matrix	new_tuple;
+
+	creat_matrix(&new_tuple, 4, 1);
+	new_tuple.mtrx[0][0] = x;
+	new_tuple.mtrx[1][0] = y;
+	new_tuple.mtrx[2][0] = z;
+	new_tuple.mtrx[3][0] = 1;
+	return (new_tuple);
+}
+
+t_matrix	vecteur(double x, double y, double z)
+{
+	t_matrix	new_tuple;
+
+	creat_matrix(&new_tuple, 4, 1);
+	new_tuple.mtrx[0][0] = x;
+	new_tuple.mtrx[1][0] = y;
+	new_tuple.mtrx[2][0] = z;
+	new_tuple.mtrx[3][0] = 0;
+	return (new_tuple);
+}
+
+t_matrix	scaling(double x, double y, double z)
+{
+	t_matrix	new_matrix;
+
+	new_matrix = indentity_mtx();
+	new_matrix.mtrx[0][0] = x;
+	new_matrix.mtrx[1][1] = y;
+	new_matrix.mtrx[2][2] = z;
+	return (new_matrix);
+}
+
+t_matrix	rotation_x(double radiant)
+{
+	t_matrix	new_matrix;
+
+	new_matrix = indentity_mtx();
+	new_matrix.mtrx[1][1] = cos(radiant);
+	new_matrix.mtrx[2][2] = cos(radiant);
+	new_matrix.mtrx[2][1] = sin(radiant);
+	new_matrix.mtrx[1][2] = -sin(radiant);
+	return (new_matrix);
+}
+
+t_matrix	rotation_y(double radiant)
+{
+	t_matrix	new_matrix;
+
+	new_matrix = indentity_mtx();
+	new_matrix.mtrx[0][0] = cos(radiant);
+	new_matrix.mtrx[0][2] = sin(radiant);
+	new_matrix.mtrx[2][0] = -sin(radiant);
+	new_matrix.mtrx[2][2] = cos(radiant);
+	return (new_matrix);
+}
+
+t_matrix	rotation_z(double radiant)
+{
+	t_matrix	new_matrix;
+
+	new_matrix = indentity_mtx();
+	new_matrix.mtrx[0][0] = cos(radiant);
+	new_matrix.mtrx[0][1] = -sin(radiant);
+	new_matrix.mtrx[1][0] = sin(radiant);
+	new_matrix.mtrx[1][1] = cos(radiant);
+	return (new_matrix);
+}
+

@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 06:22:47 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/20 11:36:28 by arraji           ###   ########.fr       */
+/*   Updated: 2019/12/25 19:49:32 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,14 @@ double		determinant(t_matrix matrice);
 t_matrix	submatrix(t_matrix matrix, int del_row, int del_column);
 double		matrix_minor(t_matrix matrix, int row, int column);
 double		cofactors(t_matrix matrix, int row, int column);
-double		mtx_determinant(t_matrix matrix);
 t_matrix	inversion(t_matrix matrix);
 t_matrix	mult_tuple(t_matrix matrix, t_matrix tuple);
 t_matrix	indentity_mtx();
+t_matrix	translation(double x, double y, double z);
+t_matrix	vecteur(double x, double y, double z);
+t_matrix	point(double x, double y, double z);
+t_matrix	scaling(double x, double y, double z);
+t_matrix	rotation_x(double radiant);
+t_matrix	rotation_y(double radiant);
+t_matrix	rotation_z(double radiant);
 #endif
