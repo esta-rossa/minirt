@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: arraji <arraji@student.42.fr>              +#+  +:+       +#+         #
+#    By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 13:57:03 by arraji            #+#    #+#              #
-#    Updated: 2019/12/04 17:33:49 by arraji           ###   ########.fr        #
+#    Updated: 2019/12/30 16:54:11 by arraji           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ SRC  = ft_atoi.c \
 		ft_printing_utils.c \
 		ft_call_types_utils.c \
 		get_next_line.c \
+		ft_valid_f.c \
 
 HEADERS = ./
 OBJECT = $(SRC:.c=.o)
@@ -94,4 +95,4 @@ fclean: clean
 
 re: fclean $(NAME)
 
-everthing: all clean
+everything: all clean

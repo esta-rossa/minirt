@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 02:17:00 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/16 04:05:00 by arraji           ###   ########.fr       */
+/*   Updated: 2019/12/30 17:26:59 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,5 @@ int				ft_stradd(char **s1, char *s2, int type);
 char			*ft_strcpy(char *dest, char *src);
 char			*ft_revstr(char *str);
 int				ft_end(void **s1, void **s2, int rt);
+int				valid_f(char *str);
 #endif
