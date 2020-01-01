@@ -69,7 +69,7 @@ int main(int argc, char **argv)
 	data_read(&pars, &obj);
 	while (obj)
 	{
-	printf("%d", obj->type);
+	printf("%d ", obj->color.r);
 	obj = obj->next;
 	}
 	ft_exit(pars, 0);

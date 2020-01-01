@@ -15,10 +15,8 @@
 int		valid_f(char *str)
 {
 	int		index;
-	int		point;
 
 	index = 0;
-	point = 0;
 	if (ft_isdigit(str[index]) == 0)
 		return (0);
 	while (str[index] != '.' && str[index] != '\0')

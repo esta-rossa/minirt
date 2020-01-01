@@ -14,9 +14,6 @@
 
 void	print_char(va_list ar, t_data *data)
 {
-	int rt;
-
-	rt = 0;
 	c_type(ar, data);
 	if ((data->flag & LE_ALI) == LE_ALI)
 		ft_putchar_fd(data->printed_c, 1);

@@ -98,9 +98,6 @@ void	print_corder_utils(t_data *data, int type)
 
 void	print_perc(t_data *data)
 {
-	int rt;
-
-	rt = 0;
 	data->pr_size = 1;
 	if ((data->flag & LE_ALI) == LE_ALI)
 		ft_putchar_fd('%', 1);

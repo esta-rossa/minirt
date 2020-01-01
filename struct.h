@@ -94,7 +94,7 @@ typedef	struct	s_obj
 	int					type;
 	t_cord				position;
 	t_color				color;
-	int					ray;
+	double				ray;
 	struct	s_obj		*next;
 }				t_obj;
 
