@@ -6,18 +6,19 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 03:35:45 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/18 05:01:37 by arraji           ###   ########.fr       */
+/*   Updated: 2019/12/28 03:53:14 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-double	vector_size(t_cord vector)
+double		vector_size(t_cord vector)
 {
-	return (sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z));
+	return (sqrt(vector.x * vector.x + vector.y
+	* vector.y + vector.z * vector.z));
 }
 
-t_cord	vector_add(t_cord vec_1, t_cord vec_2)
+t_cord		vector_add(t_cord vec_1, t_cord vec_2)
 {
 	t_cord	v_new;
 
@@ -27,7 +28,7 @@ t_cord	vector_add(t_cord vec_1, t_cord vec_2)
 	return (v_new);
 }
 
-t_cord	vector_sub(t_cord vec_1, t_cord vec_2)
+t_cord		vector_sub(t_cord vec_1, t_cord vec_2)
 {
 	t_cord	v_new;
 
@@ -37,7 +38,7 @@ t_cord	vector_sub(t_cord vec_1, t_cord vec_2)
 	return (v_new);
 }
 
-t_cord	vector_mltp(t_cord vec, double num)
+t_cord		vector_mltp(t_cord vec, double num)
 {
 	t_cord	v_new;
 
@@ -47,7 +48,7 @@ t_cord	vector_mltp(t_cord vec, double num)
 	return (v_new);
 }
 
-t_cord	vector_div(t_cord vec, double num)
+t_cord		vector_div(t_cord vec, double num)
 {
 	t_cord	v_new;
 
@@ -57,7 +58,7 @@ t_cord	vector_div(t_cord vec, double num)
 	return (v_new);
 }
 
-t_cord	 vector_norm(t_cord vec)
+t_cord		vector_norm(t_cord vec)
 {
 	double	len;
 	t_cord	v_new;
@@ -67,11 +68,31 @@ t_cord	 vector_norm(t_cord vec)
 	return (v_new);
 }
 
-t_cord	cross_prod(t_cord u, t_cord v)
+t_cord		cross_prod(t_cord u, t_cord v)
 {
 	t_cord new;
 
-	new.x = u.y * v.z - u.z * v.y;
-	new.y = u.x * v.z - u.z * v.x;
-	new.z = u.x * v.y - u.y * v.x;
+	new.x = (u.y * v.z) - (u.z * v.y);
+	new.y = (u.z * v.x) - (u.x * v.z);
+	new.z = (u.x * v.y) - (u.y * v.x);
+	return (new);
+}
+
+t_ray	ray(t_matrix direction, t_matrix origin)
+{
+	t_ray	ray;
+
+	ray.direct = direction;
+	ray.orig = origin;
+	return (ray);
+}
+
+t_cord	new_cord(double x, double y, double z)
+{
+	t_cord	new;
+
+	new.x = x;
+	new.y = y;
+	new.z = z;
+	return (new);
 }

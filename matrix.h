@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 06:22:47 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/25 19:49:32 by arraji           ###   ########.fr       */
+/*   Updated: 2019/12/28 01:05:47 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ t_matrix	inversion(t_matrix matrix);
 t_matrix	mult_tuple(t_matrix matrix, t_matrix tuple);
 t_matrix	indentity_mtx();
 t_matrix	translation(double x, double y, double z);
-t_matrix	vecteur(double x, double y, double z);
-t_matrix	point(double x, double y, double z);
+t_matrix	m_vecteur(double x, double y, double z);
+t_matrix	m_point(double x, double y, double z);
 t_matrix	scaling(double x, double y, double z);
 t_matrix	rotation_x(double radiant);
 t_matrix	rotation_y(double radiant);

@@ -6,7 +6,7 @@
 #    By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 13:57:03 by arraji            #+#    #+#              #
-#    Updated: 2019/12/30 16:54:11 by arraji           ###   ########.fr        #
+#    Updated: 2019/12/31 02:45:37 by arraji           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,8 @@ SRC  = ft_atoi.c \
 		ft_call_types_utils.c \
 		get_next_line.c \
 		ft_valid_f.c \
+		ft_tablen.c \
+		ft_pr_tab.c
 
 HEADERS = ./
 OBJECT = $(SRC:.c=.o)

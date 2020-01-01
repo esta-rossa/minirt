@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 00:33:51 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/18 00:02:53 by arraji           ###   ########.fr       */
+/*   Updated: 2019/12/29 16:45:13 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ double		dot_pr(t_cord u, t_cord v)
 {
 	return (u.x * v.x + u.y * v.y + u.z * v.z);
 }
+
 t_cord		*new_point(double x, double y, double z)
 {
 	t_cord	*new;
@@ -62,4 +63,9 @@ void		set_vector(t_cord *vector ,t_cord a, t_cord b)
 	vector->x = b.x - a.x;
 	vector->y = b.y - a.y;
 	vector->z = b.z - a.z;
+}
+
+double	deg_to_rad(double deg)
+{
+	return ((deg * M_PI) / 180);
 }

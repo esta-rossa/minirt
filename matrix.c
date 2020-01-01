@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 05:35:21 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/25 20:57:35 by arraji           ###   ########.fr       */
+/*   Updated: 2019/12/28 01:05:23 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -322,7 +322,7 @@ t_matrix	translation(double x, double y, double z)
 	return (new_matrix);
 }
 
-t_matrix	point(double x, double y, double z)
+t_matrix	m_point(double x, double y, double z)
 {
 	t_matrix	new_tuple;
 
@@ -334,7 +334,7 @@ t_matrix	point(double x, double y, double z)
 	return (new_tuple);
 }
 
-t_matrix	vecteur(double x, double y, double z)
+t_matrix	m_vecteur(double x, double y, double z)
 {
 	t_matrix	new_tuple;
 
