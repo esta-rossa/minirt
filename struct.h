@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 05:26:55 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/31 17:40:16 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/03 10:58:57 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef	struct	s_ray
 
 typedef	struct	s_camera
 {
-	t_cord			position;
+	t_cord			pos;
 	t_cord			l_at;
 	t_cord			up;
 	t_cord			right;
@@ -85,14 +85,17 @@ typedef	struct	s_camera
 	t_cord			y_inc;
 	double			fov;
 	double			distance;
+	t_cord			v_ray;
+	t_cord			bot;
 	unsigned	int	x_reso;
 	unsigned	int	y_reso;
+	struct	s_camera	*next;
 }				t_camera;
 
 typedef	struct	s_obj
 {
 	int					type;
-	t_cord				position;
+	t_cord				pos;
 	t_color				color;
 	double				ray;
 	struct	s_obj		*next;
@@ -110,10 +113,18 @@ typedef	struct	s_pars
 	int		index;
 }				t_pars;
 
-typedef	struct	s_save
+typedef	struct	s_light
 {
-	void	*head;
-	void	*last;
-	int		size;
-}				t_save;
+	t_cord			pos;
+	t_color			color;
+	double			bright;
+	struct	s_light	*next;
+}				t_light;
+
+typedef	struct	s_all
+{
+	t_camera	*a_camera;
+	t_obj		*a_obj;
+	t_cord		*a_light;
+}				t_all;
 #endif

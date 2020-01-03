@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 07:38:46 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/07 02:02:37 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/02 17:53:22 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int			strc_end(t_data **ptr, int rt)
 **	0 0 0 0		0 0 0 0
 */
 
-int			here_we_go(const char *arg1, va_list ar, t_data *data)
+int			shit_printing(const char *arg1, va_list ar, t_data *data)
 {
 	int ret;
 
@@ -85,7 +85,7 @@ int			ft_printf(const char *arg1, ...)
 	while (arg1[data->index])
 	{
 		if (arg1[data->index] == '%')
-			ret = here_we_go(arg1, ar, data);
+			ret = shit_printing(arg1, ar, data);
 		else
 		{
 			ft_putchar_fd(arg1[(data->index)++], 1);

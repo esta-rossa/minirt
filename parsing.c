@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 00:37:42 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/01 01:48:26 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/03 20:58:36 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	check_sp(char **args, t_pars pars)
 
 void	pars_pos(t_pars *pars, t_obj *obj)
 {
-	obj->position.x = ft_atof(pars->tab[0]);
-	obj->position.y = ft_atof(pars->tab[1]);
-	obj->position.z = ft_atof(pars->tab[2]);
+	obj->pos.x = ft_atof(pars->tab[0]);
+	obj->pos.y = ft_atof(pars->tab[1]);
+	obj->pos.z = ft_atof(pars->tab[2]);
 	free_tab(pars->tab, 3);
 }
 
@@ -62,7 +62,7 @@ void	pars_color(t_pars *pars, t_obj *obj)
 
 void	sp_pars(t_pars *pars, t_obj *obj, char **args)
 {
-	check_sp( args, *pars);
+	check_sp(args, *pars);
 	obj->type = SPHERE;
 	pars->tab = ft_split(args[1], ',');
 	pars_pos(pars, obj);
@@ -73,7 +73,6 @@ void	sp_pars(t_pars *pars, t_obj *obj, char **args)
 
 void	line_pars(t_pars *pars, t_obj *obj, char **args)
 {
-
 	if (ft_strncmp(args[0], "sp", 10) == 0)
 	{
 		sp_pars(pars, obj, args);
@@ -114,20 +113,25 @@ t_obj	*new_obj(void)
 	return (new);
 }
 
-void	data_read(t_pars *pars, t_obj **obj)
+void	data_read(t_pars *pars, t_all *all)
 {
 	char	**args;
 	t_obj	*list;
-	t_save	*save;
+	int		res;
 
-	while (get_next_line(pars->fd, &(pars)->line) > 0)
+	res = 1;
+	while (res == 1)
 	{
-		add_obj(obj, new_obj());
-		list = *obj;
-		while (list->next)
-			list = list->next;
+		res = get_next_line(pars->fd, &(pars)->line);
 		args = ft_split(pars->line, ' ');
-		line_pars(pars, list, args);
+		if (ft_tablen(args) > 0)
+		{
+			add_obj(&(all)->a_obj, new_obj());
+			list = all->a_obj;
+			while (list->next)
+				list = list->next;
+			line_pars(pars, list, args);
+		}
+		free(pars->line);
 	}
-
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 10:49:36 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/05 03:26:36 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/03 02:40:35 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ int				cutter(char **save, char **line)
 	return (ft_end((void **)&copy, NULL, 1));
 }
 
+static	int	finish(char **line, char **save, char **buff)
+{
+	if (!(*line = ft_strdup("")))
+		return (ft_end((void **)save, (void **)buff, -1));
+	return (ft_end((void **)save, (void **)buff, 0));
+}
+
 int	get_next_line(int fd, char **line)
 {
 	long	long		rd;
@@ -76,7 +83,7 @@ int	get_next_line(int fd, char **line)
 		if (!save)
 			return (ft_end((void **)&buff, NULL, -1));
 		if (!rd && !ft_strlen(save, 1))
-			return (ft_end((void **)&save, (void **)&buff, 0));
+			return (finish(line, &save, &buff));
 		if (ft_stradd(&save, buff, 1) == -1)
 			return (ft_end((void **)&buff, (void **)&save, -1));
 	}

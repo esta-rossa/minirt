@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 04:24:23 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/01 00:55:15 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/03 13:19:50 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,21 @@ void	init_error(t_pars pars)
 
 int main(int argc, char **argv)
 {
-	int		fd;
-	t_obj	*obj;
 	t_pars	pars;
+	t_all	all;
 
-	obj = NULL;
+	all.a_obj = NULL;
+	all.a_camera = NULL;
 	pars.fd = open(argv[1], O_RDONLY);
 	pars.argc = argc;
 	pars.index = 0;
 	pars.argv = argv;
 	init_error(pars);
-	data_read(&pars, &obj);
-	while (obj)
-	{
-	printf("%d ", obj->color.r);
-	obj = obj->next;
-	}
+	all.a_camera = NULL;
+	all.a_obj = NULL;
+	all.a_light = NULL;
+	data_read(&pars, &all);
+	here_we_go(&all);
 	ft_exit(pars, 0);
 }
 

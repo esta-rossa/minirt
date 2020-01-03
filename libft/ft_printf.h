@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 02:34:07 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/16 04:40:35 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/02 17:53:28 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef	struct	s_printed
 	unsigned int		index;
 }				t_data;
 int				ft_printf(const char *arg1, ...);
-int				here_we_go(const char *arg1, va_list ar, t_data *data);
+int				shit_printing(const char *arg1, va_list ar, t_data *data);
 unsigned char	check_type(char c);
 void			end(char **s1, char **s2);
 void			c_type(va_list ar, t_data *data);

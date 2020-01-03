@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 22:35:13 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/31 15:15:06 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/03 12:02:55 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ void		draw_line(t_cord a, t_cord b, void *init, void* wind);
 void		set_vector(t_cord *vector ,t_cord a, t_cord b);
 double		dot_pr(t_cord u, t_cord v);
 double		deg_to_rad(double deg);
+int			here_we_go(t_all *all);
 #endif

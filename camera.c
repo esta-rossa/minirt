@@ -6,13 +6,13 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 00:44:32 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/30 00:19:35 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/03 12:03:21 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_cord	init_camera(t_camera *camera)
+void	init_camera(t_camera *camera)
 {
 	t_cord	middle;
 	t_cord	view_ray;
@@ -20,8 +20,8 @@ t_cord	init_camera(t_camera *camera)
 	double	height_unit;
 	t_cord	bot_left;
 
-	middle = vector_add(camera->position, vector_norm(camera->l_at));
-	view_ray = vector_sub(middle, camera->position);
+	middle = vector_add(camera->pos, vector_norm(camera->l_at));
+	view_ray = vector_sub(middle, camera->pos);
 	camera->right = vector_norm(cross_prod(view_ray, new_cord(0, 0, 1)));
 	camera->up = vector_norm(cross_prod(camera->right, view_ray));
 	width_unit = tan(deg_to_rad(camera->fov) / 2);
@@ -32,7 +32,7 @@ t_cord	init_camera(t_camera *camera)
 	, camera->x_reso);
 	camera->y_inc = vector_div(vector_mltp(camera->up, 2 * height_unit)
 	, camera->y_reso);
-	return (bot_left);
+	camera->bot = bot_left;
 }
 
 t_cord	get_ray(t_camera camera, t_cord bo_left, double x, double y)
@@ -42,7 +42,7 @@ t_cord	get_ray(t_camera camera, t_cord bo_left, double x, double y)
 
 	curr = vector_add(bo_left, vector_mltp(camera.x_inc, x));
 	curr = vector_add(curr, vector_mltp(camera.y_inc, y));
-	ray = vector_sub(curr, camera.position);
+	ray = vector_sub(curr, camera.pos);
 
 	return (ray);
 }
