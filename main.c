@@ -6,18 +6,17 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 04:24:23 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/03 13:19:50 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/04 09:15:19 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include <fcntl.h>
-void	ft_exit(t_pars pars, int number)
+
+void	ft_pars_exit(t_pars pars, int number)
 {
 	char *color;
 
 	color = PRINT_GR;
-
 	if (number != 0)
 	{
 		color = PRINT_RED;
@@ -34,7 +33,19 @@ void	ft_exit(t_pars pars, int number)
 		number == E_PARS ? ft_printf("invalid data\n") : 1;
 		exit(number);
 	}
+}
 
+void	ft_exit(int number)
+{
+	char *color;
+
+	color = PRINT_GR;
+	if (number != 0)
+	{
+		color = PRINT_RED;
+		ft_printf("%sERROR%s %d : ", color, RESET, number);
+		number == E_STD ? perror("") : 1;
+	}
 }
 
 void	init_error(t_pars pars)
@@ -43,15 +54,15 @@ void	init_error(t_pars pars)
 
 	index = ft_strlen(pars.argv[1], 1);
 	if (!(pars.argc >= 2 && pars.argc <= 3))
-		ft_exit(pars, E_ARGS);
+		ft_pars_exit(pars, E_ARGS);
 	if (pars.argc == 3 && ft_strncmp(pars.argv[2], "--save", 100) != 0)
-		ft_exit(pars, E_ND_FILE);
+		ft_pars_exit(pars, E_ND_FILE);
 	if (pars.fd < 0)
-		ft_exit(pars, E_NO_FILE);
+		ft_pars_exit(pars, E_NO_FILE);
 	while (pars.argv[1][index] != '.' && index > 0)
 		index--;
 	if (index == 0 || ft_strncmp(&(pars).argv[1][index], ".rt", 5) != 0)
-		ft_exit(pars, E_FILE_FRM);
+		ft_pars_exit(pars, E_FILE_FRM);
 }
 
 int main(int argc, char **argv)
@@ -71,6 +82,9 @@ int main(int argc, char **argv)
 	all.a_light = NULL;
 	data_read(&pars, &all);
 	here_we_go(&all);
-	ft_exit(pars, 0);
+	// key_hook(key_press); if (button == LEFT_KEY) akdasd asdl
+	mlx_loop(all.wind.init);
+	printf("%f", all.a_camera->fov);
+	ft_pars_exit(pars, 0);
 }
 

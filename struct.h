@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 05:26:55 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/03 10:58:57 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/04 08:23:41 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,12 @@ typedef struct	s_sphere
 
 typedef	struct	s_wind
 {
-	void *init;
-	void *wind_p;
-	int wind_x;
-	int wind_y;
+	void	*init;
+	void	*wind_p;
+	int		wind_x;
+	int		wind_y;
+	void	*img_p;
+	int		*img_data;
 }				t_wind;
 
 typedef	struct	s_line
@@ -90,6 +92,7 @@ typedef	struct	s_camera
 	unsigned	int	x_reso;
 	unsigned	int	y_reso;
 	struct	s_camera	*next;
+	struct	s_camera	*previous;
 }				t_camera;
 
 typedef	struct	s_obj
@@ -126,5 +129,6 @@ typedef	struct	s_all
 	t_camera	*a_camera;
 	t_obj		*a_obj;
 	t_cord		*a_light;
+	t_wind		wind;
 }				t_all;
 #endif

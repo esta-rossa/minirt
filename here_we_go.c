@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 12:27:22 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/03 21:00:07 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/04 09:54:55 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,16 @@
 
 void	init_func(t_wind *wind, int size_x, int size_y)
 {
+	int		bpp;
+	int		size_line;
+	int		endian;
+
 	wind->wind_x = size_x;
 	wind->wind_y = size_y;
 	wind->init = mlx_init();
 	wind->wind_p = mlx_new_window(wind->init, size_x, size_y, "oups");
+	wind->img_p = mlx_new_image(wind->init, 500, 500);
+	wind->img_data = (int *)mlx_get_data_addr(wind->img_p, &bpp, &size_line, &endian);
 }
 
 int	sp_inters(t_obj obj, t_camera camera, double *t)
@@ -89,12 +95,7 @@ int	get_color(t_color col)
 	col.g = (col.g < 0) ? 0 : col.g;
 	col.b = (col.b > 255) ? 255 : col.b;
 	col.b = (col.b < 0) ? 0 : col.b;
-	clr += (int)col.r;
-	clr = clr << 8;
-	clr += (int)col.g;
-	clr = clr << 8;
-	clr += (int)col.b;
-	return (clr);
+	return ((col.r << 16) + (col.g << 8) + (col.b));
 }
 
 t_cord	reflected(t_cord vector, t_cord norm)
@@ -105,11 +106,11 @@ t_cord	reflected(t_cord vector, t_cord norm)
 	return (reflect);
 }
 
-void	pr_cord(t_cord cord, char *name, char *end)
+void		pr_cord(t_cord cord, char *name, char *end)
 {
 	printf("%s.x: %f %s.y: %f %s.z: %f%s", name, cord.x, name, cord.y, name, cord.z, end);
 }
-t_color	color_mltp(t_color color, double num)
+t_color		color_mltp(t_color color, double num)
 {
 	t_color new;
 
@@ -119,14 +120,14 @@ t_color	color_mltp(t_color color, double num)
 	return (new);
 }
 
-void	set_color(t_color *color, double r, double g, double b)
+void		set_color(t_color *color, double r, double g, double b)
 {
 	color->r = r;
 	color->g = g;
 	color->b = b;
 }
 
-t_color	new_color(double r, double g, double b)
+t_color		new_color(double r, double g, double b)
 {
 	t_color new;
 
@@ -136,7 +137,7 @@ t_color	new_color(double r, double g, double b)
 	return (new);
 }
 
-double	get_diffuse(t_camera camera, t_obj obj, t_cord light, double t)
+double		get_diffuse(t_camera camera, t_obj obj, t_cord light, double t)
 {
 	t_cord p;
 	t_cord v_l;
@@ -157,7 +158,7 @@ void	fill_img(char *image, t_color color, int index)
 	image[index] = color.b;
 }
 
-void	render(t_all all, t_camera camera, t_cord light, t_color *color)
+void		render(t_all all, t_camera camera, t_cord light, t_color *color)
 {
 	double ambiant;
 	double diffuse;
@@ -176,37 +177,36 @@ void	render(t_all all, t_camera camera, t_cord light, t_color *color)
 	}
 }
 
-int		here_we_go(t_all *all)
+void		here_we_go(t_all *all)
 {
-	t_wind	wind;
 	int y;
 	int x;
+	int	*img_save;
 	t_color color;
 	t_cord white;
 	t_cord light;
-	t_camera camera;
-	camera.pos = new_cord(0, 0, 0);
-	camera.l_at = new_cord(1,0, 0);
-	camera.fov = 60;
-	camera.x_reso = 500;
-	camera.y_reso = 1500;
-	set_cord(&light,0, 0, 0);
+	all->a_camera->x_reso = 500;
+	all->a_camera->y_reso = 500;
+	set_cord(&light, 0, 0, 0);
 	y = 0;
-	init_func(&wind, 1500, 500);
+	init_func(&(all)->wind, 500, 500);
 	set_cord(&white, 255,255,255);
-	init_camera(&camera);
-	while (y < camera.y_reso)
+	init_camera(all->a_camera);
+	img_save = all->wind.img_data;
+	while (y < all->a_camera->y_reso)
 	{
 		x = 0;
-		while (x < camera.x_reso)
+		while (x < all->a_camera->x_reso)
 		{
-			camera.v_ray = get_ray(camera, camera.bot, x, y);
-			render(*all, camera, light, &color);
-			mlx_pixel_put(wind.init, wind.wind_p, x, y, get_color(color));
+			all->a_camera->v_ray = get_ray(*(all)->a_camera,
+			all->a_camera->bot, x, y);
+			render(*all, *(all)->a_camera, light, &color);
+			*img_save = get_color(color);
+			img_save++;
 			x++;
 		}
 		y++;
 	}
-	mlx_loop(wind.init);
-	return (0);
+	mlx_put_image_to_window(all->wind.init, all->wind.wind_p,
+	all->wind.img_p, 0, 0);
 }

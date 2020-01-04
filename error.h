@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 02:33:15 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/31 15:01:10 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/04 09:15:24 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define E_FILE_FRM	5
 # define E_PARS		6
 
-void	ft_exit(t_pars pars, int number);
+void	ft_pars_exit(t_pars pars, int number);
 void	init_error(t_pars pars);
+void	ft_exit(int number);
 #endif

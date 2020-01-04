@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 22:35:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/03 12:02:55 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/04 09:14:40 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <math.h>
 # include <unistd.h>
 # include <errno.h>
+#include <fcntl.h>
 # include "libft/libft.h"
 # include "vector_op.h"
 # include "struct.h"
@@ -41,5 +42,5 @@ void		draw_line(t_cord a, t_cord b, void *init, void* wind);
 void		set_vector(t_cord *vector ,t_cord a, t_cord b);
 double		dot_pr(t_cord u, t_cord v);
 double		deg_to_rad(double deg);
-int			here_we_go(t_all *all);
+void		here_we_go(t_all *all);
 #endif
