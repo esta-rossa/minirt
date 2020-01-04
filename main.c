@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 04:24:23 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/04 09:15:19 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/04 12:05:41 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,19 +72,15 @@ int main(int argc, char **argv)
 
 	all.a_obj = NULL;
 	all.a_camera = NULL;
+	all.a_light = NULL;
 	pars.fd = open(argv[1], O_RDONLY);
 	pars.argc = argc;
-	pars.index = 0;
 	pars.argv = argv;
 	init_error(pars);
-	all.a_camera = NULL;
-	all.a_obj = NULL;
-	all.a_light = NULL;
 	data_read(&pars, &all);
 	here_we_go(&all);
-	// key_hook(key_press); if (button == LEFT_KEY) akdasd asdl
 	mlx_loop(all.wind.init);
-	printf("%f", all.a_camera->fov);
+	// key_hook(key_press); if (button == LEFT_KEY) akdasd asdl
 	ft_pars_exit(pars, 0);
 }
 

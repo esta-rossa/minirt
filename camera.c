@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 00:44:32 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/04 05:40:06 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/04 20:14:14 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,16 @@ void	init_camera(t_camera *camera)
 	double	height_unit;
 	t_cord	bot_left;
 
-	middle = vector_add(camera->pos, vector_norm(camera->l_at));
+	camera->l_at.x += 0.0001;
+	middle = vector_add(camera->pos, camera->l_at);
+	pr_cord(middle, "midlle", "\n");
 	view_ray = vector_sub(middle, camera->pos);
-	camera->right = vector_norm(cross_prod(view_ray, new_cord(0, 0, 1)));
+	camera->right = vector_norm(cross_prod(view_ray, new_cord(0, 1, 0)));
 	camera->up = vector_norm(cross_prod(camera->right, view_ray));
 	width_unit = tan(deg_to_rad(camera->fov) / 2);
-	height_unit = (camera->x_reso / camera->y_reso) * width_unit;
-	bot_left = vector_sub(middle, vector_mltp(camera->up, height_unit));
-	bot_left = vector_sub(bot_left, vector_mltp(camera->right, width_unit));
+	height_unit = ((double)camera->y_reso / camera->x_reso) * width_unit;
+	bot_left = vector_add(middle, vector_mltp(camera->up, -height_unit));
+	bot_left = vector_add(bot_left, vector_mltp(camera->right, -width_unit));
 	camera->x_inc = vector_div(vector_mltp(camera->right, 2 * width_unit)
 	, camera->x_reso);
 	camera->y_inc = vector_div(vector_mltp(camera->up, 2 * height_unit)

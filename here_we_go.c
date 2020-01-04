@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 12:27:22 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/04 09:54:55 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/04 20:11:20 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_func(t_wind *wind, int size_x, int size_y)
 	wind->wind_y = size_y;
 	wind->init = mlx_init();
 	wind->wind_p = mlx_new_window(wind->init, size_x, size_y, "oups");
-	wind->img_p = mlx_new_image(wind->init, 500, 500);
+	wind->img_p = mlx_new_image(wind->init, size_x, size_y);
 	wind->img_data = (int *)mlx_get_data_addr(wind->img_p, &bpp, &size_line, &endian);
 }
 
@@ -40,6 +40,10 @@ int	sp_inters(t_obj obj, t_camera camera, double *t)
 	- (obj.ray * obj.ray)
 	- (2 * dot_pr(obj.pos, camera.pos))
 	+ dot_pr(camera.pos, camera.pos);
+	// a = dot_pr(camera.v_ray, camera.v_ray);
+	// t_cord dist = vector_sub(camera.pos, obj.pos);
+	// b = 2 * (dot_pr(dist, camera.v_ray));
+	// c = dot_pr(dist, dist) - obj.ray * obj.ray;
 	delta = b * b - 4 * a * c;
 	if (delta > 0)
 	{
@@ -151,14 +155,7 @@ double		get_diffuse(t_camera camera, t_obj obj, t_cord light, double t)
 	return (diffuse);
 }
 
-void	fill_img(char *image, t_color color, int index)
-{
-	image[index++] = color.r;
-	image[index++] = color.g;
-	image[index] = color.b;
-}
-
-void		render(t_all all, t_camera camera, t_cord light, t_color *color)
+void		render(t_all all, t_camera camera, t_light light, t_color *color)
 {
 	double ambiant;
 	double diffuse;
@@ -170,40 +167,34 @@ void		render(t_all all, t_camera camera, t_cord light, t_color *color)
 	{
 		while (pos--)
 			all.a_obj = all.a_obj->next;
-		diffuse = get_diffuse(camera, *(all).a_obj, light, t);
-		ambiant = 0.5;
+		diffuse = get_diffuse(camera, *(all).a_obj, light.pos, t);
+		ambiant = 0.3;
 		*color = all.a_obj->color;
-		*color = color_mltp(*color, (diffuse));
+		*color = color_mltp(*color, (ambiant));
 	}
 }
 
 void		here_we_go(t_all *all)
 {
-	int y;
-	int x;
-	int	*img_save;
-	t_color color;
-	t_cord white;
-	t_cord light;
-	all->a_camera->x_reso = 500;
-	all->a_camera->y_reso = 500;
-	set_cord(&light, 0, 0, 0);
+	int			y;
+	int			x;
+	t_color		color;
+
+	all->a_camera->x_reso = 1000;
+	all->a_camera->y_reso = 1000;
 	y = 0;
-	init_func(&(all)->wind, 500, 500);
-	set_cord(&white, 255,255,255);
+	init_func(&(all)->wind, 1000, 1000);
 	init_camera(all->a_camera);
-	img_save = all->wind.img_data;
-	while (y < all->a_camera->y_reso)
+	while (y < all->wind.wind_y)
 	{
 		x = 0;
-		while (x < all->a_camera->x_reso)
+		while (x < all->wind.wind_x)
 		{
 			all->a_camera->v_ray = get_ray(*(all)->a_camera,
-			all->a_camera->bot, x, y);
-			render(*all, *(all)->a_camera, light, &color);
-			*img_save = get_color(color);
-			img_save++;
-			x++;
+			all->a_camera->bot, x++, y);
+			render(*all, *(all)->a_camera, *(all)->a_light, &color);
+			*(all->wind).img_data = get_color(color);
+			(all->wind).img_data++;
 		}
 		y++;
 	}
