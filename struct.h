@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 05:26:55 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/04 12:05:00 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/06 04:46:07 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ typedef struct	s_cord
 
 typedef	struct	s_color
 {
-	int		r;
-	int		b;
-	int		g;
+	double		r;
+	double		g;
+	double		b;
 }				t_color;
 
 typedef struct	s_sphere
@@ -55,16 +55,6 @@ typedef	struct	s_line
 	double zb;
 }				t_line;
 
-/* typedef	struct	s_object
-{
-	t_cord camera;
-	t_cord curr;
-	t_cord v_ray;
-	t_sphere sphere;
-	t_sphere sphere2;
-
-}				t_obj; */
-
 typedef	struct	s_matrix
 {
 	double	**mtrx;
@@ -86,7 +76,9 @@ typedef	struct	s_camera
 	t_cord			right;
 	t_cord			x_inc;
 	t_cord			y_inc;
+	t_cord			p_inter;
 	double			fov;
+	double			t;
 	double			distance;
 	t_cord			v_ray;
 	t_cord			bot;
@@ -100,6 +92,7 @@ typedef	struct	s_obj
 {
 	int					type;
 	t_cord				pos;
+	t_cord				norm;
 	t_color				color;
 	double				ray;
 	struct	s_obj		*next;
@@ -121,15 +114,27 @@ typedef	struct	s_light
 {
 	t_cord			pos;
 	t_color			color;
+	t_cord			reflect;
+	t_cord			vec;
 	double			bright;
 	struct	s_light	*next;
 }				t_light;
+
+typedef	struct	s_phong
+{
+	t_color	diffuse;
+	t_color	speculare;
+	t_color	ambient_color;
+	t_color	ambient;
+	double	ambient_cof;
+}				t_phong;
 
 typedef	struct	s_all
 {
 	t_camera	*a_camera;
 	t_obj		*a_obj;
 	t_light		*a_light;
-	t_wind		wind;
+	t_wind		*wind;
+	t_phong		*phong;
 }				t_all;
 #endif

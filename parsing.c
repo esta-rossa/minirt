@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 00:37:42 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/04 12:05:13 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/06 04:22:46 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,15 +237,40 @@ void	light_pars(t_pars *pars, t_all *list, char **args)
 	pars->tab = ft_split(args[3], ',');
 	pars_color(pars, &(light)->color);
 }
-
+void	ambiant_pars(t_pars *pars, t_all *list, char **args)
+{
+	if (ft_tablen(args) != 3)
+		ft_pars_exit(*pars, E_PARS);
+	if (!valid_f(args[1]))
+		ft_pars_exit(*pars, E_PARS);
+	list->phong->ambient_cof = ft_atof(args[1]);
+	pars->tab = ft_split(args[2], ',');
+	if (ft_tablen(pars->tab) != 3 || !valid_f(pars->tab[0])
+	|| !valid_f(pars->tab[1]) || !valid_f(pars->tab[2]))
+		ft_pars_exit(*pars, E_PARS);
+	pars_color(pars, &list->phong->ambient_color);
+}
+void	resul_pars(t_pars *pars, t_all *list, char **args)
+{
+	if (ft_tablen(args) != 3)
+		ft_pars_exit(*pars, E_PARS);
+	if (!valid_f(args[1]) || !valid_f(args[2]))
+			ft_pars_exit(*pars, E_PARS);
+	list->wind->wind_x = ft_atoi(args[1]);
+	list->wind->wind_y = ft_atoi(args[2]);
+}
 void	line_pars(t_pars *pars, t_all *list, char **args)
 {
-	if (ft_strncmp(args[0], "sp", 3) == 0)
+	if (ft_strncmp(args[0], "sp", 2) == 0)
 		sp_pars(pars, list, args);
-	else if (ft_strncmp(args[0], "c", 3) == 0)
+	else if (ft_strncmp(args[0], "c", 1) == 0)
 		cam_pars(pars, list, args);
-	else if (ft_strncmp(args[0], "l", 3) == 0)
+	else if (ft_strncmp(args[0], "l", 1) == 0)
 		light_pars(pars, list, args);
+	else if (ft_strncmp(args[0], "A", 1) == 0)
+		ambiant_pars(pars, list, args);
+	else if (ft_strncmp(args[0], "R", 1) == 0)
+		resul_pars(pars, list, args);
 	else
 		ft_pars_exit(*pars, E_PARS);
 }

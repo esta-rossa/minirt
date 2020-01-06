@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 04:24:23 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/04 12:05:41 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/06 03:52:50 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,21 +65,26 @@ void	init_error(t_pars pars)
 		ft_pars_exit(pars, E_FILE_FRM);
 }
 
+void	init_all(t_all *all)
+{
+	all->wind = (t_wind *) malloc(sizeof(t_wind));
+	all->phong = (t_phong *) malloc(sizeof(t_phong));
+}
+
 int main(int argc, char **argv)
 {
 	t_pars	pars;
 	t_all	all;
 
-	all.a_obj = NULL;
-	all.a_camera = NULL;
-	all.a_light = NULL;
+	all = (t_all){NULL, NULL, NULL, NULL, NULL};
 	pars.fd = open(argv[1], O_RDONLY);
 	pars.argc = argc;
 	pars.argv = argv;
 	init_error(pars);
+	init_all(&all);
 	data_read(&pars, &all);
 	here_we_go(&all);
-	mlx_loop(all.wind.init);
+	mlx_loop(all.wind->init);
 	// key_hook(key_press); if (button == LEFT_KEY) akdasd asdl
 	ft_pars_exit(pars, 0);
 }
