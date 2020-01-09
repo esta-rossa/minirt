@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 00:33:51 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/29 16:45:13 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/09 06:24:10 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,14 @@ void		set_vector(t_cord *vector ,t_cord a, t_cord b)
 double	deg_to_rad(double deg)
 {
 	return ((deg * M_PI) / 180);
+}
+
+int		cmp_float(double a, double b)
+{
+	double result;
+
+	result = (a < b) ? b - a : a - b;
+	if (result > 0.00001)
+		return (0);
+	return (1);
 }

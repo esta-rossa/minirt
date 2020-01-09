@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 05:35:21 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/28 01:05:23 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/09 06:23:49 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,7 @@ int		creat_matrix(t_matrix *mtx, int row, int column)
 	return (1);
 }
 
-int		cmp_float(double a, double b)
-{
-	double result;
 
-	result = (a < b) ? b - a : a - b;
-	if (result > 0.00001)
-		return (0);
-	return (1);
-}
 
 void	set_matrix(t_matrix *matrix, int row, int column, double value)
 {

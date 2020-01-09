@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 22:35:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/04 09:14:40 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/09 20:01:39 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # include "colors.h"
 # include "error.h"
 # include "parsing.h"
+# define FAR 1e30
+# define CLOSE 1e-6
 # define vibe_check write(1,"v",1);
 void	pr_cord(t_cord cord, char *name, char *end);
 
@@ -43,4 +45,5 @@ void		set_vector(t_cord *vector ,t_cord a, t_cord b);
 double		dot_pr(t_cord u, t_cord v);
 double		deg_to_rad(double deg);
 void		here_we_go(t_all *all);
+int			cmp_float(double a, double b);
 #endif
