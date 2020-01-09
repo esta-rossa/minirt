@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 05:26:55 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/06 04:46:07 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/09 04:00:58 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,17 @@ typedef	struct	s_obj
 	t_cord				pos;
 	t_cord				norm;
 	t_color				color;
+	t_cord				orient;
+	double				diam;
+	double				height;
 	double				ray;
+	double				a;
+	double				b;
+	double				c;
+	int					cap;
+	double				delta;
 	struct	s_obj		*next;
+
 }				t_obj;
 
 typedef	struct	s_pars
