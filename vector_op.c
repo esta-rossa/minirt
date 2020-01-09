@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 03:35:45 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/28 03:53:14 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/08 12:03:19 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,15 @@ t_ray	ray(t_matrix direction, t_matrix origin)
 	ray.orig = origin;
 	return (ray);
 }
+double	points_dist(t_cord a, t_cord b)
+{
+	double result;
 
+	result = sqrt(((b.x - a.x) * (b.x - a.x))
+	+ ((b.y - a.y) * (b.y - a.y))
+	+ ((b.z - a.z) * (b.z - a.z)));
+	return (result);
+}
 t_cord	new_cord(double x, double y, double z)
 {
 	t_cord	new;
