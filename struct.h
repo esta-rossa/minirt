@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 05:26:55 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/09 04:00:58 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/09 22:51:00 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,11 @@ typedef	struct	s_pars
 	char	*invalid;
 	int		index;
 }				t_pars;
+typedef	struct	s_cyl_needs
+{
+	double	m[2];
+	double	t[4];
+}				t_cyl_needs;
 
 typedef	struct	s_light
 {

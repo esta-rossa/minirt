@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 12:27:22 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/09 04:48:05 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/09 23:46:21 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	plan_inters(t_obj o, t_camera camera, double *t)
 
 	if (dot_pr(camera.v_ray, o.norm) != 0)
 	{
-		new_t = -dot_pr(vector_sub(camera.pos, o.pos), o.norm)
+		new_t = (-dot_pr(vector_sub(camera.pos, o.pos), o.norm))
 		/ dot_pr(camera.v_ray, o.norm);
 		if (new_t > 0 && new_t <= *t)
 		{
@@ -72,10 +72,14 @@ int	plan_inters(t_obj o, t_camera camera, double *t)
 	return (0);
 }
 
-void	cyl_inters_init(t_obj *o, t_camera camera)
+void	cyl_inters_init(t_obj *o, t_camera camera, t_cyl_needs *need)
 {
 	t_cord cam_ori;
 
+	need->t[0] = FAR;
+	need->t[1] = FAR;
+	need->t[2] = FAR;
+	need->t[3] = FAR;
 	cam_ori = vector_sub(camera.pos, o->pos);
 	o->a = dot_pr(camera.v_ray, camera.v_ray) -
 	dot_pr(camera.v_ray, o->orient) * dot_pr(camera.v_ray, o->orient);
@@ -84,36 +88,117 @@ void	cyl_inters_init(t_obj *o, t_camera camera)
 	o->c = dot_pr(cam_ori, cam_ori) - (dot_pr(cam_ori, o->orient)
 	* dot_pr(cam_ori, o->orient)) - (o->diam / 2) * (o->diam / 2);
 	o->delta = o->b * o->b - 4 * o->a * o->c;
+}
 
+
+int		disk_iners(t_obj o, t_camera camera, double *t)
+{
+	double	save;
+	t_cord	p;
+	t_cord	vec;
+
+	save = *t;
+	if (plan_inters(o, camera, &save))
+	{
+		p = vector_add(camera.pos, vector_mltp(camera.v_ray, save));
+		vec = vector_sub(p, o.pos);
+		if (sqrt(dot_pr(vec, vec)) <= o.diam / 2)
+		{
+			*t = save;
+			return (1);
+		}
+	}
+	return (0);
+}
+int		cyl_calcul(t_cyl_needs *need, t_obj o, t_camera camera)
+{
+	t_cord			cam_ori;
+	t_obj	plan;
+	int		rt;
+
+	rt = 0;
+	cam_ori = vector_sub(camera.pos, o.pos);
+	need->t[0]= (((-o.b + o.delta) / (2 * o.a)));
+	need->m[0] = (dot_pr(camera.v_ray, o.orient)
+	* need->t[0]) + dot_pr(cam_ori, o.orient);
+	need->t[1] = ((-o.b - o.delta) / (2 * o.a));
+	need->m[1] = (dot_pr(camera.v_ray, o.orient)
+	* need->t[1]) + dot_pr(cam_ori, o.orient);
+	if (o.cap != 0)
+	{
+		plan.pos = o.pos;
+		plan.norm = o.orient;
+		if (disk_iners(plan, camera, &need->t[2]))
+			rt = 1;
+		plan.pos = vector_add(o.pos, vector_mltp(o.orient, o.height));
+		plan.norm = o.orient;
+		if (disk_iners(plan, camera, &need->t[3]))
+			rt = 1;
+	}
+	return (rt);
+}
+double	smallest_double(double *old_tab, int size)
+{
+	int		index;
+	int		jndex;
+	double	save;
+	double	*tab;
+
+	tab = old_tab;
+	index = 0;
+	while (index < size)
+	{
+		jndex = index + 1;
+		while (jndex < size)
+		{
+			if (tab[jndex] < tab[index])
+			{
+				save = tab[index];
+				tab[index] = tab[jndex];
+				tab[jndex] = save;
+			}
+			jndex++;
+		}
+		index++;
+	}
+	return (tab[0]);
 }
 
 int		cyl_inters(t_obj o, t_camera camera, double *t)
 {
-	double first_t;
-	double sec_t;
-	double first_m;
-	double sec_m;
-	t_cord cam_ori;
+	t_cyl_needs		need;
+	t_cord			cam_ori;
 
 	cam_ori = vector_sub(camera.pos, o.pos);
-	cyl_inters_init(&o, camera);
+	cyl_inters_init(&o, camera, &need);
 	if (o.delta > 0)
 	{
 		o.delta = sqrt(o.delta);
-		first_t = (((-o.b + o.delta) / (2 * o.a)));
-		sec_t = ((-o.b - o.delta) / (2 * o.a));
-		first_m = (dot_pr(camera.v_ray, o.orient) * first_t) + dot_pr(cam_ori, o.orient);
-		sec_m = (dot_pr(camera.v_ray, o.orient) * sec_t) + dot_pr(cam_ori, o.orient);
-		if (first_t > 0 && first_t <= *t && first_m <= o.height && first_m >= 0)
+		if (cyl_calcul(&need, o, camera))
 		{
-			*t = first_t;
+			*t = smallest_double(need.t, 4);
 			return (1);
 		}
-		if (sec_t > 0 && sec_t <= *t && sec_m <= o.height && sec_m >= 0)
+		if (need.m[0] < o.height && need.m[0] > 0
+		&& need.m[1] < o.height && need.m[1] > 0)
 		{
-			*t = sec_t;
+			*t = smallest_double(need.t, 4);
 			return (1);
 		}
+		if (need.t[0] > 0 && need.t[0] <= *t &&
+		need.m[0] < o.height && need.m[0] > 0)
+		{
+			*t = need.t[0];
+			return (1);
+		}
+		if (need.t[1] > 0 && need.t[1] <= *t &&
+		need.m[1] < o.height && need.m[1] > 0)
+		{
+			*t = need.t[1];
+			return (1);
+		}
+		cyl_calcul(&need, o, camera);
+		if (*t < )
 	}
 	return (0);
 }
@@ -126,7 +211,7 @@ int	inters(t_obj *obj, t_camera camera, double *t)
 
 	pos = 0;
 	index = 0;
-	t_tmp = 1e30;
+	t_tmp = FAR;
 	inter = 0;
 	while (obj)
 	{

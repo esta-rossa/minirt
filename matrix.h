@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 06:22:47 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/28 01:05:47 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/09 06:24:59 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include "minirt.h"
 
 int			creat_matrix(t_matrix *mtx, int row, int column);
-int			cmp_float(double a, double b);
 void		set_matrix(t_matrix *matrix, int row, int column, double value);
 int			cmp_matrix(t_matrix matrix_a, t_matrix matrix_b);
 t_matrix	mult_matrix(t_matrix mtx_a, t_matrix mtx_b);
