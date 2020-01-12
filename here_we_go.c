@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 12:27:22 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/09 23:46:21 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/12 01:51:18 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	plan_inters(t_obj o, t_camera camera, double *t)
 	return (0);
 }
 
-void	cyl_inters_init(t_obj *o, t_camera camera, t_cyl_needs *need)
+int	cyl_inters_init(t_obj *o, t_camera camera, t_cyl_needs *need)
 {
 	t_cord cam_ori;
 
@@ -88,6 +88,10 @@ void	cyl_inters_init(t_obj *o, t_camera camera, t_cyl_needs *need)
 	o->c = dot_pr(cam_ori, cam_ori) - (dot_pr(cam_ori, o->orient)
 	* dot_pr(cam_ori, o->orient)) - (o->diam / 2) * (o->diam / 2);
 	o->delta = o->b * o->b - 4 * o->a * o->c;
+	o->delta = sqrt(o->delta);
+	if (o->delta > 0)
+		return (1);
+	return (0);
 }
 
 
@@ -96,13 +100,14 @@ int		disk_iners(t_obj o, t_camera camera, double *t)
 	double	save;
 	t_cord	p;
 	t_cord	vec;
-
+	double	dis;
 	save = *t;
 	if (plan_inters(o, camera, &save))
 	{
 		p = vector_add(camera.pos, vector_mltp(camera.v_ray, save));
 		vec = vector_sub(p, o.pos);
-		if (sqrt(dot_pr(vec, vec)) <= o.diam / 2)
+		dis = sqrt(dot_pr(vec, vec));
+		if (dis <= o.diam / 2)
 		{
 			*t = save;
 			return (1);
@@ -110,42 +115,18 @@ int		disk_iners(t_obj o, t_camera camera, double *t)
 	}
 	return (0);
 }
-int		cyl_calcul(t_cyl_needs *need, t_obj o, t_camera camera)
-{
-	t_cord			cam_ori;
-	t_obj	plan;
-	int		rt;
 
-	rt = 0;
-	cam_ori = vector_sub(camera.pos, o.pos);
-	need->t[0]= (((-o.b + o.delta) / (2 * o.a)));
-	need->m[0] = (dot_pr(camera.v_ray, o.orient)
-	* need->t[0]) + dot_pr(cam_ori, o.orient);
-	need->t[1] = ((-o.b - o.delta) / (2 * o.a));
-	need->m[1] = (dot_pr(camera.v_ray, o.orient)
-	* need->t[1]) + dot_pr(cam_ori, o.orient);
-	if (o.cap != 0)
-	{
-		plan.pos = o.pos;
-		plan.norm = o.orient;
-		if (disk_iners(plan, camera, &need->t[2]))
-			rt = 1;
-		plan.pos = vector_add(o.pos, vector_mltp(o.orient, o.height));
-		plan.norm = o.orient;
-		if (disk_iners(plan, camera, &need->t[3]))
-			rt = 1;
-	}
-	return (rt);
-}
-double	smallest_double(double *old_tab, int size)
+double	smallest_double(double *tab, int size)
 {
 	int		index;
 	int		jndex;
 	double	save;
-	double	*tab;
 
-	tab = old_tab;
-	index = 0;
+	index = -1;
+	while (++index < size)
+		if (tab[index] < 0)
+			tab[index] = FAR;
+	index = -1;
 	while (index < size)
 	{
 		jndex = index + 1;
@@ -164,44 +145,69 @@ double	smallest_double(double *old_tab, int size)
 	return (tab[0]);
 }
 
-int		cyl_inters(t_obj o, t_camera camera, double *t)
+void	cyl_calcul(t_obj *o, t_camera camera, t_cyl_needs *need)
 {
-	t_cyl_needs		need;
-	t_cord			cam_ori;
+	t_cord		cam_ori;
 
-	cam_ori = vector_sub(camera.pos, o.pos);
-	cyl_inters_init(&o, camera, &need);
-	if (o.delta > 0)
+	cam_ori = vector_sub(camera.pos, o->pos);
+	need->t[0] = (-o->b + o->delta) / (2 * o->a);
+	need->t[1] = (-o->b - o->delta) / (2 * o->a);
+	smallest_double(need->t, 2);
+	need->m[0] = (dot_pr(camera.v_ray, o->orient)
+	* need->t[0]) + dot_pr(cam_ori, o->orient);
+	need->m[1] = (dot_pr(camera.v_ray, o->orient)
+	* need->t[1]) + dot_pr(cam_ori, o->orient);
+}
+
+void	put_cap(t_obj *o, t_camera camera, double *t)
+{
+	t_obj	up_plan;
+	t_obj	down_plan;
+
+	down_plan.pos = o->pos;
+	down_plan.norm = o->orient;
+	down_plan.diam = o->diam;
+	up_plan.pos = vector_add(o->pos, vector_mltp(o->orient, o->height));
+	up_plan.norm = o->orient;
+	up_plan.diam = o->diam;
+	if (disk_iners(down_plan, camera, t))
+		o->norm = vector_mltp(o->orient, -1);
+	if (disk_iners(up_plan, camera, t))
+		o->norm = o->orient;
+}
+int		cyl_inters(t_obj *o, t_camera camera, double *t)
+{
+	t_cyl_needs	need;
+	t_cord			p_inter;
+	double		new_t;
+
+	new_t = FAR;
+	if (cyl_inters_init(o, camera, &need))
 	{
-		o.delta = sqrt(o.delta);
-		if (cyl_calcul(&need, o, camera))
+		cyl_calcul(o, camera, &need);
+		if (need.m[0] > 0 && need.m[0] < o->height)
 		{
-			*t = smallest_double(need.t, 4);
+			new_t = need.t[0];
+			p_inter = vector_add(camera.pos, vector_mltp(camera.v_ray, need.t[0]));
+			o->norm = vector_norm(vector_sub(p_inter, vector_add(o->pos, vector_mltp(o->orient, need.m[0]))));
+		}
+		else if (need.m[1] > 0 && need.m[1] < o->height)
+		{
+			new_t = need.t[1];
+			p_inter = vector_add(camera.pos, vector_mltp(camera.v_ray, need.t[1]));
+			o->norm = vector_norm(vector_sub(vector_add(o->pos, vector_mltp(o->orient, need.m[1])), p_inter));
+		}
+		if (o->cap != 0)
+			put_cap(o, camera, &new_t);
+		if (new_t > 0 && new_t < *t)
+		{
+			*t = new_t;
 			return (1);
 		}
-		if (need.m[0] < o.height && need.m[0] > 0
-		&& need.m[1] < o.height && need.m[1] > 0)
-		{
-			*t = smallest_double(need.t, 4);
-			return (1);
-		}
-		if (need.t[0] > 0 && need.t[0] <= *t &&
-		need.m[0] < o.height && need.m[0] > 0)
-		{
-			*t = need.t[0];
-			return (1);
-		}
-		if (need.t[1] > 0 && need.t[1] <= *t &&
-		need.m[1] < o.height && need.m[1] > 0)
-		{
-			*t = need.t[1];
-			return (1);
-		}
-		cyl_calcul(&need, o, camera);
-		if (*t < )
 	}
 	return (0);
 }
+
 int	inters(t_obj *obj, t_camera camera, double *t)
 {
 	double	t_tmp;
@@ -228,7 +234,7 @@ int	inters(t_obj *obj, t_camera camera, double *t)
 				pos = index;
 			}
 		if (obj->type == CYLINDER)
-			if (cyl_inters(*obj, camera, &t_tmp))
+			if (cyl_inters(obj, camera, &t_tmp))
 			{
 				inter = 1;
 				pos = index;
@@ -376,8 +382,8 @@ void		init_cyl(t_all all, double t)
 	all.a_camera->pos, vector_mltp(all.a_camera->v_ray, t));
 	all.a_light->vec = vector_norm(vector_sub(all.a_light->pos,
 	all.a_camera->p_inter));
-	all.a_obj->norm = vector_norm(vector_sub(vector_sub(all.a_camera->p_inter,
-	all.a_obj->pos), vector_mltp(all.a_obj->orient, m)));
+/* 	all.a_obj->norm = vector_norm(vector_sub(vector_sub(all.a_camera->p_inter,
+	all.a_obj->pos), vector_mltp(all.a_obj->orient, m))); */
 	all.a_light->reflect = vector_norm(
 	reflected(vector_mltp(all.a_light->vec, -1),
 	all.a_obj->norm));
