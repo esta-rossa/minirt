@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   circle.c                                           :+:      :+:    :+:   */
+/*   parsing_obj_3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/05 02:17:19 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/07 02:02:37 by arraji           ###   ########.fr       */
+/*   Created: 2020/01/12 19:09:36 by arraji            #+#    #+#             */
+/*   Updated: 2020/01/12 19:11:58 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	circle(t_cord o, double ray, void *init, void *wind)
+void	tr_pars(t_pars *pars, t_all *list, char **args)
 {
-	double a;
-	double x;
-	double y;
-
-	a = 0;
-	while (a <= 360)
-	{
-		x = o.x + ray * cos(a);
-		y = o.y + ray * sin(a);
-		mlx_pixel_put(init, wind, x, y, 255);
-		a += (2 * M_PI) / (8 * ray);
-	}
+	if (ft_tablen(args) != 5)
+		ft_pars_exit(*pars, E_PARS);
+	check_tab(args, *pars, 1);
+	check_tab(args, *pars, 2);
+	check_tab(args, *pars, 3);
+	check_tab(args, *pars, 4);
 }

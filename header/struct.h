@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 05:26:55 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/10 19:10:56 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/12 02:10:38 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ typedef	struct	s_pars
 typedef	struct	s_cyl_needs
 {
 	double	m[2];
-	double	t[4];
+	double	t[2];
 }				t_cyl_needs;
 
 typedef	struct	s_light
