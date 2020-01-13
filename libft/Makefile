@@ -6,7 +6,7 @@
 #    By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 13:57:03 by arraji            #+#    #+#              #
-#    Updated: 2019/12/31 02:45:37 by arraji           ###   ########.fr        #
+#    Updated: 2020/01/13 20:39:55 by arraji           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,23 +77,29 @@ SRC  = ft_atoi.c \
 		ft_tablen.c \
 		ft_pr_tab.c
 
+RED = \033[0;31m
+GREEN = \033[0;32m
+RESET = \033[0m
+
 HEADERS = ./
 OBJECT = $(SRC:.c=.o)
 
 .PHONY = all bonus clean fclean re
 $(NAME): $(OBJECT)
-	ar rcs $(NAME) $(OBJECT)
+	@ar rcs $(NAME) $(OBJECT)
+	@echo  "library created $(GREEN){OK}$(RESET)"
 
 %.o: %.c
-	gcc $(FLAGS) -I $(HEADERS)  -o $@ -c $<
+	@gcc $(FLAGS) -I $(HEADERS)  -o $@ -c $<
+	@echo  "creating" $< "object $(GREEN){OK}$(RESET)"
 
 all: $(NAME)
 
 clean:
-	rm -f $(OBJECT)
+	@(rm $(OBJECT) 2> /dev/null && echo "$(RED)deleting$(RESET): " $(OBJECT)) || true
 
 fclean: clean
-	rm -f $(NAME)
+	@(rm $(NAME) 2> /dev/null && echo "$(RED)deleting$(RESET): " $(NAME)) || treu
 
 re: fclean $(NAME)
 
