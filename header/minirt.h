@@ -6,14 +6,16 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 22:35:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/12 19:23:33 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/15 01:51:39 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MINIRT_H
 # define FT_MINIRT_H
 # define FAR 1e30
-# define CLOSE 1e-6
+# define NEAR 1e-6
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
 # define vibe_check write(1,"v",1);
 # include <mlx.h>
 # include <stdio.h>
@@ -34,8 +36,9 @@
 # include "inters.h"
 # include "shitting_math.h"
 # include "light_shitting.h"
+# include "shadows.h"
 
-void		render(t_all all, t_camera camera, t_light light, t_color *color);
+void		render(t_all all, t_camera s_camera, t_color *color);
 void		here_we_go(t_all *all);
 void		pr_cord(t_cord cord, char *name, char *end);
 void		init_func(t_all all);

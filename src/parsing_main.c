@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:25:03 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/13 01:00:22 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/15 00:58:48 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,13 @@ void	data_read(t_pars *pars, t_all *all)
 	int		res;
 
 	res = 1;
+	pars->line_num = 0;
 	while (res == 1)
 	{
 		res = get_next_line(pars->fd, &(pars)->line);
 		if (res == -1)
 			ft_exit(E_STD);
+		pars->line_num++;
 		args = ft_split(pars->line, ' ');
 		if (ft_tablen(args) > 0)
 		{

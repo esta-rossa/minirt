@@ -8,7 +8,7 @@
 			"name": "gcc build and debug active file",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${fileDirname}/${fileBasenameNoExtension}",
+			"program": "/Users/arraji/Desktop/new_rt/minirt",
 			"args": [
 				"rt.rt"
 			],

@@ -6,26 +6,34 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:37:34 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/13 01:41:20 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/15 02:45:40 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void		ft_phong(t_all all, t_color *color, double t)
+void		ft_phong(t_all all, t_obj *obj, t_color *color, double t)
 {
-	t_light	*list;
 
-	init_phong(all, t);
-	list = all.a_light;
-	get_diffuse(&all, t);
-	get_speculare(&all, t);
-	get_ambiant(&all, t);
-	color->r += all.phong->ambient.r + all.phong->speculare.r
-	+ all.phong->diffuse.r;
-	color->g += all.phong->ambient.g + all.phong->speculare.g
-	+ all.phong->diffuse.g;
-	color->b += all.phong->ambient.b + all.phong->speculare.b
-	+ all.phong->diffuse.b;
+	get_ambiant(&all, obj);
+	color->r += all.phong->ambient.r;
+	color->g += all.phong->ambient.g;
+	color->b += all.phong->ambient.b;
+	while (all.a_light && 1)
+	{
+		init_phong(all, obj, t);
+		get_diffuse(&all, obj);
+		// get_speculare(&all);
+		/* if (!shadow(all, obj))
+		{
+			color->r += all.phong->speculare.r + all.phong->diffuse.r;
+			color->g += all.phong->speculare.g + all.phong->diffuse.g;
+			color->b += all.phong->speculare.b + all.phong->diffuse.b;
+		} */
+		color->r += all.phong->speculare.r + all.phong->diffuse.r;
+		color->g += all.phong->speculare.g + all.phong->diffuse.g;
+		color->b += all.phong->speculare.b + all.phong->diffuse.b;
+		all.a_light = all.a_light->next;
+	}
 	// printf("c %f %f %f", color->r, color->g, color->b);
 }

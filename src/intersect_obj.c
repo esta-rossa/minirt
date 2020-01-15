@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:27:53 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/12 21:15:46 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/14 23:13:50 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		sp_inters(t_obj o, t_camera camera, double *t)
 	o.b = (dot_pr(camera.pos, camera.v_ray)
 	- dot_pr(o.pos, camera.v_ray)) * 2;
 	o.c = dot_pr(o.pos, o.pos)
-	- (o.ray * o.ray)
+	- (o.radius * o.radius)
 	- (2 * dot_pr(o.pos, camera.pos))
 	+ dot_pr(camera.pos, camera.pos);
 	o.delta = o.b * o.b - 4 * o.a * o.c;
@@ -29,7 +29,7 @@ int		sp_inters(t_obj o, t_camera camera, double *t)
 		o.delta = sqrt(o.delta);
 		new_t = (((-o.b + o.delta) / (2 * o.a)) < ((-o.b - o.delta) / (2 * o.a))
 		? ((-o.b + o.delta) / (2 * o.a)) : ((-o.b - o.delta) / (2 * o.a)));
-		if (new_t > 0 && new_t <= *t)
+		if (new_t > 0 && new_t <= *t && new_t > NEAR)
 		{
 			*t = new_t;
 			return (1);
@@ -46,7 +46,7 @@ int		plan_inters(t_obj o, t_camera camera, double *t)
 	{
 		new_t = (-dot_pr(vector_sub(camera.pos, o.pos), o.norm))
 		/ dot_pr(camera.v_ray, o.norm);
-		if (new_t > 0 && new_t <= *t)
+		if (new_t > 0 && new_t <= *t && new_t > NEAR)
 		{
 			*t = new_t;
 			return (1);
@@ -64,7 +64,7 @@ int		inters(t_obj *obj, t_camera camera, double *t)
 
 	pos = 0;
 	index = 0;
-	t_tmp = FAR;
+	t_tmp = *t;
 	inter = 0;
 	while (obj)
 	{

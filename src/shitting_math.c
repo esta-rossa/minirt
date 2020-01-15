@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 00:33:51 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/12 19:08:15 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/14 02:33:25 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int			cmp_float(double a, double b)
 	double result;
 
 	result = (a < b) ? b - a : a - b;
-	if (result > 0.00001)
+	if (result > 0.0001)
 		return (0);
 	return (1);
 }

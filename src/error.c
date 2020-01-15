@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 19:54:20 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/12 20:20:47 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/15 01:02:42 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	ft_pars_exit(t_pars pars, int number)
 		number == E_NO_FILE ? ft_printf("Can't open file \'%s\'\n"
 		, pars.argv[1]) : 1;
 		number == E_FILE_FRM ? ft_printf("wrong file format\n") : 1;
-		number == E_PARS ? ft_printf("invalid data\n") : 1;
+		number == E_PARS ?
+		ft_printf("invalid data in line %d\n", pars.line_num) : 1;
+		number == E_NO_CAM ? ft_printf("No camera giving\n") : 1;
+		number == E_NO_RES ? ft_printf("resolution are not giving\n") : 1;
 		exit(number);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:50:24 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/12 20:21:13 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/15 03:11:29 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,32 @@ void		init_func(t_all all)
 	int		size_line;
 	int		endian;
 
-	all.wind->init = mlx_init();
+	if (!(all.wind->init = mlx_init()))
+		ft_exit(E_STD);
 	all.wind->wind_p = mlx_new_window(all.wind->init, all.wind->wind_x,
 	all.wind->wind_y, "oups");
-	all.wind->img_p = mlx_new_image(all.wind->init, all.wind->wind_x,
-	all.wind->wind_y);
+	if (!(all.wind->img_p = mlx_new_image(all.wind->init, all.wind->wind_x,
+	all.wind->wind_y)))
+		ft_exit(E_STD);
 	all.wind->img_data = (int *)mlx_get_data_addr(all.wind->img_p, &bpp,
 	&size_line, &endian);
 }
 
-void		render(t_all all, t_camera camera, t_light light, t_color *color)
+void		render(t_all all, t_camera camera, t_color *color)
 {
 	int			pos;
 	double		t;
+	t_obj		*obj;
 
 	*color = (t_color){ 0, 0, 0};
+	t = FAR;
 	if ((pos = inters(all.a_obj, camera, &t)) >= 0)
 	{
+		obj = all.a_obj;
 		while (pos--)
-			all.a_obj = all.a_obj->next;
-		ft_phong(all, color, t);
-		// *color = all.a_obj->color;
+			obj = obj->next;
+		ft_phong(all, obj, color, t);
+		// *color = obj->color;
 	}
 }
 
@@ -49,7 +54,7 @@ void		here_we_go(t_all *all)
 	t_color		color;
 
 	y = -1;
-	init_func(*all);
+
 	init_camera(all->a_camera, *all);
 	while (++y < all->wind->wind_y)
 	{
@@ -58,7 +63,7 @@ void		here_we_go(t_all *all)
 		{
 			all->a_camera->v_ray = vector_norm(get_ray(*(all)->a_camera,
 			all->a_camera->bot, x, y));
-			render(*all, *(all)->a_camera, *(all)->a_light, &color);
+			render(*all, *(all)->a_camera, &color);
 			*(all->wind)->img_data = get_color(color);
 			(all->wind)->img_data++;
 		}
