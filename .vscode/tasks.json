@@ -3,23 +3,8 @@
         {
             "type": "shell",
             "label": "gcc build active file",
-            "command": "/usr/bin/gcc",
+            "command": "make -C /Users/arraji/Desktop/new_rt",
             "args": [
-                "-g",
-                "${fileDirname}/libft/libft.a",
-                "${fileDirname}/main.c",
-                "${fileDirname}/parsing.c",
-                "${fileDirname}/here_we_go.c",
-                "${fileDirname}/shitting_math.c",
-                "${fileDirname}/vector_op.c",
-                "${fileDirname}/camera.c",
-                "-lmlx",
-                "-framework",
-                "OpenGL",
-                "-framework",
-                "Appkit",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
             ],
             "options": {
                 "cwd": "/usr/bin"

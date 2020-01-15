@@ -28,7 +28,8 @@ SRC_FILES = 	main.c \
 				vector_op.c \
 				vector_op_2.c \
 				phong_shitting.c \
-				shitting_math.c
+				shitting_math.c \
+				shadows.c
 
 OBJECT_FILES = $(SRC_FILES:.c=.o)
 OBJECT_FILES := $(addprefix $(OBJECT_FOLDER)/, $(OBJECT_FILES))
@@ -55,15 +56,14 @@ credit:
 	@echo "╚══════╝╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝"
 
 $(NAME): $(LIBFT_FILE) $(OBJECT_FILES)
-	@gcc -I $(HEADER_FOLDER) -I $(LIBFT_FOLDER) $(OBJECT_FILES) $(LIBFT_FOLDER)/$(LIBFT_LIB) $(LIBS) -o $@
+	@gcc -g -I $(HEADER_FOLDER) -I $(LIBFT_FOLDER) $(OBJECT_FILES) $(LIBFT_FOLDER)/$(LIBFT_LIB) $(LIBS) -o $@
 	@echo
 	@echo $(NAME)" created $(GREEN) successfully$(RESET)"
 
 
 $(OBJECT_FOLDER)/%.o: $(SRC_FOLDER)/%.c
-	@mkdir $(OBJECT_FOLDER) 2> /dev/null || true
-	@echo  "creating "$(OBJECT_FOLDER)" folder $(GREEN){OK}$(RESET)"
-	@gcc -I $(HEADER_FOLDER) -I $(LIBFT_FOLDER) -o $@ -c $<
+	@(mkdir $(OBJECT_FOLDER) 2> /dev/null && echo "creating "$(OBJECT_FOLDER)" folder $(GREEN){OK}$(RESET)") || true
+	@gcc $(FLAGS) -g -I $(HEADER_FOLDER) -I $(LIBFT_FOLDER) -o $@ -c $<
 	@echo  "creating" $< "object $(GREEN){OK}$(RESET)"
 
 clean:

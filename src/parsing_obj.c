@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 02:21:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/12 20:23:10 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/14 06:08:40 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		sp_pars(t_pars *pars, t_all *list, char **args)
 	obj->type = SPHERE;
 	pars->tab = ft_split(args[1], ',');
 	pars_pos(pars, &(obj)->pos);
-	obj->ray = ft_atof(args[2]);
+	obj->radius = ft_atof(args[2]);
 	pars->tab = ft_split(args[3], ',');
 	pars_color(pars, &(obj)->color);
 }
@@ -72,12 +72,12 @@ void		cyl_pars(t_pars *pars, t_all *list, char **args)
 {
 	t_obj *obj;
 
-	if (ft_tablen(args) != 7 || !valid_f(args[3])
-	|| !valid_f(args[4]) || !valid_f(args[5]))
+	if (ft_tablen(args) != 6 || !valid_f(args[3])
+	|| !valid_f(args[4]))
 		ft_pars_exit(*pars, E_PARS);
 	check_tab(args, *pars, 1);
 	check_tab(args, *pars, 2);
-	check_tab(args, *pars, 6);
+	check_tab(args, *pars, 5);
 	add_obj(&(list)->a_obj, new_obj());
 	obj = list->a_obj;
 	while (obj->next)
@@ -89,8 +89,7 @@ void		cyl_pars(t_pars *pars, t_all *list, char **args)
 	pars_pos(pars, &obj->orient);
 	obj->diam = ft_atof(args[3]);
 	obj->height = ft_atof(args[4]);
-	obj->cap = ft_atoi(args[5]);
-	pars->tab = ft_split(args[6], ',');
+	pars->tab = ft_split(args[5], ',');
 	pars_color(pars, &obj->color);
 }
 

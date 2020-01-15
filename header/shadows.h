@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_obj_3.c                                    :+:      :+:    :+:   */
+/*   shadows.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/12 19:09:36 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/14 22:39:30 by arraji           ###   ########.fr       */
+/*   Created: 2020/01/14 01:16:08 by arraji            #+#    #+#             */
+/*   Updated: 2020/01/14 09:29:01 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#ifndef FT_SHADOWS_H
+# define FT_SHADOWS_H
 
-void	tr_pars(t_pars *pars, t_all *list, char **args)
-{
-	if (ft_tablen(args) != 5)
-		ft_pars_exit(*pars, E_PARS);
-	check_tab(args, *pars, 1);
-	check_tab(args, *pars, 2);
-	check_tab(args, *pars, 3);
-	check_tab(args, *pars, 4);
-	list->a_obj->color = (t_color){0,0,0};
-}
+#include "minirt.h"
+int	shadow(t_all all, t_obj *obj);
+#endif

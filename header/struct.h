@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 05:26:55 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/12 02:10:38 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/15 00:54:28 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,11 @@ typedef	struct	s_obj
 	t_cord				orient;
 	double				diam;
 	double				height;
-	double				ray;
+	int					out_hit;
 	double				a;
 	double				b;
 	double				c;
-	int					cap;
+	double				radius;
 	double				delta;
 	struct	s_obj		*next;
 
@@ -115,6 +115,7 @@ typedef	struct	s_pars
 	char	**tab;
 	int		fd;
 	char	*line;
+	int		line_num;
 	char	*invalid;
 	int		index;
 }				t_pars;
@@ -138,8 +139,8 @@ typedef	struct	s_phong
 {
 	t_color	diffuse;
 	t_color	speculare;
-	t_color	ambient_color;
 	t_color	ambient;
+	t_color	ambient_color;
 	double	ambient_cof;
 }				t_phong;
 
