@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 05:26:55 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/15 00:54:28 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/15 04:16:16 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef	struct	s_wind
 	int		wind_y;
 	void	*img_p;
 	int		*img_data;
+	int		*img_data_save;
 }				t_wind;
 
 typedef	struct	s_line
@@ -70,20 +71,20 @@ typedef	struct	s_ray
 
 typedef	struct	s_camera
 {
-	t_cord			pos;
-	t_cord			l_at;
-	t_cord			up;
-	t_cord			right;
-	t_cord			x_inc;
-	t_cord			y_inc;
-	t_cord			p_inter;
-	double			fov;
-	double			t;
-	double			distance;
-	t_cord			v_ray;
-	t_cord			bot;
-	unsigned	int	x_reso;
-	unsigned	int	y_reso;
+	t_cord				pos;
+	t_cord				l_at;
+	t_cord				up;
+	t_cord				right;
+	t_cord				x_inc;
+	t_cord				y_inc;
+	t_cord				p_inter;
+	double				fov;
+	double				t;
+	double				distance;
+	t_cord				v_ray;
+	t_cord				bot;
+	unsigned	int		x_reso;
+	unsigned	int		y_reso;
 	struct	s_camera	*next;
 	struct	s_camera	*previous;
 }				t_camera;

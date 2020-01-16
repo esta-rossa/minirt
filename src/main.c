@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 04:24:23 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/15 03:14:08 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/15 20:55:55 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,15 @@ int		control(int button, t_all *all)
 	// printf("%d", button);
 	if (button == KEY_LEFT)
 	{
-		// mlx_destroy_image(all->wind->init, all->wind->img_p);
+		mlx_destroy_image(all->wind->init, all->wind->img_p);
 		printf("%f\n", all->a_camera->pos.x);
 		all->a_camera = all->a_camera->previous;
 		printf("LEFT PRESSED\n");
+		here_we_go(all);
 	}
 	else if (button == KEY_RIGHT)
 	{
-		// mlx_destroy_image(all->wind->init, all->wind->img_p);
+		mlx_destroy_image(all->wind->init, all->wind->img_p);
 		printf("%f\n" , all->a_camera->pos.x);
 		all->a_camera = all->a_camera->next;
 		printf("RIGHT PRESSED\n");
@@ -72,7 +73,7 @@ int		main(int argc, char **argv)
 	init_all(&all);
 	data_read(&pars, &all);
 	check_after_pars(all, pars);
-	init_func(all);
+	init_wind(all);
 	here_we_go(&all);
 	hook(all);
 	// key_hook(key_press); if (button == LEFT_KEY) akdasd asdl
