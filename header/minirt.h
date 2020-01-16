@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 22:35:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/15 20:56:50 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/16 18:38:10 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define NEAR 1e-6
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
+# define KEY_ESC 53
 # define vibe_check write(1,"v",1);
 # include <mlx.h>
 # include <stdio.h>

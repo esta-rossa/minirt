@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 04:24:23 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/15 20:55:55 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/16 18:39:01 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ void	check_after_pars(t_all all, t_pars pars)
 		ft_pars_exit(pars, E_NO_RES);
 	if (all.a_camera == NULL)
 		ft_pars_exit(pars, E_NO_CAM);
+}
+
+int		die()
+{
+	exit(0);
+	return (0);
 }
 
 int		control(int button, t_all *all)
@@ -44,14 +50,13 @@ int		control(int button, t_all *all)
 		printf("RIGHT PRESSED\n");
 		here_we_go(all);
 	}
+	else if (button == KEY_ESC)
+	{
+		die();
+	}
 	return (0);
 }
 
-int		die()
-{
-	exit(0);
-	return (0);
-}
 
 void	hook(t_all all)
 {
