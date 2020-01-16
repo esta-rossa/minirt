@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 22:35:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/15 01:51:39 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/15 20:56:50 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 void		render(t_all all, t_camera s_camera, t_color *color);
 void		here_we_go(t_all *all);
 void		pr_cord(t_cord cord, char *name, char *end);
-void		init_func(t_all all);
+void		init_wind(t_all all);
+void		init_image(t_all all);
 double		smallest_double(double *tab, int size);
 #endif

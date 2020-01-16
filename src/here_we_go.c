@@ -3,30 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   here_we_go.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:50:24 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/15 03:11:29 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/15 20:55:45 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void		init_func(t_all all)
+void		init_wind(t_all all)
 {
-	int		bpp;
-	int		size_line;
-	int		endian;
 
 	if (!(all.wind->init = mlx_init()))
 		ft_exit(E_STD);
 	all.wind->wind_p = mlx_new_window(all.wind->init, all.wind->wind_x,
 	all.wind->wind_y, "oups");
+}
+
+void		init_image(t_all all)
+{
+	int		bpp;
+	int		size_line;
+	int		endian;
 	if (!(all.wind->img_p = mlx_new_image(all.wind->init, all.wind->wind_x,
 	all.wind->wind_y)))
 		ft_exit(E_STD);
 	all.wind->img_data = (int *)mlx_get_data_addr(all.wind->img_p, &bpp,
 	&size_line, &endian);
+
 }
 
 void		render(t_all all, t_camera camera, t_color *color)
@@ -54,7 +59,7 @@ void		here_we_go(t_all *all)
 	t_color		color;
 
 	y = -1;
-
+	init_image(*all);
 	init_camera(all->a_camera, *all);
 	while (++y < all->wind->wind_y)
 	{
