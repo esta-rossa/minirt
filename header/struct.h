@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 05:26:55 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/15 04:16:16 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/16 23:10:34 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,16 @@ typedef	struct	s_camera
 	struct	s_camera	*previous;
 }				t_camera;
 
+
 typedef	struct	s_obj
 {
 	int					type;
 	t_cord				pos;
+	t_cord				vertex_0;
+	t_cord				vertex_1;
+	t_cord				vertex_2;
+	t_cord				vec_1;
+	t_cord				vec_2;
 	t_cord				norm;
 	t_color				color;
 	t_cord				orient;

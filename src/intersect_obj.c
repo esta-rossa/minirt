@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_obj.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:27:53 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/14 23:13:50 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/16 23:11:04 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,12 @@ int		inters(t_obj *obj, t_camera camera, double *t)
 			}
 		if (obj->type == CYLINDER)
 			if (cyl_inters(obj, camera, &t_tmp))
+			{
+				inter = 1;
+				pos = index;
+			}
+		if (obj->type == TRIANGLE)
+			if (triangle_inters(obj, camera, &t_tmp))
 			{
 				inter = 1;
 				pos = index;
