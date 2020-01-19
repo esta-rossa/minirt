@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 22:35:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/16 18:38:10 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/19 02:27:33 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # include "shitting_math.h"
 # include "light_shitting.h"
 # include "shadows.h"
+# include "save.h"
 
 void		render(t_all all, t_camera s_camera, t_color *color);
 void		here_we_go(t_all *all);

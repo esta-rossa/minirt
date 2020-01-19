@@ -29,7 +29,8 @@ SRC_FILES = 	main.c \
 				vector_op_2.c \
 				phong_shitting.c \
 				shitting_math.c \
-				shadows.c
+				shadows.c \
+				triangle_inters.c \
 
 OBJECT_FILES = $(SRC_FILES:.c=.o)
 OBJECT_FILES := $(addprefix $(OBJECT_FOLDER)/, $(OBJECT_FILES))
