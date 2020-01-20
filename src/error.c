@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 19:54:20 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/15 01:02:42 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/19 15:08:10 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	ft_exit(int number)
 	{
 		color = PRINT_RED;
 		ft_printf("%sERROR%s %d : ", color, RESET, number);
-		number == E_STD ? perror("") : 1;
+		perror("");
+		exit(number);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 05:26:55 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/16 23:10:34 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/19 16:11:45 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,5 +158,6 @@ typedef	struct	s_all
 	t_light		*a_light;
 	t_wind		*wind;
 	t_phong		*phong;
+	int			save;
 }				t_all;
 #endif

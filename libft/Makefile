@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+         #
+#    By: arraji <arraji@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 13:57:03 by arraji            #+#    #+#              #
-#    Updated: 2020/01/13 20:39:55 by arraji           ###   ########.fr        #
+#    Updated: 2020/01/19 16:19:23 by arraji           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 AR = ar rcs
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -g -Wall -Wextra -Werror
 SRC  = ft_atoi.c \
 		ft_bzero.c \
 		ft_calloc.c \
