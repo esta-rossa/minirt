@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 00:23:18 by arraji            #+#    #+#             */
-/*   Updated: 2019/11/06 00:54:32 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/19 16:15:46 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static	size_t	ft_stlen(const char *str)
 	size_t strlen;
 
 	strlen = 0;
+	if (str == NULL)
+		return (0);
 	while (str[strlen])
 		strlen++;
 	return (strlen);

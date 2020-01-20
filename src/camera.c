@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 00:44:32 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/12 20:20:03 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/20 02:10:56 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	init_camera(t_camera *camera, t_all all)
 	middle = vector_add(camera->pos, camera->l_at);
 	view_ray = vector_sub(middle, camera->pos);
 	camera->right = vector_norm(cross_prod(new_cord(0, 1, 0), view_ray));
-	camera->up = vector_norm(cross_prod(camera->right, view_ray));
+	camera->up = vector_norm(cross_prod(view_ray, camera->right));
 	width_unit = tan(deg_to_rad(camera->fov) / 2);
 	height_unit = ((double)camera->y_reso / camera->x_reso) * width_unit;
 	bot_left = vector_add(middle, vector_mltp(camera->up, -height_unit));

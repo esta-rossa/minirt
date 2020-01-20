@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 18:45:28 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/17 02:13:33 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/20 01:54:56 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,5 @@ void	cyl_norm(t_obj *o, t_camera camera, t_cyl_needs need, int dir);
 void	put_cap(t_obj *o, t_camera camera, double *t);
 void	cyl_calcul(t_obj *o, t_camera camera, t_cyl_needs *need);
 int		triangle_inters(t_obj *o, t_camera camera, double *t);
+int		squar_inters(t_obj *o, t_camera camera, double *t);
 #endif

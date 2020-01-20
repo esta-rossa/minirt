@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:29:41 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/12 19:17:13 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/20 02:04:48 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,9 @@ double	smallest_double(double *tab, int size)
 		index++;
 	}
 	return (tab[0]);
+}
+
+void		pr_cord(t_cord cord, char *name, char *end)
+{
+	printf("%s.x: %f %s.y: %f %s.z: %f%s", name, cord.x, name, cord.y, name, cord.z, end);
 }

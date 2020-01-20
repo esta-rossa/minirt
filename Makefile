@@ -31,6 +31,9 @@ SRC_FILES = 	main.c \
 				shitting_math.c \
 				shadows.c \
 				triangle_inters.c \
+				save_bmp.c \
+				hooks.c \
+				squar_inters.c
 
 OBJECT_FILES = $(SRC_FILES:.c=.o)
 OBJECT_FILES := $(addprefix $(OBJECT_FOLDER)/, $(OBJECT_FILES))

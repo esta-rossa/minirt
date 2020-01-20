@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 22:25:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/12 19:16:14 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/20 05:00:22 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ void		light_pars(t_pars *pars, t_all *list, char **args);
 void		pars_pos(t_pars *pars, t_cord *pos);
 void		pars_color(t_pars *pars, t_color *color);
 void		tr_pars(t_pars *pars, t_all *list, char **args);
+void		square_pars(t_pars *pars, t_all *list, char **args);
 #endif

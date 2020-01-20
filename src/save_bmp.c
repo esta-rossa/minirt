@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 06:50:31 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/19 06:57:44 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/19 16:02:19 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ void	save_bitmap(t_wind wind, int *pp)
 	int file_size;
 
 	image_size = wind.wind_x * wind.wind_y;
-	file_size = 54 + 4 * image_size;
+	file_size = HEADER_SIZE + 4 * image_size;
 	init_file_header(&bfh, file_size);
 	init_image_header(&bih, wind, file_size);
-	if ((fd = open("save.bmp", O_WRONLY)) == -1)
-		exit (1);
-	write(fd, &bfh, sizeof(bfh));
+	if ((fd = open("save.bmp", O_CREAT| O_WRONLY | O_TRUNC, S_IRUSR | S_IWUSR)) == -1)
+		ft_exit(E_NO_SAVE);
+	write(fd, &bfh, sizeof(bfh) - 2);
 	write(fd, &bih, sizeof(bih));
-	unsigned char *color = (unsigned char *)pp;
-	write(fd, &color, image_size * 4);
+	write(fd, pp, image_size * 4);
 	close(fd);
 }
+

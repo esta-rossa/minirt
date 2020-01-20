@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:25:03 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/17 02:06:09 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/20 04:41:53 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	line_pars(t_pars *pars, t_all *list, char **args)
 		cyl_pars(pars, list, args);
 	else if (ft_strncmp(args[0], "tr", 2) == 0)
 		tr_pars(pars, list, args);
+	else if (ft_strncmp(args[0], "sq", 2) == 0)
+		square_pars(pars, list, args);
 	else
 		ft_pars_exit(*pars, E_PARS);
 }
@@ -57,5 +59,4 @@ void	data_read(t_pars *pars, t_all *all)
 		free_tab(args, ft_tablen(args));
 		free(pars->line);
 	}
-	all->a_camera = all->a_camera->next;
 }

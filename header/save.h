@@ -6,13 +6,14 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 02:24:07 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/19 05:50:54 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/19 15:54:47 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_SAVE_H
 # define FT_SAVE_H
 # include "minirt.h"
+# define HEADER_SIZE 54
 typedef	struct	s_bitmap_file
 {
 		unsigned char			bitmap_type[2];     // 2 bytes
