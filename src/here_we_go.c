@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:50:24 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/20 02:14:02 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/21 00:56:14 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 void		init_wind(t_all all)
 {
-
 	if (!(all.wind->init = mlx_init()))
 		ft_exit(E_STD);
-	if (all .save == 0)
+	if (all.save == 0)
 	{
 		all.wind->wind_p = mlx_new_window(all.wind->init, all.wind->wind_x,
 		all.wind->wind_y, "minirt");
@@ -29,12 +28,12 @@ void		init_image(t_all all)
 	int		bpp;
 	int		size_line;
 	int		endian;
+
 	if (!(all.wind->img_p = mlx_new_image(all.wind->init, all.wind->wind_x,
 	all.wind->wind_y)))
 		ft_exit(E_STD);
 	all.wind->img_data = (int *)mlx_get_data_addr(all.wind->img_p, &bpp,
 	&size_line, &endian);
-
 }
 
 void		render(t_all all, t_camera camera, t_color *color)

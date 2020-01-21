@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:25:03 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/20 04:41:53 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/21 00:57:48 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	data_read(t_pars *pars, t_all *all)
 			ft_exit(E_STD);
 		pars->line_num++;
 		args = ft_split(pars->line, ' ');
-		if (ft_tablen(args) > 0 && ft_strncmp(args[0] , ".", 1) != 0 && args[0][0] != '.')
+		if (ft_tablen(args) > 0 &&
+		ft_strncmp(args[0], ".", 1) != 0 && args[0][0] != '.')
 		{
 			list = all;
 			line_pars(pars, list, args);

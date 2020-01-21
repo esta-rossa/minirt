@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 19:09:36 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/20 05:05:50 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/21 00:57:07 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,4 @@ void	square_pars(t_pars *pars, t_all *list, char **args)
 	obj->diam = ft_atof(args[3]);
 	pars->tab = ft_split(args[4], ',');
 	pars_color(pars, &obj->color);
-
 }
