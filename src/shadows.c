@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 01:15:51 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/19 22:25:58 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/21 00:58:25 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,4 @@ int	shadow(t_all all, t_obj *obj)
 	if (inters(all.a_obj, hit, &dist) >= 0)
 		inter = 1;
 	return (inter);
-	// printf("%d\n", i);
 }

@@ -6,13 +6,13 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 18:53:59 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/19 19:09:53 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/21 00:53:10 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int		die()
+int		die(void)
 {
 	exit(0);
 	return (0);
@@ -28,7 +28,7 @@ int		control(int button, t_all *all)
 	}
 	else if (button == KEY_RIGHT)
 	{
-		mlx_destroy_image(all->wind->init, all->wind->img_p);;
+		mlx_destroy_image(all->wind->init, all->wind->img_p);
 		all->a_camera = all->a_camera->next;
 		here_we_go(all);
 	}
