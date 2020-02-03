@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 02:17:00 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/31 02:48:02 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/02 06:22:15 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,6 @@ int				ft_end(void **s1, void **s2, int rt);
 int				valid_f(char *str);
 size_t			ft_tablen(char **tab);
 void			pr_tap(char **tab, char *sep);
+int				valid_d(char *str);
+int				valid_num(char *str, int type);
 #endif
