@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 00:44:32 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/20 02:10:56 by arraji           ###   ########.fr       */
+/*   Updated: 2020/01/29 02:59:43 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ t_cord	get_ray(t_camera camera, t_cord bo_left, double x, double y)
 	curr = vector_add(bo_left, vector_mltp(camera.x_inc, x));
 	curr = vector_add(curr, vector_mltp(camera.y_inc, y));
 	ray = vector_sub(curr, camera.pos);
-	return (ray);
+	return (vector_norm(ray));
 }

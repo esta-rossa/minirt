@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:50:24 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/21 00:56:14 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/03 20:42:52 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ void		init_wind(t_all all)
 	if (!(all.wind->init = mlx_init()))
 		ft_exit(E_STD);
 	if (all.save == 0)
-	{
-		all.wind->wind_p = mlx_new_window(all.wind->init, all.wind->wind_x,
-		all.wind->wind_y, "minirt");
-	}
+		if (!(all.wind->wind_p = mlx_new_window(all.wind->init,
+		all.wind->wind_x, all.wind->wind_y, "minirt")))
+			ft_exit(E_STD);
 }
 
 void		init_image(t_all all)
@@ -50,7 +49,6 @@ void		render(t_all all, t_camera camera, t_color *color)
 		while (pos--)
 			obj = obj->next;
 		ft_phong(all, obj, color, t);
-		// *color = obj->color;
 	}
 }
 
@@ -62,23 +60,19 @@ void		here_we_go(t_all *all)
 
 	y = all->wind->wind_y + 1;
 	init_image(*all);
-	all->wind->img_data_save = all->wind->img_data;
 	init_camera(all->a_camera, *all);
 	while (--y > 0)
 	{
 		x = -1;
 		while (++x < all->wind->wind_x)
 		{
-			all->a_camera->v_ray = vector_norm(get_ray(*(all)->a_camera,
-			all->a_camera->bot, x, y));
+			all->a_camera->v_ray = get_ray(*(all)->a_camera,
+			all->a_camera->bot, x, y);
 			render(*all, *(all)->a_camera, &color);
 			*(all->wind)->img_data = get_color(color);
 			(all->wind)->img_data++;
 		}
 	}
-	if (all->save == 0)
-		mlx_put_image_to_window(all->wind->init, all->wind->wind_p,
-		all->wind->img_p, 0, 0);
-	else
-		save_bitmap(*all->wind, all->wind->img_data_save);
+	all->save == 0 ? mlx_put_image_to_window(all->wind->init, all->wind->wind_p,
+	all->wind->img_p, 0, 0) : save_bitmap(*all->wind, all->wind->img_data);
 }

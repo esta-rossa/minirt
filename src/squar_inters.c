@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 00:48:33 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/21 00:49:48 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/02 22:28:21 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int				squar_inters(t_obj *o, t_camera camera, double *t)
 	double	alfa[2];
 
 	new_t = *t;
-	if (plan_inters(*o, camera, &new_t))
+	if (plan_inters(o, camera, &new_t))
 	{
 		vec = vector_sub(vector_add(camera.pos,
 		vector_mltp(camera.v_ray, new_t)), o->pos);
