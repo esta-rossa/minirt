@@ -10,7 +10,8 @@
 			"request": "launch",
 			"program": "/Users/arraji/Desktop/new_rt/minirt",
 			"args": [
-				"rt.rt"
+				"rt.rt",
+				"--save"
 			],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",

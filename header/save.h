@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 02:24:07 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/19 15:54:47 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/03 21:07:03 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,26 @@
 # define HEADER_SIZE 54
 typedef	struct	s_bitmap_file
 {
-		unsigned char			bitmap_type[2];     // 2 bytes
-		int						file_size;          // 4 bytes
-		short					reserved1;          // 2 bytes
-		short					reserved2;          // 2 bytes
-		unsigned int			offset_bits;        // 4 bytes
+		unsigned char			bitmap_type[2];
+		int						file_size;
+		short					reserved1;
+		short					reserved2;
+		unsigned int			offset_bits;
 }				t_bitmap_file;
 
 typedef	struct	s_bitmap_image
 {
-		unsigned int	size_header;        // 4 bytes
-		unsigned int	width;              // 4 bytes
-		unsigned int	height;             // 4 bytes
-		short int		planes;             // 2 bytes
-		short int		bit_count;          // 2 bytes
-		unsigned int	compression;        // 4 bytes
-		unsigned int	image_size;         // 4 bytes
-		unsigned int	ppm_x;              // 4 bytes
-		unsigned int	ppm_y;              // 4 bytes
-		unsigned int	clr_used;           // 4 bytes
-		unsigned int	clr_important;      // 4 bytes
+		unsigned int	size_header;
+		unsigned int	width;
+		unsigned int	height;
+		short int		planes;
+		short int		bit_count;
+		unsigned int	compression;
+		unsigned int	image_size;
+		unsigned int	ppm_x;
+		unsigned int	ppm_y;
+		unsigned int	clr_used;
+		unsigned int	clr_important;
 }				t_bitmap_image;
-void		save_bitmap(t_wind wind,  int *pp);
+void		save_bitmap(t_wind wind, int *pp);
 #endif

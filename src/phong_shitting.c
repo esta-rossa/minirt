@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:37:34 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/21 00:58:19 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/03 20:45:40 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@ void		ft_phong(t_all all, t_obj *obj, t_color *color, double t)
 			color->g += all.phong->speculare.g + all.phong->diffuse.g;
 			color->b += all.phong->speculare.b + all.phong->diffuse.b;
 		}
-		/* color->r += all.phong->speculare.r + all.phong->diffuse.r;
-		color->g += all.phong->speculare.g + all.phong->diffuse.g;
-		color->b += all.phong->speculare.b + all.phong->diffuse.b; */
 		all.a_light = all.a_light->next;
 	}
-	// printf("c %f %f %f", color->r, color->g, color->b);
 }

@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 05:26:55 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/19 16:11:45 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/03 19:46:31 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,6 @@ typedef	struct	s_color
 	double		b;
 }				t_color;
 
-typedef struct	s_sphere
-{
-	t_cord	centre;
-	double	ray;
-	t_color	color;
-}				t_sphere;
-
 typedef	struct	s_wind
 {
 	int		check;
@@ -43,18 +36,7 @@ typedef	struct	s_wind
 	int		wind_y;
 	void	*img_p;
 	int		*img_data;
-	int		*img_data_save;
 }				t_wind;
-
-typedef	struct	s_line
-{
-	double xa;
-	double xb;
-	double ya;
-	double yb;
-	double za;
-	double zb;
-}				t_line;
 
 typedef	struct	s_matrix
 {
@@ -62,12 +44,6 @@ typedef	struct	s_matrix
 	int		row;
 	int		column;
 }				t_matrix;
-
-typedef	struct	s_ray
-{
-	t_matrix	direct;
-	t_matrix	orig;
-}				t_ray;
 
 typedef	struct	s_camera
 {
@@ -79,8 +55,6 @@ typedef	struct	s_camera
 	t_cord				y_inc;
 	t_cord				p_inter;
 	double				fov;
-	double				t;
-	double				distance;
 	t_cord				v_ray;
 	t_cord				bot;
 	unsigned	int		x_reso;
@@ -97,14 +71,11 @@ typedef	struct	s_obj
 	t_cord				vertex_0;
 	t_cord				vertex_1;
 	t_cord				vertex_2;
-	t_cord				vec_1;
-	t_cord				vec_2;
 	t_cord				norm;
 	t_color				color;
 	t_cord				orient;
 	double				diam;
 	double				height;
-	int					out_hit;
 	double				a;
 	double				b;
 	double				c;
@@ -123,9 +94,20 @@ typedef	struct	s_pars
 	int		fd;
 	char	*line;
 	int		line_num;
-	char	*invalid;
 	int		index;
 }				t_pars;
+
+typedef	struct	s_tr_needs
+{
+	double	dot_of_cros;
+	t_cord	cros_ray_vec2;
+	t_cord	cros_vec1_sub;
+	double	check;
+	double	check2;
+	t_cord	sub_ori_ver1;
+	t_cord	vec_1;
+	t_cord	vec_2;
+}				t_tr_needs;
 typedef	struct	s_cyl_needs
 {
 	double	m[2];
@@ -151,6 +133,12 @@ typedef	struct	s_phong
 	double	ambient_cof;
 }				t_phong;
 
+typedef	struct	s_last
+{
+	void	*save;
+	int		type;
+}				t_last;
+
 typedef	struct	s_all
 {
 	t_camera	*a_camera;
@@ -158,6 +146,7 @@ typedef	struct	s_all
 	t_light		*a_light;
 	t_wind		*wind;
 	t_phong		*phong;
+	t_last		*last;
 	int			save;
 }				t_all;
 #endif

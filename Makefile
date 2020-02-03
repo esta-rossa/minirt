@@ -2,6 +2,7 @@ NAME = minirt
 FLAGS = -Wall -Wextra -Werror
 SRC_FOLDER = ./src
 HEADER_FOLDER = ./header
+LIBFT_HEADER = ./libft/header
 LIBFT_FOLDER = ./libft
 OBJECT_FOLDER = ./objects
 LIBS = -lmlx -framework OpenGL -framework Appkit
@@ -33,22 +34,21 @@ SRC_FILES = 	main.c \
 				triangle_inters.c \
 				save_bmp.c \
 				hooks.c \
-				squar_inters.c
+				squar_inters.c \
+				rotation_pars.c \
+				rotation.c \
+				translation.c \
 
 OBJECT_FILES = $(SRC_FILES:.c=.o)
 OBJECT_FILES := $(addprefix $(OBJECT_FOLDER)/, $(OBJECT_FILES))
-SRC_FILES := $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 LIBFT_FILE := $(LIBFT_FOLDER)/$(LIBFT_LIB)
 
 .PHONY = all bonus clean fclean re credit
 
 all: credit $(NAME)
 
-$(LIBFT_FILE):
-
+LIBFT_RULE:
 	@make -C $(LIBFT_FOLDER)/
-	@echo  "libft compiled successfully $(GREEN){OK}$(RESET)"
-
 
 credit:
 	@echo "					$(RED)_minirt made by:_$(RESET)"
@@ -59,7 +59,7 @@ credit:
 	@echo "███████╗██████╔╝   ██║   ██║  ██║██║  ██║╚█████╔╝██████╔╝██████╔╝██║  ██║"
 	@echo "╚══════╝╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝"
 
-$(NAME): $(LIBFT_FILE) $(OBJECT_FILES)
+$(NAME): LIBFT_RULE $(OBJECT_FILES)
 	@gcc -g -I $(HEADER_FOLDER) -I $(LIBFT_FOLDER) $(OBJECT_FILES) $(LIBFT_FOLDER)/$(LIBFT_LIB) $(LIBS) -o $@
 	@echo
 	@echo $(NAME)" created $(GREEN) successfully$(RESET)"
@@ -67,8 +67,7 @@ $(NAME): $(LIBFT_FILE) $(OBJECT_FILES)
 
 $(OBJECT_FOLDER)/%.o: $(SRC_FOLDER)/%.c
 	@(mkdir $(OBJECT_FOLDER) 2> /dev/null && echo "creating "$(OBJECT_FOLDER)" folder $(GREEN){OK}$(RESET)") || true
-	@gcc $(FLAGS) -g -I $(HEADER_FOLDER) -I $(LIBFT_FOLDER) -o $@ -c $<
-	@echo  "creating" $< "object $(GREEN){OK}$(RESET)"
+	@gcc $(FLAGS) -g -I $(HEADER_FOLDER) -I $(LIBFT_HEADER) -o $@ -c $< && echo  "creating" $< "object $(GREEN){OK}$(RESET)"
 
 clean:
 	@(rm $(OBJECT_FILES) 2> /dev/null && echo "$(RED)deleting$(RESET): " $(OBJECT_FILES)) || true

@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 22:35:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/19 20:09:09 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/02 00:50:22 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 # include "libft.h"
 # include "vector_op.h"
 # include "struct.h"
-# include "matrix.h"
 # include "camera.h"
 # include "colors.h"
 # include "error.h"
