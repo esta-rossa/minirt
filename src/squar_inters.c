@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 00:48:33 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/02 22:28:21 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/04 01:53:27 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static	void	fix_dir(t_cord *up, t_cord *right, t_cord vec)
 
 void			init_vecs(t_cord *up, t_cord *right, t_obj *o)
 {
-	*right = vector_norm(cross_prod(new_cord(0, 1, 0), o->norm));
+	*right = vector_norm(cross_prod(new_cord(0, 1, 0.1), o->norm));
 	*up = vector_norm(cross_prod(o->norm, *right));
 	*right = vector_mltp(*right, o->diam / 2);
 	*up = vector_mltp(*up, o->diam / 2);

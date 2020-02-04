@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 05:26:55 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/03 19:46:31 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/04 05:25:05 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,6 @@ typedef	struct	s_wind
 	int		*img_data;
 }				t_wind;
 
-typedef	struct	s_matrix
-{
-	double	**mtrx;
-	int		row;
-	int		column;
-}				t_matrix;
-
 typedef	struct	s_camera
 {
 	t_cord				pos;
@@ -59,10 +52,9 @@ typedef	struct	s_camera
 	t_cord				bot;
 	unsigned	int		x_reso;
 	unsigned	int		y_reso;
-	struct	s_camera	*next;
-	struct	s_camera	*previous;
+	struct s_camera		*next;
+	struct s_camera		*previous;
 }				t_camera;
-
 
 typedef	struct	s_obj
 {
@@ -81,7 +73,7 @@ typedef	struct	s_obj
 	double				c;
 	double				radius;
 	double				delta;
-	struct	s_obj		*next;
+	struct s_obj		*next;
 
 }				t_obj;
 
@@ -121,7 +113,7 @@ typedef	struct	s_light
 	t_cord			reflect;
 	t_cord			vec;
 	double			bright;
-	struct	s_light	*next;
+	struct s_light	*next;
 }				t_light;
 
 typedef	struct	s_phong

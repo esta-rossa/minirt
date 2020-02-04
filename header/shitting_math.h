@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   shitting_math.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 18:51:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/12 19:08:33 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/04 05:23:42 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_SHITTING_MATH_H
 # define FT_SHITTING_MATH_H
 # include "minirt.h"
+
 void		set_cord(t_cord *point, double x, double y, double z);
 double		dot_pr(t_cord u, t_cord v);
 double		deg_to_rad(double deg);

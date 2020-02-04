@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 02:21:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/02 06:21:42 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/04 03:38:16 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,11 @@ void		resul_pars(t_pars *pars, t_all *list, char **args)
 {
 	if (ft_tablen(args) != 3)
 		ft_pars_exit(*pars, E_PARS);
-	if (!valid_f(args[1]) || !valid_f(args[2]) ||
+	if (!valid_d(args[1]) || !valid_d(args[2]) ||
 	args[1][0] == '-' || args[2][0] == '-')
 		ft_pars_exit(*pars, E_PARS);
-	list->wind = (t_wind *)malloc(sizeof(t_wind));
+	if (!(list->wind = (t_wind *)malloc(sizeof(t_wind))))
+		ft_exit(E_STD);
 	list->wind->wind_x = ft_atoi(args[1]);
 	list->wind->wind_y = ft_atoi(args[2]);
 	list->wind->wind_x = list->wind->wind_x > 2560 ? 2560 : list->wind->wind_x;

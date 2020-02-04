@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 10:49:36 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/03 02:40:35 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/04 03:50:41 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int				is_line(char *str, int rd)
+static	int		is_line(char *str, int rd)
 {
 	int index;
 
@@ -27,7 +27,7 @@ int				is_line(char *str, int rd)
 	return (0);
 }
 
-int				cutter(char **save, char **line)
+static	int		cutter(char **save, char **line)
 {
 	int		index;
 	int		jndex;
@@ -56,14 +56,23 @@ int				cutter(char **save, char **line)
 	return (ft_end((void **)&copy, NULL, 1));
 }
 
-static	int	finish(char **line, char **save, char **buff)
+static	int		finish(char **line, char **save, char **buff)
 {
 	if (!(*line = ft_strdup("")))
 		return (ft_end((void **)save, (void **)buff, -1));
 	return (ft_end((void **)save, (void **)buff, 0));
 }
 
-int	get_next_line(int fd, char **line)
+static	int		fail(int fd, char **save)
+{
+	if (fd == -5)
+	{
+		ft_end((void**)save, NULL, -1);
+	}
+	return (1);
+}
+
+int				get_next_line(int fd, char **line)
 {
 	long	long		rd;
 	static	char		*save = NULL;
@@ -71,7 +80,7 @@ int	get_next_line(int fd, char **line)
 
 	if (!(buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (ft_end((void **)&save, NULL, -1));
-	if (fd < 0 || line == NULL || BUFFER_SIZE <= 0)
+	if (fail(fd, &save) == -1 || line == NULL || BUFFER_SIZE <= 0 || fd < 0)
 		return (ft_end((void **)&buff, (void **)&save, -1));
 	rd = 1;
 	while (!is_line(save, rd))

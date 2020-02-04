@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 19:54:20 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/03 20:44:20 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/04 04:11:56 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_pars_exit(t_pars pars, int number)
 	number == E_NO_CAM ? ft_printf("No camera giving\n") : 1;
 	number == E_NO_RES ? ft_printf("resolutions are not giving\n") : 1;
 	number == E_NO_AMB ? ft_printf("Ambiant is not giving\n") : 1;
+	number == E_PARS ? get_next_line(-5, NULL) : 1;
 	exit(number);
 }
 
