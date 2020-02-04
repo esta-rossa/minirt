@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   shadows.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 01:16:08 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/14 09:29:01 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/04 05:23:22 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_SHADOWS_H
 # define FT_SHADOWS_H
+# include "minirt.h"
 
-#include "minirt.h"
 int	shadow(t_all all, t_obj *obj);
 #endif

@@ -10,7 +10,7 @@
 			"request": "launch",
 			"program": "/Users/arraji/Desktop/new_rt/minirt",
 			"args": [
-				"rt.rt",
+				"scenes/triangle.rt",
 				"--save"
 			],
 			"stopAtEntry": false,

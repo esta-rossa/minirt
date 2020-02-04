@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   vector_op.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arraji <arraji@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 04:48:17 by arraji            #+#    #+#             */
-/*   Updated: 2020/01/12 19:02:36 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/04 05:25:17 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_VECTOR_OP_H
 # define FT_VECTOR_OP_H
-#include "struct.h"
+# include "struct.h"
 
 double	vector_size(t_cord vector);
 t_cord	vector_add(t_cord vec_1, t_cord vec_2);

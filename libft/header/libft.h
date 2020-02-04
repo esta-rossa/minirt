@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 02:17:00 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/02 06:22:15 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/04 05:27:18 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 # include "get_next_line.h"
 # include "ft_printf.h"
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 500
+#  define BUFFER_SIZE 500
 # endif
+
 typedef	struct	s_list
 {
 	void			*content;

@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:29:41 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/03 21:00:05 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/04 05:28:15 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,3 @@ double	smallest_double(double *tab, int size)
 	}
 	return (tab[0]);
 }
-
