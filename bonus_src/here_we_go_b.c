@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:50:24 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/06 04:38:34 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/07 03:42:21 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,27 +52,61 @@ void		render(t_all all, t_camera camera, t_color *color)
 	}
 }
 
+void		*threads_child(void *param)
+{
+	t_color	color;
+	int		*img;
+
+	img = (int *)param;
+	render(*all_save, *all_save->a_camera, &color);
+	*img = get_color(color);
+	return (NULL);
+}
+
+void		hold_threads(pthread_t *threads, int size)
+{
+	int		index;
+
+	index = 0;
+	while (index < size)
+	{
+		pthread_join(threads[index], NULL);
+		index++;
+	}
+}
+
+void		thread_parent(pthread_t *threads, int index, int *img)
+{
+	pthread_join(threads[index], NULL);
+	pthread_create(&threads[index], NULL, threads_child, img);
+}
+
 void		here_we_go(t_all *all)
 {
 	int			y;
 	int			x;
-	t_color		color;
+	pthread_t	thread[1];
+	int			index;
 
+	index = 0;
 	y = all->wind->wind_y + 1;
 	init_image(*all);
 	init_camera(all->a_camera, *all);
+	all_save = all;
 	while (--y > 0)
 	{
 		x = -1;
 		while (++x < all->wind->wind_x)
 		{
+			index = index >= 1 ? 0 : index;
 			all->a_camera->v_ray = get_ray(*(all)->a_camera,
 			all->a_camera->bot, x, y);
-			render(*all, *(all)->a_camera, &color);
-			*(all->wind)->img_data = get_color(color);
+			thread_parent(thread, index, all->wind->img_data);
 			(all->wind)->img_data++;
+			index++;
 		}
 	}
+	hold_threads(thread, 1);
 	all->save == 0 ? mlx_put_image_to_window(all->wind->init, all->wind->wind_p,
 	all->wind->img_p, 0, 0) : save_bitmap(*all->wind, all->wind->img_data);
 }
