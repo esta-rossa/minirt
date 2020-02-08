@@ -5,7 +5,7 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "gcc build and debug active file",
+			"name": "lunch",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "/Users/arraji/Desktop/new_rt/minirt",
@@ -18,7 +18,23 @@
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb",
-			"preLaunchTask": "gcc build active file"
+			"preLaunchTask": "make"
+		},
+		{
+			"name": "lunch bonus",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "/Users/arraji/Desktop/new_rt/minirt_bonus",
+			"args": [
+				"scenes/room.rt",
+				"--save"
+			],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "make bonus"
 		}
 	]
 }

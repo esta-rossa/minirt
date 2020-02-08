@@ -6,29 +6,37 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:27:53 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/06 12:33:19 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/08 10:11:32 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_b.h"
 
+/*
+**0->delta
+**1->a
+**2->b
+**3->c
+*/
+
 int		sp_inters(t_obj *o, t_camera camera, double *t)
 {
 	double	new_t[2];
+	double	vars[4];
 
-	o->a = dot_pr(camera.v_ray, camera.v_ray);
-	o->b = (dot_pr(camera.pos, camera.v_ray)
+	vars[1] = dot_pr(camera.v_ray, camera.v_ray);
+	vars[2] = (dot_pr(camera.pos, camera.v_ray)
 	- dot_pr(o->pos, camera.v_ray)) * 2;
-	o->c = dot_pr(o->pos, o->pos)
+	vars[3] = dot_pr(o->pos, o->pos)
 	- (o->radius * o->radius)
 	- (2 * dot_pr(o->pos, camera.pos))
 	+ dot_pr(camera.pos, camera.pos);
-	o->delta = o->b * o->b - 4 * o->a * o->c;
-	if (o->delta > 0)
+	vars[0] = vars[2] * vars[2] - 4 * vars[1] * vars[3];
+	if (vars[0] > 0)
 	{
-		o->delta = sqrt(o->delta);
-		new_t[0] = (-o->b + o->delta) / (2 * o->a);
-		new_t[1] = (-o->b - o->delta) / (2 * o->a);
+		vars[0] = sqrt(vars[0]);
+		new_t[0] = (-vars[2] + vars[0]) / (2 * vars[1]);
+		new_t[1] = (-vars[2] - vars[0]) / (2 * vars[1]);
 		smallest_double(new_t, 2);
 		if (new_t[0] > 0 && new_t[0] <= *t && new_t[0] > NEAR)
 		{
