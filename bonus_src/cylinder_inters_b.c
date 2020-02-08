@@ -6,11 +6,18 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:30:41 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/06 05:26:12 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/08 10:12:36 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_b.h"
+
+/*
+**0->delta
+**1->a
+**2->b
+**3->c
+*/
 
 static	int		cyl_inters_init(t_obj *o, t_camera camera, t_cyl_needs *need)
 {
@@ -19,15 +26,17 @@ static	int		cyl_inters_init(t_obj *o, t_camera camera, t_cyl_needs *need)
 	need->t[0] = FAR;
 	need->t[1] = FAR;
 	cam_ori = vector_sub(camera.pos, o->pos);
-	o->a = dot_pr(camera.v_ray, camera.v_ray) -
+	need->vars[1] = dot_pr(camera.v_ray, camera.v_ray) -
 	(dot_pr(camera.v_ray, o->orient) * dot_pr(camera.v_ray, o->orient));
-	o->b = (dot_pr(camera.v_ray, cam_ori) - (dot_pr(camera.v_ray, o->orient)
+	need->vars[2] = (dot_pr(camera.v_ray, cam_ori) -
+	(dot_pr(camera.v_ray, o->orient)
 	* dot_pr(cam_ori, o->orient))) * 2;
-	o->c = dot_pr(cam_ori, cam_ori) - (dot_pr(cam_ori, o->orient)
+	need->vars[3] = dot_pr(cam_ori, cam_ori) - (dot_pr(cam_ori, o->orient)
 	* dot_pr(cam_ori, o->orient)) - ((o->diam / 2) * (o->diam / 2));
-	o->delta = (o->b * o->b) - (4 * o->a * o->c);
-	o->delta = sqrt(o->delta);
-	if (o->delta > 0)
+	need->vars[0] = (need->vars[2] * need->vars[2]) -
+	(4 * need->vars[1] * need->vars[3]);
+	need->vars[0] = sqrt(need->vars[0]);
+	if (need->vars[0] > 0)
 		return (1);
 	return (0);
 }
@@ -37,8 +46,8 @@ static	void	cyl_calcul(t_obj *o, t_camera camera, t_cyl_needs *need)
 	t_cord		cam_ori;
 
 	cam_ori = vector_sub(camera.pos, o->pos);
-	need->t[0] = (-o->b + o->delta) / (2 * o->a);
-	need->t[1] = (-o->b - o->delta) / (2 * o->a);
+	need->t[0] = (-need->vars[2] + need->vars[0]) / (2 * need->vars[1]);
+	need->t[1] = (-need->vars[2] - need->vars[0]) / (2 * need->vars[1]);
 	smallest_double(need->t, 2);
 	need->m[0] = (dot_pr(camera.v_ray, o->orient)
 	* need->t[0]) + dot_pr(cam_ori, o->orient);

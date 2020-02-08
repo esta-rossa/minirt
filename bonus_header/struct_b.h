@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 05:26:55 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/06 04:46:35 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/08 10:32:51 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,7 @@ typedef	struct	s_obj
 	int					cap;
 	double				diam;
 	double				height;
-	double				a;
-	double				b;
-	double				c;
 	double				radius;
-	double				delta;
 	struct s_obj		*next;
 
 }				t_obj;
@@ -105,6 +101,7 @@ typedef	struct	s_cyl_needs
 {
 	double	m[2];
 	double	t[2];
+	double	vars[4];
 }				t_cyl_needs;
 
 typedef	struct	s_light

@@ -6,7 +6,7 @@
 #    By: arraji <arraji@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 13:57:03 by arraji            #+#    #+#              #
-#    Updated: 2020/02/03 17:18:36 by arraji           ###   ########.fr        #
+#    Updated: 2020/02/08 10:37:05 by arraji           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,8 @@ SRC_FILES  =	ft_atoi.c \
 				get_next_line.c \
 				ft_valid_f.c \
 				ft_tablen.c \
-				ft_pr_tab.c
+				ft_pr_tab.c \
+				ft_atof.c
 
 OBJECT_FILES = $(SRC_FILES:.c=.o)
 OBJECT_FILES := $(addprefix $(OBJECT_FOLDER)/, $(OBJECT_FILES))
@@ -96,8 +97,7 @@ $(NAME): $(OBJECT_FILES)
 
 $(OBJECT_FOLDER)/%.o: $(SRC_FOLDER)/%.c
 	@(mkdir $(OBJECT_FOLDER) 2> /dev/null && echo "creating libft "$(OBJECT_FOLDER)" folder $(GREEN){OK}$(RESET)") || true
-	@gcc $(FLAGS) -I $(HEADERS)  -o $@ -c $<
-	@echo  "creating" $< "object $(GREEN){OK}$(RESET)"
+	@gcc $(FLAGS) -I $(HEADERS)  -o $@ -c $< && (echo  "creating" $< "object $(GREEN){OK}$(RESET)")
 
 all: $(NAME)
 

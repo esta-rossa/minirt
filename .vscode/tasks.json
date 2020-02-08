@@ -2,8 +2,18 @@
     "tasks": [
         {
             "type": "shell",
-            "label": "gcc build active file",
+            "label": "make",
             "command": "make -C /Users/arraji/Desktop/new_rt",
+            "args": [
+            ],
+            "options": {
+                "cwd": "/usr/bin"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "make bonus",
+            "command": "make bonus -C /Users/arraji/Desktop/new_rt",
             "args": [
             ],
             "options": {
