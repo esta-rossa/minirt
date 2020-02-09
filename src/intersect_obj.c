@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:27:53 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/02 22:36:38 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/09 19:56:42 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,13 @@
 int		sp_inters(t_obj *o, t_camera camera, double *t)
 {
 	double	new_t[2];
+	t_cord	cam_ori;
 
-	o->a = dot_pr(camera.v_ray, camera.v_ray);
-	o->b = (dot_pr(camera.pos, camera.v_ray)
-	- dot_pr(o->pos, camera.v_ray)) * 2;
-	o->c = dot_pr(o->pos, o->pos)
-	- (o->radius * o->radius)
-	- (2 * dot_pr(o->pos, camera.pos))
-	+ dot_pr(camera.pos, camera.pos);
+	cam_ori = vector_sub(camera.pos, o->pos);
+	if (!(o->a = dot_pr(camera.v_ray, camera.v_ray)))
+		return (0);
+	o->b = 2 * dot_pr(camera.v_ray, cam_ori);
+	o->c = dot_pr(cam_ori, cam_ori) - (o->radius * o->radius);
 	o->delta = o->b * o->b - 4 * o->a * o->c;
 	if (o->delta > 0)
 	{
@@ -30,7 +29,7 @@ int		sp_inters(t_obj *o, t_camera camera, double *t)
 		new_t[0] = (-o->b + o->delta) / (2 * o->a);
 		new_t[1] = (-o->b - o->delta) / (2 * o->a);
 		smallest_double(new_t, 2);
-		if (new_t[0] > 0 && new_t[0] <= *t && new_t[0] > NEAR)
+		if (new_t[0] > 0 && new_t[0] < *t && new_t[0] > NEAR)
 		{
 			*t = new_t[0];
 			return (1);
@@ -47,7 +46,7 @@ int		plan_inters(t_obj *o, t_camera camera, double *t)
 	{
 		new_t = (-dot_pr(vector_sub(camera.pos, o->pos), o->norm))
 		/ dot_pr(camera.v_ray, o->norm);
-		if (new_t > 0 && new_t <= *t && new_t > NEAR)
+		if (new_t > 0 && new_t < *t && new_t > NEAR)
 		{
 			*t = new_t;
 			return (1);

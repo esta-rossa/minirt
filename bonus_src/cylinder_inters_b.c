@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:30:41 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/08 19:59:27 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/09 23:12:27 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int				cyl_inters(t_obj *o, t_camera camera, double *t)
 	double			new_t;
 
 	new_t = *t;
-	o->orient = vector_norm(o->orient);
 	if (cyl_inters_init(o, camera, &need))
 	{
 		cyl_calcul(o, camera, &need);

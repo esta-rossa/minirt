@@ -10,8 +10,7 @@
 			"request": "launch",
 			"program": "/Users/arraji/Desktop/new_rt/minirt",
 			"args": [
-				"scenes/triangle.rt",
-				"--save"
+				"scenes/move.rt",
 			],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
@@ -26,14 +25,14 @@
 			"request": "launch",
 			"program": "/Users/arraji/Desktop/new_rt/minirt_bonus",
 			"args": [
-				"scenes/cylinder.rt",
+				"scenes/move.rt",
 			],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb",
-			// "preLaunchTask": "make bonus"
+			"preLaunchTask": "make bonus"
 		}
 	]
 }
