@@ -1,5 +1,6 @@
 {
 	"files.associations": {
 		"__locale": "c"
-	}
+	},
+	"C_Cpp.dimInactiveRegions": false
 }

@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 05:26:55 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/08 10:32:51 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/08 14:48:03 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef	struct	s_camera
 	double				fov;
 	t_cord				v_ray;
 	t_cord				bot;
+	int					cap;
 	unsigned	int		x_reso;
 	unsigned	int		y_reso;
 	struct s_camera		*next;

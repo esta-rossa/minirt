@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 22:35:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/08 10:59:35 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/08 23:47:49 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@
 # include "hook_b.h"
 # include "save_b.h"
 # include "thread.h"
-# define vibe_check write(1, "v", 1);
+# define vibe_check write(1, "V", 1);
 # define vibe_check2 write(1, "N", 1);
 void		render(t_all all, t_camera s_camera, t_color *color, t_cord v_ray);
 void		here_we_go(t_all *all);
+void		get_all_rays(t_cord *v_rays, double x, double y);
+void		render_all_ray(t_color *colors, t_cord *v_rays);
 void		pr_cord(t_cord cord, char *name, char *end);
 void		init_wind(t_all all);
 void		init_image(t_all all);

@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 01:26:01 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/06 11:48:57 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/08 22:07:30 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,19 @@ static	void	rot_obj(t_pars pars, t_obj *obj)
 {
 	int	type;
 
-	while (obj->next)
-		obj = obj->next;
 	type = obj->type;
 	if (type == SPHERE || type == TRIANGLE)
 		ft_pars_exit(pars, E_PARS);
 	else if (type == CYLINDER)
+	{
 		rot(pars, &obj->orient);
+		obj->next->pos = vector_add(obj->pos,
+		vector_mltp(obj->orient, obj->height / 2));
+		rot(pars, &obj->next->norm);
+		obj->next->next->pos = vector_add(obj->pos,
+		vector_mltp(obj->orient, (-obj->height) / 2));
+		rot(pars, &obj->next->next->norm);
+	}
 	else
 		rot(pars, &obj->norm);
 }
@@ -42,6 +48,6 @@ void			rot_pars(t_pars *pars, t_all *list, char **args)
 	else if (type == CAM)
 		rot(*pars, &list->a_camera->l_at);
 	else if (type == OBJ)
-		rot_obj(*pars, list->a_obj);
+		rot_obj(*pars, list->last->save);
 	free_tab(pars->tab, 3);
 }

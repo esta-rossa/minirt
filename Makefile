@@ -75,6 +75,7 @@ BONUS_SRC_FILES =		main_b.c \
 						cube_parsing_b.c \
 						pyramid_pars_b.c \
 						thread.c \
+						anti_aliasing_b.c \
 
 OBJECT_FILES = $(SRC_FILES:.c=.o)
 OBJECT_FILES := $(addprefix $(OBJECT_FOLDER)/, $(OBJECT_FILES))

@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 02:21:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/06 05:24:20 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/08 22:10:20 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void		plane_pars(t_pars *pars, t_all *list, char **args)
 	pars_pos(pars, &obj->pos);
 	pars->tab = ft_split(args[2], ',');
 	pars_pos(pars, &obj->norm);
+	obj->norm = vector_norm(obj->norm);
 	pars->tab = ft_split(args[3], ',');
 	pars_color(pars, &obj->color);
 	list->last->save = obj;
@@ -95,10 +96,9 @@ void		cyl_pars(t_pars *pars, t_all *list, char **args)
 	obj->diam = ft_atof(args[3]);
 	obj->height = ft_atof(args[4]);
 	obj->cap = ft_atoi(args[5]);
-	if (obj->cap != 1 && obj->cap != 0)
-		ft_pars_exit(*pars, E_PARS);
 	pars->tab = ft_split(args[6], ',');
 	pars_color(pars, &obj->color);
+	put_cap(pars, list);
 	list->last->save = obj;
 	list->last->type = OBJ;
 }
