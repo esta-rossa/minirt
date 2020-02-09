@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:30:41 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/08 10:12:36 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/08 19:59:27 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ static	int		cyl_inters_init(t_obj *o, t_camera camera, t_cyl_needs *need)
 	* dot_pr(cam_ori, o->orient)) - ((o->diam / 2) * (o->diam / 2));
 	need->vars[0] = (need->vars[2] * need->vars[2]) -
 	(4 * need->vars[1] * need->vars[3]);
-	need->vars[0] = sqrt(need->vars[0]);
-	if (need->vars[0] > 0)
+	if (need->vars[0] >= 0)
 		return (1);
 	return (0);
 }
@@ -46,8 +45,8 @@ static	void	cyl_calcul(t_obj *o, t_camera camera, t_cyl_needs *need)
 	t_cord		cam_ori;
 
 	cam_ori = vector_sub(camera.pos, o->pos);
-	need->t[0] = (-need->vars[2] + need->vars[0]) / (2 * need->vars[1]);
-	need->t[1] = (-need->vars[2] - need->vars[0]) / (2 * need->vars[1]);
+	need->t[0] = (-need->vars[2] + sqrt(need->vars[0])) / (2 * need->vars[1]);
+	need->t[1] = (-need->vars[2] - sqrt(need->vars[0])) / (2 * need->vars[1]);
 	smallest_double(need->t, 2);
 	need->m[0] = (dot_pr(camera.v_ray, o->orient)
 	* need->t[0]) + dot_pr(cam_ori, o->orient);
@@ -61,14 +60,14 @@ int				cyl_inters(t_obj *o, t_camera camera, double *t)
 	double			new_t;
 
 	new_t = *t;
+	o->orient = vector_norm(o->orient);
 	if (cyl_inters_init(o, camera, &need))
 	{
 		cyl_calcul(o, camera, &need);
-		if (need.m[0] > 0 && need.m[0] < o->height)
+		if (need.m[0] > (-o->height) / 2 && need.m[0] < o->height / 2)
 			new_t = need.t[0];
-		else if (need.m[1] > 0 && need.m[1] < o->height)
+		else if (need.m[1] > (-o->height) / 2 && need.m[1] < o->height / 2)
 			new_t = need.t[1];
-		o->cap != 0 ? put_cap(o, camera, &new_t) : 1;
 		if (new_t > 0 && new_t < *t && new_t > NEAR)
 		{
 			*t = new_t;

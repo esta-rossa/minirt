@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 04:11:53 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/06 12:34:05 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/08 22:01:34 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,30 @@ int		disk_inters(t_obj *o, t_camera camera, double *t)
 	return (0);
 }
 
-void	put_cap(t_obj *o, t_camera camera, double *t)
+void	put_cap(t_pars *pars, t_all *list)
 {
-	t_obj	up_plan;
-	t_obj	down_plan;
+	t_obj	*obj;
+	t_obj	new;
 
-	o->cap = 1;
-	down_plan.pos = o->pos;
-	down_plan.norm = o->orient;
-	down_plan.diam = o->diam;
-	up_plan.pos = vector_add(o->pos, vector_mltp(o->orient, o->height));
-	up_plan.norm = o->orient;
-	up_plan.diam = o->diam;
-	if (disk_inters(&down_plan, camera, t))
-		o->cap = -1;
-	if (disk_inters(&up_plan, camera, t))
-		o->cap = -1;
+	obj = list->a_obj;
+	while (obj->next)
+		obj = obj->next;
+	if (obj->cap != 1 && obj->cap != 0)
+		ft_pars_exit(*pars, E_PARS);
+	if (obj->cap == 0)
+		return ;
+	obj->orient = vector_norm(obj->orient);
+	add_obj(&(list)->a_obj, new_obj());
+	new = *obj;
+	obj = obj->next;
+	obj->type = DISK;
+	obj->pos = vector_add(new.pos, vector_mltp(new.orient, new.height / 2));
+	obj->color = new.color;
+	obj->norm = new.orient;
+	obj->diam = new.diam;
+	add_obj(&(list)->a_obj, new_obj());
+	*obj->next = *obj;
+	obj = obj->next;
+	obj->next = NULL;
+	obj->pos = vector_add(new.pos, vector_mltp(new.orient, (-new.height) / 2));
 }

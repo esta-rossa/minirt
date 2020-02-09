@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:47:05 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/06 12:31:26 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/08 17:05:25 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,14 @@ static	void	init_cyl(t_all all, t_obj *obj, double t)
 	int		side;
 	double	m;
 
-	m = (dot_pr(all.a_camera->v_ray, obj->orient) * t) +
-	dot_pr(vector_sub(all.a_camera->pos, obj->pos), obj->orient);
+	m = (dot_pr(vector_mltp(all.a_camera->v_ray, t), obj->orient) +
+	dot_pr(vector_sub(all.a_camera->pos, obj->pos), obj->orient));
 	all.a_camera->p_inter = vector_add(
 	all.a_camera->pos, vector_mltp(all.a_camera->v_ray, t));
 	all.a_light->vec = vector_norm(vector_sub(all.a_light->pos,
 	all.a_camera->p_inter));
-	obj->norm = obj->cap != -1 ? vector_norm(vector_sub(
-	all.a_camera->p_inter, vector_add(obj->pos, vector_mltp(obj->orient, m))))
-	: obj->orient;
+	obj->norm = vector_norm(vector_sub(
+	all.a_camera->p_inter, vector_add(obj->pos, vector_mltp(obj->orient, m))));
 	side = dot_pr(obj->norm, vector_norm(all.a_camera->v_ray)) > 0 ? -1 : 1;
 	obj->norm = vector_norm(vector_mltp(obj->norm, side));
 	all.a_light->reflect = vector_norm(

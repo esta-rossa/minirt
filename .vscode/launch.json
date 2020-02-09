@@ -26,15 +26,14 @@
 			"request": "launch",
 			"program": "/Users/arraji/Desktop/new_rt/minirt_bonus",
 			"args": [
-				"scenes/room.rt",
-				"--save"
+				"scenes/cylinder.rt",
 			],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb",
-			"preLaunchTask": "make bonus"
+			// "preLaunchTask": "make bonus"
 		}
 	]
 }
