@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 05:37:05 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/09 02:24:52 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/09 22:52:07 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 void		*thread_child(void *param)
 {
 	int		indexs[3];
-	t_cord	v_rays[4];
-	t_color colors[4];
 	int		*img;
 	long	step;
 
@@ -30,15 +28,15 @@ void		*thread_child(void *param)
 	indexs[0] = (((all_save->wind->wind_y) / 4) * step);
 	img = all_save->wind->img_data;
 	indexs[2] = indexs[0] - ((all_save->wind->wind_y) / 4);
+	if (step == 4)
+		indexs[0] += all_save->wind->wind_y % 4;
 	img += (all_save->wind->wind_y - indexs[0]) * all_save->wind->wind_x;
-	while (--indexs[0] > indexs[2])
+	while (--indexs[0] >= indexs[2])
 	{
 		indexs[1] = -1;
 		while (++indexs[1] < all_save->wind->wind_x)
 		{
-			get_all_rays(v_rays, indexs[1], indexs[0]);
-			render_all_ray(colors, v_rays);
-			*img = get_color(colors);
+			get_pixel(indexs, img);
 			img++;
 		}
 	}

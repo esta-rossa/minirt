@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 19:09:36 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/04 01:50:21 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/09 23:13:01 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	square_pars(t_pars *pars, t_all *list, char **args)
 	pars_pos(pars, &obj->pos);
 	pars->tab = ft_split(args[2], ',');
 	pars_pos(pars, &obj->norm);
+	obj->norm = vector_norm(obj->norm);
 	obj->diam = ft_atof(args[3]);
 	pars->tab = ft_split(args[4], ',');
 	pars_color(pars, &obj->color);

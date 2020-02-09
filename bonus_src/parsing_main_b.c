@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:25:03 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/06 12:15:15 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/09 20:05:16 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	line_pars(t_pars *pars, t_all *list, char **args)
 		pyramid_pars(pars, list, args);
 	else if (ft_strncmp(args[0], "di", 3) == 0)
 		disk_pars(pars, list, args);
+	else if (ft_strncmp(args[0], "AA", 3) == 0)
+		list->aa = 1;
 	else
 		ft_pars_exit(*pars, E_PARS);
 }

@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 05:26:55 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/08 14:48:03 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/09 20:03:51 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef	struct	s_camera
 {
 	t_cord				pos;
 	t_cord				l_at;
+	t_cord				default_up;
 	t_cord				up;
 	t_cord				right;
 	t_cord				x_inc;
@@ -139,5 +140,7 @@ typedef	struct	s_all
 	t_phong		*phong;
 	t_last		*last;
 	int			save;
+	int			rot;
+	int			aa;
 }				t_all;
 #endif

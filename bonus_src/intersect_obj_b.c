@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:27:53 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/08 10:11:32 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/09 19:56:27 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ int		sp_inters(t_obj *o, t_camera camera, double *t)
 	- (o->radius * o->radius)
 	- (2 * dot_pr(o->pos, camera.pos))
 	+ dot_pr(camera.pos, camera.pos);
-	vars[0] = vars[2] * vars[2] - 4 * vars[1] * vars[3];
+	vars[0] = (vars[2] * vars[2]) - (4 * vars[1] * vars[3]);
 	if (vars[0] > 0)
 	{
 		vars[0] = sqrt(vars[0]);
 		new_t[0] = (-vars[2] + vars[0]) / (2 * vars[1]);
 		new_t[1] = (-vars[2] - vars[0]) / (2 * vars[1]);
 		smallest_double(new_t, 2);
-		if (new_t[0] > 0 && new_t[0] <= *t && new_t[0] > NEAR)
+		if (new_t[0] > 0 && new_t[0] < *t && new_t[0] > NEAR)
 		{
 			*t = new_t[0];
 			return (1);
@@ -55,7 +55,7 @@ int		plan_inters(t_obj *o, t_camera camera, double *t)
 	{
 		new_t = (-dot_pr(vector_sub(camera.pos, o->pos), o->norm))
 		/ dot_pr(camera.v_ray, o->norm);
-		if (new_t > 0 && new_t <= *t && new_t > NEAR)
+		if (new_t > 0 && new_t < *t && new_t > NEAR)
 		{
 			*t = new_t;
 			return (1);

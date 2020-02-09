@@ -76,6 +76,7 @@ BONUS_SRC_FILES =		main_b.c \
 						pyramid_pars_b.c \
 						thread.c \
 						anti_aliasing_b.c \
+						camera_mov_b.c \
 
 OBJECT_FILES = $(SRC_FILES:.c=.o)
 OBJECT_FILES := $(addprefix $(OBJECT_FOLDER)/, $(OBJECT_FILES))

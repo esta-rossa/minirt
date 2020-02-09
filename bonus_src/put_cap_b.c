@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 04:11:53 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/08 22:01:34 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/09 22:57:25 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ void	put_cap(t_pars *pars, t_all *list)
 	obj = list->a_obj;
 	while (obj->next)
 		obj = obj->next;
+	obj->orient = vector_norm(obj->orient);
 	if (obj->cap != 1 && obj->cap != 0)
 		ft_pars_exit(*pars, E_PARS);
 	if (obj->cap == 0)
 		return ;
-	obj->orient = vector_norm(obj->orient);
 	add_obj(&(list)->a_obj, new_obj());
 	new = *obj;
 	obj = obj->next;

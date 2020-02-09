@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 01:26:01 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/08 22:07:30 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/09 03:42:25 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,15 @@ static	void	rot_obj(t_pars pars, t_obj *obj)
 	else if (type == CYLINDER)
 	{
 		rot(pars, &obj->orient);
-		obj->next->pos = vector_add(obj->pos,
-		vector_mltp(obj->orient, obj->height / 2));
-		rot(pars, &obj->next->norm);
-		obj->next->next->pos = vector_add(obj->pos,
-		vector_mltp(obj->orient, (-obj->height) / 2));
-		rot(pars, &obj->next->next->norm);
+		if (obj->cap == 1)
+		{
+			obj->next->pos = vector_add(obj->pos,
+			vector_mltp(obj->orient, obj->height / 2));
+			rot(pars, &obj->next->norm);
+			obj->next->next->pos = vector_add(obj->pos,
+			vector_mltp(obj->orient, (-obj->height) / 2));
+			rot(pars, &obj->next->next->norm);
+		}
 	}
 	else
 		rot(pars, &obj->norm);

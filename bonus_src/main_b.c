@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 04:24:23 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/08 22:18:27 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/09 20:04:30 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	check_after_pars(t_all *all, t_pars pars)
 	if (all->phong == NULL)
 		ft_pars_exit(pars, E_NO_AMB);
 	all->a_camera = all->a_camera->next;
+	all->rot = 0;
 }
 
 int		main(int argc, char **argv)
@@ -36,7 +37,7 @@ int		main(int argc, char **argv)
 	t_pars	pars;
 	t_all	all;
 
-	all = (t_all){NULL, NULL, NULL, NULL, NULL, NULL, 0};
+	all = (t_all){NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0};
 	pars.fd = open(argv[1], O_RDONLY);
 	pars.argc = argc;
 	pars.argv = argv;
