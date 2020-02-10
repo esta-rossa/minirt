@@ -6,49 +6,79 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:25:03 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/09 20:05:16 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/10 21:07:13 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_b.h"
 
-void	line_pars(t_pars *pars, t_all *list, char **args)
+static	void	assign_functions(
+void (*parsing_funcs[14])(t_pars *pars, t_all *list, char **args))
 {
-	if (ft_strncmp(args[0], "sp", 3) == 0)
-		sp_pars(pars, list, args);
-	else if (ft_strncmp(args[0], "c", 2) == 0)
-		cam_pars(pars, list, args);
-	else if (ft_strncmp(args[0], "l", 2) == 0)
-		light_pars(pars, list, args);
-	else if (ft_strncmp(args[0], "A", 2) == 0)
-		ambiant_pars(pars, list, args);
-	else if (ft_strncmp(args[0], "R", 2) == 0)
-		resul_pars(pars, list, args);
-	else if (ft_strncmp(args[0], "pl", 3) == 0)
-		plane_pars(pars, list, args);
-	else if (ft_strncmp(args[0], "cy", 3) == 0)
-		cyl_pars(pars, list, args);
-	else if (ft_strncmp(args[0], "sq", 3) == 0)
-		square_pars(pars, list, args);
-	else if (ft_strncmp(args[0], "rot", 4) == 0)
-		rot_pars(pars, list, args);
-	else if (ft_strncmp(args[0], "tr", 3) == 0)
-		tr_pars(pars, list, args);
-	else if (ft_strncmp(args[0], "tran", 5) == 0)
-		tran_pars(pars, list, args);
-	else if (ft_strncmp(args[0], "cu", 3) == 0)
-		cube_pars(pars, list, args);
-	else if (ft_strncmp(args[0], "py", 3) == 0)
-		pyramid_pars(pars, list, args);
-	else if (ft_strncmp(args[0], "di", 3) == 0)
-		disk_pars(pars, list, args);
-	else if (ft_strncmp(args[0], "AA", 3) == 0)
-		list->aa = 1;
-	else
-		ft_pars_exit(*pars, E_PARS);
+	parsing_funcs[0] = sp_pars;
+	parsing_funcs[1] = cam_pars;
+	parsing_funcs[2] = light_pars;
+	parsing_funcs[3] = ambiant_pars;
+	parsing_funcs[4] = resul_pars;
+	parsing_funcs[5] = plane_pars;
+	parsing_funcs[6] = cyl_pars;
+	parsing_funcs[7] = square_pars;
+	parsing_funcs[8] = rot_pars;
+	parsing_funcs[9] = tr_pars;
+	parsing_funcs[10] = tran_pars;
+	parsing_funcs[11] = cube_pars;
+	parsing_funcs[12] = pyramid_pars;
+	parsing_funcs[13] = disk_pars;
 }
 
-void	data_read(t_pars *pars, t_all *all)
+static	char	**get_args(void)
+{
+	char	**args;
+
+	args = (char **)malloc(15 * sizeof(char *));
+	args[0] = "sp";
+	args[1] = "c";
+	args[2] = "l";
+	args[3] = "A";
+	args[4] = "R";
+	args[5] = "pl";
+	args[6] = "cy";
+	args[7] = "sq";
+	args[8] = "rot";
+	args[9] = "tr";
+	args[10] = "tran";
+	args[11] = "cu";
+	args[12] = "py";
+	args[13] = "di";
+	args[14] = "AA";
+	return (args);
+}
+
+void			line_pars(t_pars *pars, t_all *list, char **args)
+{
+	int		index;
+	char	**param;
+	void	(*parsing_funcs[14])(t_pars *pars, t_all *list, char **args);
+
+	index = 0;
+	param = get_args();
+	assign_functions(parsing_funcs);
+	while (index < NUM_OF_ARGS)
+	{
+		if (ft_strncmp(args[0], param[index],
+		ft_strlen(param[index], 1) + 1) == 0)
+		{
+			parsing_funcs[index](pars, list, args);
+			free(param);
+			return ;
+		}
+		index++;
+	}
+	free(param);
+	ft_pars_exit(*pars, E_PARS);
+}
+
+void			data_read(t_pars *pars, t_all *all)
 {
 	char	**args;
 	t_all	*list;
