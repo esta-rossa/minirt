@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 02:17:00 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/04 05:27:18 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/10 10:38:11 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,5 @@ size_t			ft_tablen(char **tab);
 void			pr_tap(char **tab, char *sep);
 int				valid_d(char *str);
 int				valid_num(char *str, int type);
+double			ft_atof(char *str);
 #endif

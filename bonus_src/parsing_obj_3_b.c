@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 19:09:36 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/08 22:12:14 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/10 11:24:51 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	tr_pars(t_pars *pars, t_all *list, char **args)
 	pars_pos(pars, &obj->vertex_2);
 	pars->tab = ft_split(args[4], ',');
 	pars_color(pars, &obj->color);
+	obj->sp_type = 0;
 	list->last->save = obj;
 	list->last->type = OBJ;
 }
@@ -61,6 +62,7 @@ void	square_pars(t_pars *pars, t_all *list, char **args)
 	obj->diam = ft_atof(args[3]);
 	pars->tab = ft_split(args[4], ',');
 	pars_color(pars, &obj->color);
+	obj->sp_type = 0;
 	list->last->save = obj;
 	list->last->type = OBJ;
 }
@@ -87,6 +89,7 @@ void	disk_pars(t_pars *pars, t_all *list, char **args)
 	obj->diam = ft_atof(args[3]);
 	pars->tab = ft_split(args[4], ',');
 	pars_color(pars, &obj->color);
+	obj->sp_type = 0;
 	list->last->save = obj;
 	list->last->type = OBJ;
 }

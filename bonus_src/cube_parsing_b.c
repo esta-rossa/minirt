@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 06:04:06 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/06 09:37:49 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/10 10:04:44 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ static	void	up_down_squares(t_all *list, t_obj *cube)
 		obj = obj->next;
 	list->last->save = obj;
 	list->last->type = CUBE;
+	obj->sp_type = CUBE;
+	obj->head = obj;
+	cube->head = obj;
 	obj->type = SQUARE;
 	obj->pos = vector_add(cube->pos,
 	vector_mltp((t_cord){0, 1, 0}, cube->diam / 2));
@@ -60,6 +63,8 @@ static	void	right_left_squares(t_all *list, t_obj *cube)
 	obj->norm = (t_cord){-1, 0, 0};
 	obj->diam = cube->diam;
 	obj->color = cube->color;
+	obj->head = cube->head;
+	obj->sp_type = CUBE;
 }
 
 static	void	front_back_squares(t_all *list, t_obj *cube)
@@ -84,6 +89,8 @@ static	void	front_back_squares(t_all *list, t_obj *cube)
 	obj->norm = (t_cord){0, 0, -1};
 	obj->diam = cube->diam;
 	obj->color = cube->color;
+	obj->head = cube->head;
+	obj->sp_type = CUBE;
 }
 
 void			cube_pars(t_pars *pars, t_all *list, char **args)

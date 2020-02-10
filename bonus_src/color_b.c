@@ -6,13 +6,13 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 07:17:34 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/09 20:19:12 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/10 17:55:48 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_b.h"
 
-void				clamp_color(t_color *col, int min, int max)
+void		clamp_color(t_color *col, int min, int max)
 {
 	col->r = (col->r > max) ? max : col->r;
 	col->r = (col->r < min) ? min : col->r;
@@ -32,7 +32,7 @@ t_color		average_color(t_color *color)
 	return (new);
 }
 
-int					get_color(t_color *col)
+int			get_color(t_color *col)
 {
 	char		color[4];
 
@@ -41,11 +41,10 @@ int					get_color(t_color *col)
 	color[1] = col->g * 255;
 	color[2] = col->r * 255;
 	color[3] = 0;
-
 	return (*(int *)color);
 }
 
-t_color				color_mltp(t_color color, double num)
+t_color		color_mltp(t_color color, double num)
 {
 	t_color new;
 

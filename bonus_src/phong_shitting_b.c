@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:37:34 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/08 10:08:19 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/10 18:00:24 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static	void		get_speculare(t_all *all, t_phong *phong)
 	* (all->a_light->color.b / 255) * factor;
 }
 
-void		ft_phong(t_all all, t_obj obj, t_color *color, double t)
+void				ft_phong(t_all all, t_obj obj, t_color *color, double t)
 {
 	t_phong	phong;
 	t_light	light;

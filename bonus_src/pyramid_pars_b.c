@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 09:38:11 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/06 11:53:49 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/10 18:00:33 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static	void	add_triangles(t_obj *sq, t_cord up, t_cord right)
 {
 	t_obj	*obj;
 
-	add_obj(&sq, new_obj());
 	obj = sq->next;
 	obj->type = TRIANGLE;
 	obj->vertex_0 = vector_add(sq->pos, vector_add(right, up));
@@ -63,11 +62,16 @@ static	void	create_obj(t_obj pyramid, t_all *list)
 	obj->type = SQUARE;
 	list->last->save = obj;
 	list->last->type = PYRAMID;
+	obj->sp_type = PYRAMID;
+	obj->head = obj;
 	init_vecs(&up, &right, obj);
+	add_obj(&obj, new_obj());
+	obj->next->sp_type = PYRAMID;
+	obj->next->head = obj;
 	add_triangles(obj, up, right);
 }
 
-void	pyramid_pars(t_pars *pars, t_all *list, char **args)
+void			pyramid_pars(t_pars *pars, t_all *list, char **args)
 {
 	t_obj	pyramid;
 
