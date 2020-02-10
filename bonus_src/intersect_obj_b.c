@@ -6,20 +6,13 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:27:53 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/09 19:56:27 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/10 17:34:16 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_b.h"
 
-/*
-**0->delta
-**1->a
-**2->b
-**3->c
-*/
-
-int		sp_inters(t_obj *o, t_camera camera, double *t)
+int				sp_inters(t_obj *o, t_camera camera, double *t)
 {
 	double	new_t[2];
 	double	vars[4];
@@ -47,7 +40,7 @@ int		sp_inters(t_obj *o, t_camera camera, double *t)
 	return (0);
 }
 
-int		plan_inters(t_obj *o, t_camera camera, double *t)
+int				plan_inters(t_obj *o, t_camera camera, double *t)
 {
 	double	new_t;
 
@@ -64,7 +57,7 @@ int		plan_inters(t_obj *o, t_camera camera, double *t)
 	return (0);
 }
 
-void	assign_functions(
+static	void	assign_functions(
 int (*inter_funs[6])(t_obj *o, t_camera camera, double *t))
 {
 	inter_funs[0] = plan_inters;
@@ -75,7 +68,7 @@ int (*inter_funs[6])(t_obj *o, t_camera camera, double *t))
 	inter_funs[5] = disk_inters;
 }
 
-int		inters(t_obj *obj, t_camera camera, double *t)
+int				inters(t_obj *obj, t_camera camera, double *t)
 {
 	double	t_tmp;
 	int		index;

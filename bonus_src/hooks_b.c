@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 18:53:59 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/09 17:07:02 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/10 17:33:43 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,19 @@ int		is_pressed(int button)
 	|| button == KEY_ONE || button == KEY_THREE)
 		return (1);
 	return (0);
+}
+
+void	hooks_midleware(int button, t_all *all)
+{
+	if (all->cam)
+		all->rot == 0 ? camera_tran(all->a_camera, button)
+		: camera_rot(all->a_camera, button);
+	else
+	{
+		all->rot == 0 ? object_trans_midleware(all->a_obj,
+		*all->a_camera, all->pos, button)
+		: object_rot_midleware(all->a_obj, *all->a_camera, all->pos, button);
+	}
 }
 
 int		control(int button, t_all *all)
@@ -48,8 +61,7 @@ int		control(int button, t_all *all)
 		all->rot = all->rot == 1 ? 0 : 1;
 	else if (is_pressed(button))
 	{
-		all->rot == 0 ? camera_tran(all->a_camera, button) : 1;
-		all->rot == 1 ? camera_rot(all->a_camera, button) : 1;
+		hooks_midleware(button, all);
 		mlx_destroy_image(all->wind->init, all->wind->img_p);
 		here_we_go(all);
 	}
@@ -61,7 +73,8 @@ void	hook(t_all all)
 	if (all.save == 0)
 	{
 		mlx_hook(all.wind->wind_p, 17, 0, die, NULL);
-		mlx_key_hook(all.wind->wind_p, control, &all);
+		mlx_hook(all.wind->wind_p, 4, 0, get_obj, &all);
+		mlx_hook(all.wind->wind_p, 2, 0, control, &all);
 		mlx_loop(all.wind->init);
 	}
 }

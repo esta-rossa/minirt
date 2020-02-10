@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 22:25:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/06 12:32:12 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/10 11:20:01 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define AMB		10
 # define CUBE		11
 # define PYRAMID	12
+# define CAP		13
 void		data_read(t_pars *pars, t_all *all);
 void		line_pars(t_pars *pars, t_all *list, char **args);
 void		add_obj(t_obj **alst, t_obj *new);

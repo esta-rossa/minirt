@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 02:21:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/08 22:10:20 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/10 17:58:27 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void		cyl_pars(t_pars *pars, t_all *list, char **args)
 	obj->cap = ft_atoi(args[5]);
 	pars->tab = ft_split(args[6], ',');
 	pars_color(pars, &obj->color);
-	put_cap(pars, list);
+	put_cap(pars, obj);
 	list->last->save = obj;
 	list->last->type = OBJ;
 }

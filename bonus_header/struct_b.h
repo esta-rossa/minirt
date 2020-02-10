@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 05:26:55 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/09 20:03:51 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/10 10:37:36 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ typedef	struct	s_obj
 	double				diam;
 	double				height;
 	double				radius;
+	struct s_obj		*head;
+	int					sp_type;
 	struct s_obj		*next;
 
 }				t_obj;
@@ -142,5 +144,7 @@ typedef	struct	s_all
 	int			save;
 	int			rot;
 	int			aa;
+	int			cam;
+	int			pos;
 }				t_all;
 #endif
