@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 02:08:56 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/09 20:18:54 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/11 19:35:49 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 void		clamp_color(t_color *col, int min, int max);
 t_color		average_color(t_color *color);
-int			get_color(t_color *col);
+int			get_int(t_color *col);
 t_color		color_mltp(t_color color, double num);
+t_color		get_color(int color);
 #endif

@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 02:17:00 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/10 10:38:11 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/10 19:23:30 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,5 @@ void			pr_tap(char **tab, char *sep);
 int				valid_d(char *str);
 int				valid_num(char *str, int type);
 double			ft_atof(char *str);
+int				ft_strcmp(char *s1, char *s2);
 #endif

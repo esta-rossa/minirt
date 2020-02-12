@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:50:24 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/09 18:40:15 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/12 04:43:43 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ void		here_we_go(t_all *all)
 {
 	init_image(*all);
 	init_camera(all->a_camera, *all);
-	all_save = all;
+	g_all = all;
 	threads_parent();
+	all->filter == 1 ? filter(all->wind->img_data) : 1;
 	all->save == 0 ? mlx_put_image_to_window(all->wind->init, all->wind->wind_p,
 	all->wind->img_p, 0, 0) : save_bitmap(*all->wind, all->wind->img_data);
 }

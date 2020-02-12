@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 05:37:05 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/09 22:52:07 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/12 02:56:47 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ void		*thread_child(void *param)
 	long	step;
 
 	step = (int)param;
-	indexs[0] = (((all_save->wind->wind_y) / 4) * step);
-	img = all_save->wind->img_data;
-	indexs[2] = indexs[0] - ((all_save->wind->wind_y) / 4);
-	if (step == 4)
-		indexs[0] += all_save->wind->wind_y % 4;
-	img += (all_save->wind->wind_y - indexs[0]) * all_save->wind->wind_x;
+	indexs[0] = (((g_all->wind->wind_y) / THREADS) * step);
+	img = g_all->wind->img_data;
+	indexs[2] = indexs[0] - ((g_all->wind->wind_y) / THREADS);
+	if (step == THREADS)
+		indexs[0] += g_all->wind->wind_y % THREADS;
+	img += (g_all->wind->wind_y - indexs[0]) * g_all->wind->wind_x;
 	while (--indexs[0] >= indexs[2])
 	{
 		indexs[1] = -1;
-		while (++indexs[1] < all_save->wind->wind_x)
+		while (++indexs[1] < g_all->wind->wind_x)
 		{
 			get_pixel(indexs, img);
 			img++;
@@ -58,16 +58,16 @@ void		hold_threads(pthread_t *threads, int size)
 
 void		threads_parent(void)
 {
-	pthread_t	threads[4];
+	pthread_t	threads[THREADS];
 	long		part;
 
 	part = 1;
-	while (part < 5)
+	while (part < THREADS + 1)
 	{
 		if (pthread_create(&threads[part - 1],
 		NULL, thread_child, (void*)part) != 0)
 			ft_exit(E_STD);
 		part++;
 	}
-	hold_threads(threads, 4);
+	hold_threads(threads, THREADS);
 }

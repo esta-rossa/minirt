@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 05:26:55 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/10 10:37:36 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/12 04:41:15 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,5 +146,6 @@ typedef	struct	s_all
 	int			aa;
 	int			cam;
 	int			pos;
+	int			filter;
 }				t_all;
 #endif

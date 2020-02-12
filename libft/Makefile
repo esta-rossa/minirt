@@ -6,7 +6,7 @@
 #    By: arraji <arraji@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 13:57:03 by arraji            #+#    #+#              #
-#    Updated: 2020/02/08 10:37:05 by arraji           ###   ########.fr        #
+#    Updated: 2020/02/10 19:23:42 by arraji           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,8 @@ SRC_FILES  =	ft_atoi.c \
 				ft_valid_f.c \
 				ft_tablen.c \
 				ft_pr_tab.c \
-				ft_atof.c
+				ft_atof.c \
+				ft_strcmp.c \
 
 OBJECT_FILES = $(SRC_FILES:.c=.o)
 OBJECT_FILES := $(addprefix $(OBJECT_FOLDER)/, $(OBJECT_FILES))

@@ -6,26 +6,27 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 22:25:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/10 11:20:01 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/12 04:44:57 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PARSING_H
 # define FT_PARSING_H
 
-# define PLANE		1
-# define SPHERE		2
-# define CYLINDER	3
-# define SQUARE		4
-# define TRIANGLE	5
-# define DISK		6
-# define LIGHT		7
-# define CAM		8
-# define OBJ		9
-# define AMB		10
-# define CUBE		11
-# define PYRAMID	12
-# define CAP		13
+# define PLANE			1
+# define SPHERE			2
+# define CYLINDER		3
+# define SQUARE			4
+# define TRIANGLE		5
+# define DISK			6
+# define LIGHT			7
+# define CAM			8
+# define OBJ			9
+# define AMB			10
+# define CUBE			11
+# define PYRAMID		12
+# define CAP			13
+# define NUM_OF_ARGS	16
 void		data_read(t_pars *pars, t_all *all);
 void		line_pars(t_pars *pars, t_all *list, char **args);
 void		add_obj(t_obj **alst, t_obj *new);
