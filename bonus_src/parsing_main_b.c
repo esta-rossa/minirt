@@ -6,14 +6,14 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:25:03 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/10 21:07:13 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/12 04:49:35 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_b.h"
 
 static	void	assign_functions(
-void (*parsing_funcs[14])(t_pars *pars, t_all *list, char **args))
+void (*parsing_funcs[15])(t_pars *pars, t_all *list, char **args))
 {
 	parsing_funcs[0] = sp_pars;
 	parsing_funcs[1] = cam_pars;
@@ -35,7 +35,7 @@ static	char	**get_args(void)
 {
 	char	**args;
 
-	args = (char **)malloc(15 * sizeof(char *));
+	args = (char **)malloc(16 * sizeof(char *));
 	args[0] = "sp";
 	args[1] = "c";
 	args[2] = "l";
@@ -51,6 +51,7 @@ static	char	**get_args(void)
 	args[12] = "py";
 	args[13] = "di";
 	args[14] = "AA";
+	args[15] = "F";
 	return (args);
 }
 
@@ -60,20 +61,19 @@ void			line_pars(t_pars *pars, t_all *list, char **args)
 	char	**param;
 	void	(*parsing_funcs[14])(t_pars *pars, t_all *list, char **args);
 
-	index = 0;
+	index = -1;
 	param = get_args();
 	assign_functions(parsing_funcs);
-	while (index < NUM_OF_ARGS)
-	{
+	while (++index < NUM_OF_ARGS)
 		if (ft_strncmp(args[0], param[index],
 		ft_strlen(param[index], 1) + 1) == 0)
 		{
-			parsing_funcs[index](pars, list, args);
+			index < 14 ? parsing_funcs[index](pars, list, args) : 1;
+			index == 14 ? list->aa = 1 : 1;
+			index == 15 ? list->filter = 1 : 1;
 			free(param);
 			return ;
 		}
-		index++;
-	}
 	free(param);
 	ft_pars_exit(*pars, E_PARS);
 }

@@ -80,6 +80,7 @@ BONUS_SRC_FILES =		main_b.c \
 						objects_mov.c \
 						hardcode_object_rotation.c \
 						hardcode_object_translation.c \
+						filter_b.c \
 
 OBJECT_FILES = $(SRC_FILES:.c=.o)
 OBJECT_FILES := $(addprefix $(OBJECT_FOLDER)/, $(OBJECT_FILES))

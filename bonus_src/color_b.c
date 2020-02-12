@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 07:17:34 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/10 17:55:48 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/11 19:41:15 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_color		average_color(t_color *color)
 	return (new);
 }
 
-int			get_color(t_color *col)
+int			get_int(t_color *col)
 {
 	char		color[4];
 
@@ -42,6 +42,18 @@ int			get_color(t_color *col)
 	color[2] = col->r * 255;
 	color[3] = 0;
 	return (*(int *)color);
+}
+
+t_color		get_color(int color)
+{
+	unsigned	char	*clr;
+	t_color				result;
+
+	clr = (unsigned char *)&color;
+	result.b = (int)clr[0];
+	result.g = (int)clr[1];
+	result.r = (int)clr[2];
+	return (result);
 }
 
 t_color		color_mltp(t_color color, double num)
