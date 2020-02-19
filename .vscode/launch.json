@@ -25,7 +25,7 @@
 			"request": "launch",
 			"program": "/Users/arraji/Desktop/new_rt/minirt_bonus",
 			"args": [
-				"scenes/sphere.rt",
+				"scenes/cylinder.rt",
 			],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",

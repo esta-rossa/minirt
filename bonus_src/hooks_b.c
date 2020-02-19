@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 18:53:59 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/10 17:33:43 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/19 19:52:04 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,19 @@ int		is_pressed(int button)
 	if (button == KEY_EIGHT || button == KEY_TWO || button == KEY_FOUR ||
 	button == KEY_SEX || button == KEY_UP || button == KEY_DOWN ||
 	button == KEY_NINE || button == KEY_SEVEN
-	|| button == KEY_ONE || button == KEY_THREE)
+	|| button == KEY_ONE || button == KEY_THREE || button == KEY_ZERO)
 		return (1);
 	return (0);
 }
 
+
 void	hooks_midleware(int button, t_all *all)
 {
+	if (button == KEY_ZERO)
+	{
+		mouse_move();
+		return ;
+	}
 	if (all->cam)
 		all->rot == 0 ? camera_tran(all->a_camera, button)
 		: camera_rot(all->a_camera, button);

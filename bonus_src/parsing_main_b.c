@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:25:03 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/12 04:49:35 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/19 15:38:30 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@ void (*parsing_funcs[15])(t_pars *pars, t_all *list, char **args))
 	parsing_funcs[11] = cube_pars;
 	parsing_funcs[12] = pyramid_pars;
 	parsing_funcs[13] = disk_pars;
+	parsing_funcs[14] = cone_pars;
 }
 
 static	char	**get_args(void)
 {
 	char	**args;
 
-	args = (char **)malloc(16 * sizeof(char *));
+	args = (char **)malloc(18 * sizeof(char *));
 	args[0] = "sp";
 	args[1] = "c";
 	args[2] = "l";
@@ -50,8 +51,10 @@ static	char	**get_args(void)
 	args[11] = "cu";
 	args[12] = "py";
 	args[13] = "di";
-	args[14] = "AA";
-	args[15] = "F";
+	args[14] = "co";
+	args[15] = "AA";
+	args[16] = "F";
+	args[17] = "COL";
 	return (args);
 }
 
@@ -68,9 +71,10 @@ void			line_pars(t_pars *pars, t_all *list, char **args)
 		if (ft_strncmp(args[0], param[index],
 		ft_strlen(param[index], 1) + 1) == 0)
 		{
-			index < 14 ? parsing_funcs[index](pars, list, args) : 1;
-			index == 14 ? list->aa = 1 : 1;
-			index == 15 ? list->filter = 1 : 1;
+			index < 15 ? parsing_funcs[index](pars, list, args) : 1;
+			index == 15 ? list->aa = 1 : 1;
+			index == 16 ? list->filter = 1 : 1;
+			index == 17 ? list->color = 1 : 1;
 			free(param);
 			return ;
 		}
@@ -81,7 +85,6 @@ void			line_pars(t_pars *pars, t_all *list, char **args)
 void			data_read(t_pars *pars, t_all *all)
 {
 	char	**args;
-	t_all	*list;
 	int		res;
 
 	res = 1;
@@ -94,10 +97,7 @@ void			data_read(t_pars *pars, t_all *all)
 		pars->line_num++;
 		args = ft_split(pars->line, ' ');
 		if (ft_tablen(args) > 0 && args[0][0] != '.')
-		{
-			list = all;
-			line_pars(pars, list, args);
-		}
+			line_pars(pars, all, args);
 		free_tab(args, ft_tablen(args));
 		free(pars->line);
 	}

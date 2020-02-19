@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:37:34 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/10 18:00:24 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/18 19:07:18 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,21 @@ static	void		get_diffuse(t_all *all, t_obj *obj, t_phong *phong)
 	phong->diffuse = (t_color){0, 0, 0};
 	dot = dot_pr(all->a_light->vec, obj->norm);
 	dot = dot < 0 ? 0 : dot;
-	phong->diffuse.r = all->a_light->bright *
-	(obj->color.r / 255) * (all->a_light->color.r / 255) * dot;
-	phong->diffuse.g = all->a_light->bright *
-	(obj->color.g / 255) * (all->a_light->color.g / 255) * dot;
-	phong->diffuse.b = all->a_light->bright *
-	(obj->color.b / 255) * (all->a_light->color.b / 255) * dot;
+	if (all->color == 1)
+	{
+		phong->diffuse.r = obj->norm.z * dot;
+		phong->diffuse.g = obj->norm.y * dot;
+		phong->diffuse.b = obj->norm.x * dot;
+	}
+	else
+	{
+		phong->diffuse.r = all->a_light->bright *
+		(obj->color.r / 255) * (all->a_light->color.r / 255) * dot;
+		phong->diffuse.g = all->a_light->bright *
+		(obj->color.g / 255) * (all->a_light->color.g / 255) * dot;
+		phong->diffuse.b = all->a_light->bright *
+		(obj->color.b / 255) * (all->a_light->color.b / 255) * dot;
+	}
 }
 
 static	void		get_speculare(t_all *all, t_phong *phong)

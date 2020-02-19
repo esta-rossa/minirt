@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 11:43:48 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/12 02:56:47 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/18 01:42:43 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,6 @@ void		get_pixel(int *indexs, int *img)
 		v_rays[0] = get_ray(*(g_all)->a_camera,
 		g_all->a_camera->bot, indexs[1], indexs[0]);
 		render(*g_all, *g_all->a_camera, &colors[0], v_rays[0]);
-		/* colors[0].r = colors[0].r * 0 + colors[0].g * 0.2 + colors[0].b * 0;
-		colors[0].g = colors[0].r * 0.2 + colors[0].g * 0.2 + colors[0].b * 0.2;
-		colors[0].b = colors[0].r * 0 + colors[0].g * 0.2 + colors[0].b * 0; */
 		*img = get_int(&colors[0]);
 	}
 }

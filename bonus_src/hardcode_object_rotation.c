@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:49:28 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/10 17:52:16 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/18 01:45:15 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void			object_rot(t_obj *obj, t_cord vec)
 	else if (obj->type == CYLINDER ||
 	(obj->type == DISK && obj->sp_type == CAP))
 		cylinder_rot(obj->head, vec);
+	else if (obj->type == CONE)
+		obj->orient = rodrigues_rot(obj->orient, vec, M_PI / 8);
 	else
 		obj->norm = rodrigues_rot(obj->norm, vec, M_PI / 8);
 }
