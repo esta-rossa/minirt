@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:30:41 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/03 19:29:44 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/18 02:03:00 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int				cyl_inters(t_obj *o, t_camera camera, double *t)
 	if (cyl_inters_init(o, camera, &need))
 	{
 		cyl_calcul(o, camera, &need);
-		if (need.m[0] > 0 && need.m[0] < o->height)
+		if (need.m[0] > (-o->height) / 2 && need.m[0] < o->height / 2)
 			new_t = need.t[0];
-		else if (need.m[1] > 0 && need.m[1] < o->height)
+		else if (need.m[1] > (-o->height) / 2 && need.m[1] < o->height / 2)
 			new_t = need.t[1];
 		if (new_t > 0 && new_t < *t && new_t > NEAR)
 		{

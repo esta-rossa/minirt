@@ -6,11 +6,18 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:27:53 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/10 17:34:16 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/18 01:03:51 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_b.h"
+
+/*
+**0->delta
+**1->a
+**2->b
+**3->c
+*/
 
 int				sp_inters(t_obj *o, t_camera camera, double *t)
 {
@@ -21,7 +28,7 @@ int				sp_inters(t_obj *o, t_camera camera, double *t)
 	vars[2] = (dot_pr(camera.pos, camera.v_ray)
 	- dot_pr(o->pos, camera.v_ray)) * 2;
 	vars[3] = dot_pr(o->pos, o->pos)
-	- (o->radius * o->radius)
+	- (o->diam * o->diam)
 	- (2 * dot_pr(o->pos, camera.pos))
 	+ dot_pr(camera.pos, camera.pos);
 	vars[0] = (vars[2] * vars[2]) - (4 * vars[1] * vars[3]);
@@ -66,6 +73,7 @@ int (*inter_funs[6])(t_obj *o, t_camera camera, double *t))
 	inter_funs[3] = squar_inters;
 	inter_funs[4] = triangle_inters;
 	inter_funs[5] = disk_inters;
+	inter_funs[6] = cone_inter;
 }
 
 int				inters(t_obj *obj, t_camera camera, double *t)
@@ -73,7 +81,7 @@ int				inters(t_obj *obj, t_camera camera, double *t)
 	double	t_tmp;
 	int		index;
 	int		pos;
-	int		(*inter_funs[6])(t_obj *o, t_camera camera, double *t);
+	int		(*inter_funs[7])(t_obj *o, t_camera camera, double *t);
 
 	pos = -1;
 	index = 0;

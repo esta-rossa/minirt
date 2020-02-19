@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 01:26:01 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/09 03:42:25 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/18 02:14:49 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static	void	rot_obj(t_pars pars, t_obj *obj)
 	type = obj->type;
 	if (type == SPHERE || type == TRIANGLE)
 		ft_pars_exit(pars, E_PARS);
-	else if (type == CYLINDER)
+	else if (type == CYLINDER || type == CONE)
 	{
 		rot(pars, &obj->orient);
 		if (obj->cap == 1)

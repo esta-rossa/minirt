@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:47:05 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/08 17:05:25 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/18 19:07:24 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static	void	init_sp(t_all all, t_obj *obj, double t)
 	all.a_light->reflect = vector_norm(
 	reflected(vector_mltp(all.a_light->vec, -1),
 	obj->norm));
+
 }
 
 static	void	init_plan(t_all all, t_obj *obj, double t)
@@ -98,4 +99,6 @@ void			init_phong(t_all all, t_obj *obj, double t)
 		init_tr(all, obj, t);
 	else if (obj->type == SQUARE)
 		init_plan(all, obj, t);
+	else if (obj->type == CONE)
+		init_cone(all, obj, t);
 }

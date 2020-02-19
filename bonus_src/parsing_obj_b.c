@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 02:21:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/10 17:58:27 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/18 00:16:14 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void		sp_pars(t_pars *pars, t_all *list, char **args)
 	obj->type = SPHERE;
 	pars->tab = ft_split(args[1], ',');
 	pars_pos(pars, &(obj)->pos);
-	obj->radius = ft_atof(args[2]);
+	obj->diam = ft_atof(args[2]);
 	pars->tab = ft_split(args[3], ',');
 	pars_color(pars, &(obj)->color);
 	list->last->save = obj;

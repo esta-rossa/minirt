@@ -6,11 +6,21 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 23:49:44 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/10 17:51:36 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/19 19:52:26 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_b.h"
+
+void	mouse_move(void)
+{
+	int		x;
+	int		y;
+
+	mlx_mouse_get_pos(g_all->wind->wind_p, &x, &y);
+	g_all->a_camera->l_at =
+	get_ray(*g_all->a_camera, g_all->a_camera->bot, x, g_all->wind->wind_y - y);
+}
 
 int		get_obj(int button, int x, int y, t_all *all)
 {
@@ -40,8 +50,12 @@ void	object_rot_midleware(t_obj *obj, t_camera cam, int pos, int key)
 	else if (key == KEY_TWO)
 		object_rot(obj, vector_mltp(cam.right, -1));
 	else if (key == KEY_FOUR)
-		object_rot(obj, cam.up);
+		object_rot(obj, cam.l_at);
 	else if (key == KEY_SEX)
+		object_rot(obj, vector_mltp(cam.l_at, -1));
+	else if (key == KEY_UP)
+		object_rot(obj, cam.up);
+	else if (key == KEY_DOWN)
 		object_rot(obj, vector_mltp(cam.up, -1));
 }
 

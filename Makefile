@@ -7,12 +7,15 @@ LIBFT_HEADER = ./libft/header
 LIBFT_FOLDER = ./libft
 OBJECT_FOLDER = ./objects
 BONUS_OBJECT_FOLDER = ./bonus_objects
-LIBS = -lmlx -framework OpenGL -framework Appkit
+LIBS = -framework OpenGL -framework Appkit
 LIBFT_LIB = libft.a
 RED = \033[0;31m
 GREEN = \033[0;32m
 GOLD = \033[0;33m
 RESET = \033[0m
+MLX_LIB = libmlx.a
+MLX_HEADER = mlx.h
+MLX_FOLDER = ./openmlx
 BONUS_HEADER_FOLDER = ./bonus_header
 SRC_FILES = 			main.c \
 						error.c \
@@ -51,8 +54,8 @@ BONUS_SRC_FILES =		main_b.c \
 						color_b.c \
 						here_we_go_b.c \
 						init_light_b.c \
+						init_light_b_2.c \
 						intersect_obj_b.c \
-						light_shitting_b.c \
 						parsing_main_b.c \
 						parsing_obj_b.c \
 						parsing_obj_2_b.c \
@@ -81,6 +84,7 @@ BONUS_SRC_FILES =		main_b.c \
 						hardcode_object_rotation.c \
 						hardcode_object_translation.c \
 						filter_b.c \
+						cone_intersect.c \
 
 OBJECT_FILES = $(SRC_FILES:.c=.o)
 OBJECT_FILES := $(addprefix $(OBJECT_FOLDER)/, $(OBJECT_FILES))
@@ -92,26 +96,27 @@ LIBFT_FILE := $(LIBFT_FOLDER)/$(LIBFT_LIB)
 
 all: credit $(NAME)
 
-LIBFT_RULE:
+LIB_RULE:
 	@make -C $(LIBFT_FOLDER)/
+	@make -C $(MLX_FOLDER)
 
-bonus: credit LIBFT_RULE $(BONUS_OBJECT_FILES)
-	@gcc -g -I $(BONUS_HEADER_FOLDER) -I $(LIBFT_FOLDER) $(BONUS_OBJECT_FILES) $(LIBFT_FOLDER)/$(LIBFT_LIB) $(LIBS) -o $(NAME)_bonus
+bonus: credit LIB_RULE $(BONUS_OBJECT_FILES)
+	@gcc -g -I $(BONUS_HEADER_FOLDER) -I $(LIBFT_FOLDER) -I $(MLX_FOLDER) $(BONUS_OBJECT_FILES) $(LIBFT_FOLDER)/$(LIBFT_LIB) $(MLX_FOLDER)/$(MLX_LIB) $(LIBS) -o $(NAME)_bonus
 	@echo
 	@echo $(NAME)"_bonus created $(GOLD)successfully$(RESET)"
 
 $(BONUS_OBJECT_FOLDER)/%.o: $(BONUS_SRC_FOLDER)/%.c
 	@(mkdir $(BONUS_OBJECT_FOLDER) 2> /dev/null && echo "creating "$(BONUS_OBJECT_FOLDER)" folder $(GOLD){OK}$(RESET)") || true
-	@gcc $(FLAGS) -g -I $(BONUS_HEADER_FOLDER) -I $(LIBFT_HEADER) -o $@ -c $< && echo  "creating" $< "object $(GOLD){OK}$(RESET)"
+	@gcc $(FLAGS) -g -I $(BONUS_HEADER_FOLDER) -I $(LIBFT_HEADER) -I $(MLX_FOLDER) -o $@ -c $< && echo  "creating" $< "object $(GOLD){OK}$(RESET)"
 
-$(NAME): LIBFT_RULE $(OBJECT_FILES)
-	@gcc -g -I $(HEADER_FOLDER) -I $(LIBFT_FOLDER) $(OBJECT_FILES) $(LIBFT_FOLDER)/$(LIBFT_LIB) $(LIBS) -o $@
+$(NAME): LIB_RULE $(OBJECT_FILES)
+	@gcc -g -I $(HEADER_FOLDER) -I $(LIBFT_FOLDER) -I $(MLX_FOLDER) $(OBJECT_FILES) $(LIBFT_FOLDER)/$(LIBFT_LIB) $(MLX_FOLDER)/$(MLX_LIB) $(LIBS) -o $@
 	@echo
 	@echo $(NAME)" created $(GREEN)successfully$(RESET)"
 
 $(OBJECT_FOLDER)/%.o: $(SRC_FOLDER)/%.c
 	@(mkdir $(OBJECT_FOLDER) 2> /dev/null && echo "creating "$(OBJECT_FOLDER)" folder $(GREEN){OK}$(RESET)") || true
-	@gcc $(FLAGS) -g -I $(HEADER_FOLDER) -I $(LIBFT_HEADER) -o $@ -c $< && echo "creating" $< "object $(GREEN){OK}$(RESET)"
+	@gcc $(FLAGS) -g -I $(HEADER_FOLDER) -I $(LIBFT_HEADER) -I $(MLX_FOLDER) -o $@ -c $< && echo "creating" $< "object $(GREEN){OK}$(RESET)"
 
 clean:
 	@(rm $(OBJECT_FILES) 2> /dev/null && echo "$(RED)deleting$(RESET): " $(OBJECT_FILES)) || true

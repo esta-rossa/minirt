@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 18:45:28 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/10 17:58:48 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/18 01:07:02 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,5 @@ void	put_cap(t_pars *pars, t_obj *obj);
 int		triangle_inters(t_obj *o, t_camera camera, double *t);
 int		squar_inters(t_obj *o, t_camera camera, double *t);
 int		disk_inters(t_obj *o, t_camera camera, double *t);
+int		cone_inter(t_obj *o, t_camera camera, double *t);
 #endif

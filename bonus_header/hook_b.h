@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 19:10:52 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/10 17:52:35 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/19 19:52:43 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define KEY_SPACE		49
 # define KEY_UP			126
 # define KEY_DOWN		125
+# define KEY_ZERO		82
 # define KEY_ONE		83
 # define KEY_TWO		84
 # define KEY_THREE		85
@@ -41,4 +42,5 @@ void	object_rot_midleware(t_obj *obj, t_camera camera, int pos, int button);
 int		get_obj(int button, int x, int y, t_all *all);
 void	object_rot(t_obj *obj, t_cord vec);
 void	object_trans(t_obj *obj, t_cord vec);
+void	mouse_move(void);
 #endif
