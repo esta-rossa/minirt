@@ -6,12 +6,12 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 19:10:52 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/19 19:52:43 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/23 16:39:59 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_HOOK_H
-# define FT_HOOK_H
+#ifndef FT_HOOK_B_H
+# define FT_HOOK_B_H
 # include "minirt_b.h"
 # define KEY_LEFT		123
 # define KEY_RIGHT		124
@@ -21,7 +21,7 @@
 # define KEY_SPACE		49
 # define KEY_UP			126
 # define KEY_DOWN		125
-# define KEY_ZERO		82
+# define KEY_R			15
 # define KEY_ONE		83
 # define KEY_TWO		84
 # define KEY_THREE		85
@@ -32,12 +32,14 @@
 # define KEY_EIGHT		91
 # define KEY_NINE		92
 # define MOUSE_LEFT		1
+
 int		die();
 void	camera_tran(t_camera *camera, int key);
 void	camera_rot(t_camera *cam, int key);
 int		control(int button, t_all *all);
 void	hook(t_all all);
-void	object_trans_midleware(t_obj *obj, t_camera camera, int pos, int button);
+void	object_trans_midleware(t_obj *obj,
+		t_camera camera, int pos, int button);
 void	object_rot_midleware(t_obj *obj, t_camera camera, int pos, int button);
 int		get_obj(int button, int x, int y, t_all *all);
 void	object_rot(t_obj *obj, t_cord vec);

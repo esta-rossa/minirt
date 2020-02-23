@@ -6,12 +6,12 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 02:33:15 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/06 04:44:21 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/23 16:36:43 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_ERROR_H
-# define FT_ERROR_H
+#ifndef FT_ERROR_B_H
+# define FT_ERROR_B_H
 # include "minirt_b.h"
 # define E_STD		1
 # define E_ARGS		2

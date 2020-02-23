@@ -6,13 +6,12 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 22:25:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/18 02:50:43 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/23 16:41:12 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PARSING_H
-# define FT_PARSING_H
-
+#ifndef FT_PARSING_B_H
+# define FT_PARSING_B_H
 # define PLANE			1
 # define SPHERE			2
 # define CYLINDER		3
@@ -27,7 +26,8 @@
 # define CUBE			12
 # define CAP			13
 # define PYRAMID		14
-# define NUM_OF_ARGS	18
+# define NUM_OF_ARGS	19
+
 void		data_read(t_pars *pars, t_all *all);
 void		line_pars(t_pars *pars, t_all *list, char **args);
 void		add_obj(t_obj **alst, t_obj *new);

@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:25:03 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/19 15:38:30 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/22 12:06:46 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static	char	**get_args(void)
 {
 	char	**args;
 
-	args = (char **)malloc(18 * sizeof(char *));
+	args = (char **)malloc(19 * sizeof(char *));
 	args[0] = "sp";
 	args[1] = "c";
 	args[2] = "l";
@@ -55,6 +55,7 @@ static	char	**get_args(void)
 	args[15] = "AA";
 	args[16] = "F";
 	args[17] = "COL";
+	args[18] = "STR";
 	return (args);
 }
 
@@ -75,6 +76,7 @@ void			line_pars(t_pars *pars, t_all *list, char **args)
 			index == 15 ? list->aa = 1 : 1;
 			index == 16 ? list->filter = 1 : 1;
 			index == 17 ? list->color = 1 : 1;
+			index == 18 ? list->str = 1 : 1;
 			free(param);
 			return ;
 		}

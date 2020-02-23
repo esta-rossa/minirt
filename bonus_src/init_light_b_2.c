@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 01:10:45 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/18 01:27:09 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/23 15:22:45 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ void	init_cone(t_all all, t_obj *obj, double t)
 	dot_pr(vector_sub(all.a_camera->pos, obj->pos), obj->orient));
 	all.a_camera->p_inter = vector_add(
 	all.a_camera->pos, vector_mltp(all.a_camera->v_ray, t));
-	all.a_light->vec = vector_norm(vector_sub(all.a_light->pos,
-	all.a_camera->p_inter));
+	all.a_light->vec = all.a_light->type == 0 ?
+	vector_norm(vector_sub(all.a_light->pos,
+	all.a_camera->p_inter)) : vector_mltp(all.a_light->pos, -1);
 	obj->norm = vector_norm(vector_sub(vector_sub(all.a_camera->p_inter,
 	obj->pos), vector_mltp(obj->orient, (1 + (obj->diam * obj->diam)) * m)));
 	side = dot_pr(obj->norm, vector_norm(all.a_camera->v_ray)) > 0 ? -1 : 1;

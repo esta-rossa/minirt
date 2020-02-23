@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 02:54:59 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/12 04:31:05 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/23 16:32:16 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,10 @@ static	int		ft_modulus(int a, int m)
 
 static	void	filter_calc(int *image, t_color *color, int *indexs)
 {
-	int z;
-	z = indexs[0];
-	int o;
-	o = indexs[1];
-	int t;
-	t = indexs[2];
-	int th;
-	th = indexs[3];
 	indexs[4] = ft_modulus(indexs[0] - (FILTER_X / 2) +
 	(indexs[3]), g_all->wind->wind_x);
 	indexs[5] = ft_modulus(indexs[1] - (FILTER_Y / 2) +
 	(indexs[2]), g_all->wind->wind_y);
-	int f;
-	f = indexs[4];
-	int fi;
-	fi = indexs[5];
 	color[0] = get_color(image[((indexs[5] * (g_all->wind->wind_x)) +
 	indexs[4])]);
 	color[1].r += (color[0].r *

@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 14:27:42 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/09 02:58:51 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/23 15:17:17 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void	light_pars(t_pars *pars, t_all *list, char **args)
 {
 	t_light	*light;
 
-	if (ft_tablen(args) != 4 || !valid_f(args[2]))
+	if (ft_tablen(args) != 5 || !valid_f(args[2]) || !valid_d(args[3]))
 		ft_pars_exit(*pars, E_PARS);
 	check_tab(args, *pars, 1, 2);
-	check_tab(args, *pars, 3, 1);
+	check_tab(args, *pars, 4, 1);
 	add_light(&(list)->a_light, new_light());
 	light = list->a_light;
 	while (light->next)
@@ -60,7 +60,11 @@ void	light_pars(t_pars *pars, t_all *list, char **args)
 	pars->tab = ft_split(args[1], ',');
 	pars_pos(pars, &(light->pos));
 	light->bright = ft_atof(args[2]);
-	pars->tab = ft_split(args[3], ',');
+	light->type = ft_atoi(args[3]);
+	if (light->type != 0 && light->type != 1)
+		ft_pars_exit(*pars, E_PARS);
+	light->pos = light->type == 1 ? vector_norm(light->pos) : light->pos;
+	pars->tab = ft_split(args[4], ',');
 	pars_color(pars, &(light)->color);
 	list->last->save = light;
 	list->last->type = LIGHT;

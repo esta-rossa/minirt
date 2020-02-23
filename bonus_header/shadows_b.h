@@ -6,12 +6,12 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 01:16:08 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/06 04:41:53 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/23 16:37:30 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SHADOWS_H
-# define FT_SHADOWS_H
+#ifndef FT_SHADOWS_B_H
+# define FT_SHADOWS_B_H
 # include "minirt_b.h"
 
 int	shadow(t_all all, t_obj *obj);

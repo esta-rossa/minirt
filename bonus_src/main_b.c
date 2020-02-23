@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 04:24:23 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/18 02:45:07 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/22 12:01:40 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		main(int argc, char **argv)
 	t_pars	pars;
 	t_all	all;
 
-	all = (t_all){NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 1, -1, 0, 0};
+	all = (t_all){NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 1, -1, 0, 0, 0};
 	pars.fd = open(argv[1], O_RDONLY);
 	pars.argc = argc;
 	pars.argv = argv;
@@ -47,5 +47,6 @@ int		main(int argc, char **argv)
 	check_after_pars(&all, pars);
 	init_wind(all);
 	here_we_go(&all);
+	put_image(&all);
 	hook(all);
 }
