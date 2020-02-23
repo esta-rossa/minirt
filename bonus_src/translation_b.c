@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 00:30:52 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/06 12:11:19 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/23 15:01:43 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ void			tran_pars(t_pars *pars, t_all *list, char **args)
 		save = list->a_light;
 		while (save->next)
 			save = save->next;
-		translation(*pars, &save->pos);
+		save->type == 0 ? translation(*pars, &save->pos) :
+		ft_pars_exit(*pars, E_PARS);
 	}
 	free_tab(pars->tab, 3);
 }

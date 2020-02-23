@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 07:17:34 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/11 19:41:15 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/22 07:10:12 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void		clamp_color(t_color *col, int min, int max)
 	col->b = (col->b < min) ? min : col->b;
 }
 
-t_color		average_color(t_color *color)
+t_color		color_add(t_color color_a, t_color color_b)
 {
-	t_color		new;
+	t_color	new;
 
-	new.r = (color[0].r + color[1].r + color[2].r + color[3].r) / 4;
-	new.g = (color[0].g + color[1].g + color[2].g + color[3].g) / 4;
-	new.b = (color[0].b + color[1].b + color[2].b + color[3].b) / 4;
+	new.r = color_a.r + color_b.r;
+	new.g = color_a.g + color_b.g;
+	new.b = color_a.b + color_b.b;
 	return (new);
 }
 

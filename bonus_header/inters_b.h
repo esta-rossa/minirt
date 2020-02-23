@@ -6,12 +6,12 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 18:45:28 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/18 01:07:02 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/23 16:37:05 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_INTERS_H
-# define FT_INTERS_H
+#ifndef FT_INTERS_B_H
+# define FT_INTERS_B_H
 # include "minirt_b.h"
 
 int		sp_inters(t_obj *o, t_camera camera, double *t);

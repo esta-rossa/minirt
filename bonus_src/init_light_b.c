@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:47:05 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/18 19:07:24 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/23 15:22:29 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ static	void	init_sp(t_all all, t_obj *obj, double t)
 
 	all.a_camera->p_inter = vector_add(
 	all.a_camera->pos, vector_mltp(all.a_camera->v_ray, t));
-	all.a_light->vec = vector_norm(vector_sub(all.a_light->pos,
-	all.a_camera->p_inter));
+	all.a_light->vec = all.a_light->type == 0 ?
+	vector_norm(vector_sub(all.a_light->pos,
+	all.a_camera->p_inter)) : vector_mltp(all.a_light->pos, -1);
 	obj->norm = vector_norm(vector_sub(all.a_camera->p_inter,
 	obj->pos));
 	side = dot_pr(obj->norm, vector_norm(all.a_camera->v_ray)) > 0 ? -1 : 1;
@@ -27,7 +28,6 @@ static	void	init_sp(t_all all, t_obj *obj, double t)
 	all.a_light->reflect = vector_norm(
 	reflected(vector_mltp(all.a_light->vec, -1),
 	obj->norm));
-
 }
 
 static	void	init_plan(t_all all, t_obj *obj, double t)
@@ -37,8 +37,9 @@ static	void	init_plan(t_all all, t_obj *obj, double t)
 	side = dot_pr(obj->norm, vector_norm(all.a_camera->v_ray)) > 0 ? -1 : 1;
 	all.a_camera->p_inter = vector_add(
 	all.a_camera->pos, vector_mltp(all.a_camera->v_ray, t));
-	all.a_light->vec = vector_norm(vector_sub(all.a_light->pos,
-	all.a_camera->p_inter));
+	all.a_light->vec = all.a_light->type == 0 ?
+	vector_norm(vector_sub(all.a_light->pos,
+	all.a_camera->p_inter)) : vector_mltp(all.a_light->pos, -1);
 	obj->norm = vector_mltp(obj->norm, side);
 	all.a_light->reflect = vector_norm(
 	reflected(vector_mltp(all.a_light->vec, -1),
@@ -54,8 +55,9 @@ static	void	init_cyl(t_all all, t_obj *obj, double t)
 	dot_pr(vector_sub(all.a_camera->pos, obj->pos), obj->orient));
 	all.a_camera->p_inter = vector_add(
 	all.a_camera->pos, vector_mltp(all.a_camera->v_ray, t));
-	all.a_light->vec = vector_norm(vector_sub(all.a_light->pos,
-	all.a_camera->p_inter));
+	all.a_light->vec = all.a_light->type == 0 ?
+	vector_norm(vector_sub(all.a_light->pos,
+	all.a_camera->p_inter)) : vector_mltp(all.a_light->pos, -1);
 	obj->norm = vector_norm(vector_sub(
 	all.a_camera->p_inter, vector_add(obj->pos, vector_mltp(obj->orient, m))));
 	side = dot_pr(obj->norm, vector_norm(all.a_camera->v_ray)) > 0 ? -1 : 1;
@@ -75,8 +77,9 @@ static	void	init_tr(t_all all, t_obj *obj, double t)
 	vec_2 = vector_sub(obj->vertex_2, obj->vertex_0);
 	all.a_camera->p_inter = vector_add(
 	all.a_camera->pos, vector_mltp(all.a_camera->v_ray, t));
-	all.a_light->vec = vector_norm(vector_sub(all.a_light->pos,
-	all.a_camera->p_inter));
+	all.a_light->vec = all.a_light->type == 0 ?
+	vector_norm(vector_sub(all.a_light->pos,
+	all.a_camera->p_inter)) : vector_mltp(all.a_light->pos, -1);
 	obj->norm = vector_norm(vector_sub(all.a_camera->p_inter
 	, obj->pos));
 	obj->norm = vector_norm(cross_prod(vec_2, vec_1));

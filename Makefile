@@ -1,5 +1,5 @@
 NAME = minirt
-FLAGS = -Wall -Wextra -Werror
+FLAGS =  -Wall -Wextra -Werror
 SRC_FOLDER = ./src
 BONUS_SRC_FOLDER = ./bonus_src
 HEADER_FOLDER = ./header
@@ -77,14 +77,15 @@ BONUS_SRC_FILES =		main_b.c \
 						put_cap_b.c \
 						cube_parsing_b.c \
 						pyramid_pars_b.c \
-						thread.c \
+						thread_b.c \
 						anti_aliasing_b.c \
 						camera_mov_b.c \
-						objects_mov.c \
+						objects_mov_b.c \
 						hardcode_object_rotation.c \
 						hardcode_object_translation.c \
 						filter_b.c \
 						cone_intersect.c \
+						stereoscopy_b.c \
 
 OBJECT_FILES = $(SRC_FILES:.c=.o)
 OBJECT_FILES := $(addprefix $(OBJECT_FOLDER)/, $(OBJECT_FILES))

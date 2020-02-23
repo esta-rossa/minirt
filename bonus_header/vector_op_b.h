@@ -6,12 +6,12 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 04:48:17 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/06 04:46:55 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/23 16:37:57 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_VECTOR_OP_H
-# define FT_VECTOR_OP_H
+#ifndef FT_VECTOR_OP_B_H
+# define FT_VECTOR_OP_B_H
 # include "minirt_b.h"
 
 double	vector_size(t_cord vector);

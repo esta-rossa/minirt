@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:37:34 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/18 19:07:18 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/23 16:13:55 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,21 @@ static	void		get_ambiant(t_obj *obj, t_phong *phong)
 
 	phong->ambient = (t_color){0, 0, 0};
 	cof = phong->ambient_cof;
-	phong->ambient.r = cof * (phong->ambient_color.r / 255)
-	* (obj->color.r / 255);
-	phong->ambient.g = cof * (phong->ambient_color.g / 255)
-	* (obj->color.g / 255);
-	phong->ambient.b = cof * (phong->ambient_color.b / 255)
-	* (obj->color.b / 255);
+	if (g_all->color == 1)
+	{
+		phong->ambient.r = obj->norm.z * cof;
+		phong->ambient.g = obj->norm.y * cof;
+		phong->ambient.b = obj->norm.x * cof;
+	}
+	else
+	{
+		phong->ambient.r = cof * (phong->ambient_color.r / 255)
+		* (obj->color.r / 255);
+		phong->ambient.g = cof * (phong->ambient_color.g / 255)
+		* (obj->color.g / 255);
+		phong->ambient.b = cof * (phong->ambient_color.b / 255)
+		* (obj->color.b / 255);
+	}
 }
 
 static	void		get_diffuse(t_all *all, t_obj *obj, t_phong *phong)
@@ -72,6 +81,7 @@ void				ft_phong(t_all all, t_obj obj, t_color *color, double t)
 	t_light	light;
 
 	phong = *all.phong;
+	init_phong(all, &obj, t);
 	get_ambiant(&obj, &phong);
 	color->r += phong.ambient.r;
 	color->g += phong.ambient.g;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   thread.c                                           :+:      :+:    :+:   */
+/*   thread_b.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 05:37:05 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/12 02:56:47 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/22 07:39:20 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void		threads_parent(void)
 	long		part;
 
 	part = 1;
+	init_camera(g_all->a_camera, *g_all);
 	while (part < THREADS + 1)
 	{
 		if (pthread_create(&threads[part - 1],

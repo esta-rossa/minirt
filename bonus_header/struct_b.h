@@ -6,13 +6,14 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 05:26:55 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/19 19:41:19 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/23 16:41:37 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_STRUCT_H
-# define FT_STRUCT_H
+#ifndef FT_STRUCT_B_H
+# define FT_STRUCT_B_H
 # include "minirt_b.h"
+
 typedef struct	s_cord
 {
 	double x;
@@ -113,6 +114,7 @@ typedef	struct	s_light
 	t_cord			reflect;
 	t_cord			vec;
 	double			bright;
+	int				type;
 	struct s_light	*next;
 }				t_light;
 
@@ -146,5 +148,6 @@ typedef	struct	s_all
 	int			pos;
 	int			filter;
 	int			color;
+	int			str;
 }				t_all;
 #endif

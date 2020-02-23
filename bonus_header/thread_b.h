@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shitting_math_b.h                                  :+:      :+:    :+:   */
+/*   thread_b.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/12 18:51:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/23 16:37:38 by arraji           ###   ########.fr       */
+/*   Created: 2020/02/07 05:43:19 by arraji            #+#    #+#             */
+/*   Updated: 2020/02/23 16:41:35 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SHITTING_MATH_B_H
-# define FT_SHITTING_MATH_B_H
+#ifndef FT_THREAD_B_H
+# define FT_THREAD_B_H
 # include "minirt_b.h"
+# define THREADS 4
 
-void		set_cord(t_cord *point, double x, double y, double z);
-double		dot_pr(t_cord u, t_cord v);
-double		deg_to_rad(double deg);
-t_cord		rodrigues_rot(t_cord vec, t_cord rot, double angle);
+void		hold_threads(pthread_t *threads, int size);
+void		threads_parent(void);
 #endif
