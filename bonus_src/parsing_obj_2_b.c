@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 14:27:42 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/23 15:17:17 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/24 01:34:10 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	cam_pars(t_pars *pars, t_all *list, char **args)
 	pars->tab = ft_split(args[2], ',');
 	pars_pos(pars, &(list->a_camera->l_at));
 	list->a_camera->l_at = vector_norm(list->a_camera->l_at);
+	list->a_camera->l_at.x += 0.0001;
 	list->a_camera->fov = ft_atoi(args[3]);
 	list->a_camera->default_up = (t_cord){0, 1, 0};
 	list->last->save = list->a_camera;

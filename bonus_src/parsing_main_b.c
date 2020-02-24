@@ -6,14 +6,14 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:25:03 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/22 12:06:46 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/24 03:51:20 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_b.h"
 
 static	void	assign_functions(
-void (*parsing_funcs[15])(t_pars *pars, t_all *list, char **args))
+void (*parsing_funcs[16])(t_pars *pars, t_all *list, char **args))
 {
 	parsing_funcs[0] = sp_pars;
 	parsing_funcs[1] = cam_pars;
@@ -30,40 +30,42 @@ void (*parsing_funcs[15])(t_pars *pars, t_all *list, char **args))
 	parsing_funcs[12] = pyramid_pars;
 	parsing_funcs[13] = disk_pars;
 	parsing_funcs[14] = cone_pars;
+	parsing_funcs[15] = uv_sp_pars;
 }
 
 static	char	**get_args(void)
 {
-	char	**args;
+	char	**param;
 
-	args = (char **)malloc(19 * sizeof(char *));
-	args[0] = "sp";
-	args[1] = "c";
-	args[2] = "l";
-	args[3] = "A";
-	args[4] = "R";
-	args[5] = "pl";
-	args[6] = "cy";
-	args[7] = "sq";
-	args[8] = "rot";
-	args[9] = "tr";
-	args[10] = "tran";
-	args[11] = "cu";
-	args[12] = "py";
-	args[13] = "di";
-	args[14] = "co";
-	args[15] = "AA";
-	args[16] = "F";
-	args[17] = "COL";
-	args[18] = "STR";
-	return (args);
+	param = (char **)malloc(20 * sizeof(char *));
+	param[0] = "sp";
+	param[1] = "c";
+	param[2] = "l";
+	param[3] = "A";
+	param[4] = "R";
+	param[5] = "pl";
+	param[6] = "cy";
+	param[7] = "sq";
+	param[8] = "rot";
+	param[9] = "tr";
+	param[10] = "tran";
+	param[11] = "cu";
+	param[12] = "py";
+	param[13] = "di";
+	param[14] = "co";
+	param[15] = "usp";
+	param[16] = "AA";
+	param[17] = "F";
+	param[18] = "COL";
+	param[19] = "STR";
+	return (param);
 }
 
 void			line_pars(t_pars *pars, t_all *list, char **args)
 {
 	int		index;
 	char	**param;
-	void	(*parsing_funcs[14])(t_pars *pars, t_all *list, char **args);
+	void	(*parsing_funcs[16])(t_pars *pars, t_all *list, char **args);
 
 	index = -1;
 	param = get_args();
@@ -72,11 +74,11 @@ void			line_pars(t_pars *pars, t_all *list, char **args)
 		if (ft_strncmp(args[0], param[index],
 		ft_strlen(param[index], 1) + 1) == 0)
 		{
-			index < 15 ? parsing_funcs[index](pars, list, args) : 1;
-			index == 15 ? list->aa = 1 : 1;
-			index == 16 ? list->filter = 1 : 1;
-			index == 17 ? list->color = 1 : 1;
-			index == 18 ? list->str = 1 : 1;
+			index < 16 ? parsing_funcs[index](pars, list, args) : 1;
+			index == 16 ? list->aa = 1 : 1;
+			index == 17 ? list->filter = 1 : 1;
+			index == 18 ? list->color = 1 : 1;
+			index == 19 ? list->str = 1 : 1;
 			free(param);
 			return ;
 		}

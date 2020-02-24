@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 05:26:55 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/23 16:41:37 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/24 03:01:59 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,14 @@ typedef	struct	s_camera
 	struct s_camera		*previous;
 }				t_camera;
 
+typedef	struct	s_texture
+{
+	int		hight;
+	int		width;
+	int		*image;
+	char	*file;
+}				t_texture;
+
 typedef	struct	s_obj
 {
 	int					type;
@@ -73,6 +81,7 @@ typedef	struct	s_obj
 	double				diam;
 	double				height;
 	struct s_obj		*head;
+	t_texture			*texture;
 	int					sp_type;
 	struct s_obj		*next;
 
@@ -100,6 +109,7 @@ typedef	struct	s_tr_needs
 	t_cord	vec_1;
 	t_cord	vec_2;
 }				t_tr_needs;
+
 typedef	struct	s_cyl_needs
 {
 	double	m[2];
@@ -132,6 +142,7 @@ typedef	struct	s_last
 	void	*save;
 	int		type;
 }				t_last;
+
 
 typedef	struct	s_all
 {

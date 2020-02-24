@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:47:05 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/23 15:22:29 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/24 03:52:21 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static	void	init_sp(t_all all, t_obj *obj, double t)
 {
-	int side;
+	int		side;
 
 	all.a_camera->p_inter = vector_add(
 	all.a_camera->pos, vector_mltp(all.a_camera->v_ray, t));
@@ -104,4 +104,6 @@ void			init_phong(t_all all, t_obj *obj, double t)
 		init_plan(all, obj, t);
 	else if (obj->type == CONE)
 		init_cone(all, obj, t);
+	else if (obj->type == UV_SPHERE)
+		init_uv_sp(all, obj, t);
 }

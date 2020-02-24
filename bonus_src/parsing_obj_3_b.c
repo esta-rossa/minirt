@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 19:09:36 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/18 01:45:36 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/24 05:21:38 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,4 +120,29 @@ void	cone_pars(t_pars *pars, t_all *list, char **args)
 	obj->cap = 0;
 	list->last->save = obj;
 	list->last->type = OBJ;
+}
+
+void	uv_sp_pars(t_pars *pars, t_all *list, char **args)
+{
+	t_obj	*obj;
+
+	if (ft_tablen(args) != 4 || !valid_f(args[2]))
+		ft_pars_exit(*pars, E_PARS);
+	check_tab(args, *pars, 1, 2);
+	add_obj(&(list)->a_obj, new_obj());
+	obj = list->a_obj;
+	while (obj->next)
+		obj = obj->next;
+	obj->type = UV_SPHERE;
+	pars->tab = ft_split(args[1], ',');
+	pars_pos(pars, &(obj)->pos);
+	obj->diam = ft_atof(args[2]);
+	if ((obj->cap = open(args[3], O_RDONLY)) < 0)
+	{
+		pars->line = args[3];
+		ft_pars_exit(*pars, E_TEXTURE);
+	}
+	close(obj->cap);
+	obj->texture = (t_texture *)malloc(sizeof(t_texture));
+	obj->texture->file = ft_strdup(args[3]);
 }

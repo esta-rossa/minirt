@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 22:25:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/23 16:41:12 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/24 02:59:43 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@
 # define TRIANGLE		5
 # define DISK			6
 # define CONE			7
-# define LIGHT			8
-# define CAM			9
-# define OBJ			10
-# define AMB			11
-# define CUBE			12
-# define CAP			13
-# define PYRAMID		14
-# define NUM_OF_ARGS	19
+# define UV_SPHERE		8
+# define LIGHT			9
+# define CAM			10
+# define OBJ			11
+# define AMB			12
+# define CUBE			13
+# define CAP			14
+# define PYRAMID		15
+# define NUM_OF_ARGS	20
 
 void		data_read(t_pars *pars, t_all *all);
 void		line_pars(t_pars *pars, t_all *list, char **args);
@@ -56,4 +57,5 @@ void		cube_pars(t_pars *pars, t_all *list, char **args);
 void		pyramid_pars(t_pars *pars, t_all *list, char **args);
 void		disk_pars(t_pars *pars, t_all *list, char **args);
 void		cone_pars(t_pars *pars, t_all *list, char **args);
+void		uv_sp_pars(t_pars *pars, t_all *list, char **args);
 #endif

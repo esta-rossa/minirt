@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 22:35:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/23 16:40:45 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/24 02:34:38 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,11 @@
 # include "thread_b.h"
 # include "filter_b.h"
 # include "stereoscopy_b.h"
+# include "mlx.h"
 # define vibe_check write(1, "V", 1);
 # define vibe_check2 write(1, "N", 1);
-
+void		load_texture(t_all all, t_texture *texture);
+t_color		get_pixel_at(t_texture *texture, double x, double y);
 void		render(t_all all, t_camera s_camera, t_color *color, t_cord v_ray);
 void		here_we_go(t_all *all);
 void		get_all_rays(t_cord *v_rays, double x, double y);

@@ -6,11 +6,12 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 02:57:16 by arraji            #+#    #+#             */
-/*   Updated: 2019/12/04 17:27:08 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/24 04:31:42 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 void	c_type(va_list ar, t_data *data)
 {
