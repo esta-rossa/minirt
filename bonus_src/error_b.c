@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 19:54:20 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/06 04:38:34 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/24 05:09:21 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ void	ft_pars_exit(t_pars pars, int number)
 	number == E_NO_RES ? ft_printf("resolutions are not giving\n") : 1;
 	number == E_NO_AMB ? ft_printf("Ambiant is not giving\n") : 1;
 	number == E_PARS ? get_next_line(-5, NULL) : 1;
+	number == E_TEXTURE ?
+	ft_printf("can\'t open texture : \"%s\" in line %d\n",
+	pars.line, pars.line_num) : 1;
+	number == E_TEXTURE_F ?
+	ft_printf("texture \"%s\" in wrong format.", pars.line) : 1;
 	exit(number);
 }
 

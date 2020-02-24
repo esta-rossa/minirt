@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 00:44:32 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/09 02:52:17 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/24 02:27:57 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	init_camera(t_camera *camera, t_all all)
 	double	height_unit;
 	t_cord	bot_left;
 
-	camera->l_at.x += 0.0001;
 	camera->x_reso = all.wind->wind_x;
 	camera->y_reso = all.wind->wind_y;
 	middle = vector_add(camera->pos, camera->l_at);

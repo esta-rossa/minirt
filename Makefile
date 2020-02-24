@@ -86,6 +86,7 @@ BONUS_SRC_FILES =		main_b.c \
 						filter_b.c \
 						cone_intersect.c \
 						stereoscopy_b.c \
+						texture_b.c \
 
 OBJECT_FILES = $(SRC_FILES:.c=.o)
 OBJECT_FILES := $(addprefix $(OBJECT_FOLDER)/, $(OBJECT_FILES))
@@ -124,13 +125,15 @@ clean:
 	@(rm -r $(OBJECT_FOLDER) 2> /dev/null && echo "$(RED)deleting$(RESET): " $(OBJECT_FOLDER)) || true
 	@(rm $(BONUS_OBJECT_FILES) 2> /dev/null && echo "$(RED)deleting$(RESET): " $(BONUS_OBJECT_FILES)) || true
 	@(rm -r $(BONUS_OBJECT_FOLDER) 2> /dev/null && echo "$(RED)deleting$(RESET): " $(BONUS_OBJECT_FOLDER)) || true
-	@make -C  $(LIBFT_FOLDER)/ clean
+	@make -C $(LIBFT_FOLDER) clean
+	@make -C $(MLX_FOLDER) clean
 
 fclean: clean
 	@(rm $(NAME) 2> /dev/null && echo "$(RED)deleting$(RESET): " $(NAME)) || true
 	@(rm $(NAME)_bonus 2> /dev/null && echo "$(RED)deleting$(RESET): " $(NAME)_bonus) || true
 	@(rm $(LIBFT_FOLDER)/$(LIBFT_LIB) 2> /dev/null && echo "$(RED)deleting$(RESET): " $(LIBFT_LIB)) || true
-
+	@(rm $(MLX_FOLDER)/$(MLX_LIB) 2> /dev/null && echo "$(RED)deleting$(RESET): " $(MLX_LIB)) || true
+	@make -C $(MLX_FOLDER) clean
 
 re: fclean $(NAME)
 

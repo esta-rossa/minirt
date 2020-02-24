@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:27:53 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/18 01:03:51 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/24 02:57:48 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int (*inter_funs[6])(t_obj *o, t_camera camera, double *t))
 	inter_funs[4] = triangle_inters;
 	inter_funs[5] = disk_inters;
 	inter_funs[6] = cone_inter;
+	inter_funs[7] = sp_inters;
 }
 
 int				inters(t_obj *obj, t_camera camera, double *t)
@@ -81,7 +82,7 @@ int				inters(t_obj *obj, t_camera camera, double *t)
 	double	t_tmp;
 	int		index;
 	int		pos;
-	int		(*inter_funs[7])(t_obj *o, t_camera camera, double *t);
+	int		(*inter_funs[8])(t_obj *o, t_camera camera, double *t);
 
 	pos = -1;
 	index = 0;
