@@ -13,7 +13,7 @@
         {
             "type": "shell",
             "label": "make bonus",
-            "command": "make bonus -C /Users/arraji/Desktop/new_rt",
+            "command": "make bonus -C /Users/arraji/Desktop/new_rt ",
             "args": [
             ],
             "options": {

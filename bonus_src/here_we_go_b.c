@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 15:50:24 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/24 05:17:20 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/24 18:00:52 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,9 @@ void		put_image(t_all *all)
 
 void		here_we_go(t_all *all)
 {
-	t_obj	*obj;
-
 	g_all = all;
-	obj = all->a_obj;
 	init_image(*all);
 	init_camera(all->a_camera, *all);
-	while (obj)
-	{
-		if (obj->type == UV_SPHERE)
-			load_texture(*all, obj->texture);
-		obj = obj->next;
-	}
 	if (all->str != 0)
 		stereoscopy_render(all);
 	else

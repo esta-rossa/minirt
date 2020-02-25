@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 01:56:48 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/24 05:27:56 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/24 18:02:58 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,19 @@
 **[2]->endian
 */
 
+void		apply_texture(t_all all)
+{
+	t_obj	*obj;
+
+	obj = all.a_obj;
+	while (obj)
+	{
+		if (obj->type == UV_SPHERE)
+			load_texture(all, obj->texture);
+		obj = obj->next;
+	}
+}
+
 void		load_texture(t_all all, t_texture *texture)
 {
 	int		vars[3];
@@ -26,7 +39,7 @@ void		load_texture(t_all all, t_texture *texture)
 	t_pars	pars;
 
 	if (!(image_p =
-	mlx_xpm_file_to_image(all.wind->init,
+	mlx_png_file_to_image(all.wind->init,
 	texture->file,
 	&(texture->width), &(texture->hight))))
 	{

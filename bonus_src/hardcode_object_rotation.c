@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:49:28 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/18 01:45:15 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/25 00:53:59 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static	void	cylinder_rot(t_obj *obj, t_cord vec)
 
 void			object_rot(t_obj *obj, t_cord vec)
 {
-	if (obj->type == TRIANGLE || obj->type == SPHERE)
+	if (obj->type == TRIANGLE || obj->type == SPHERE || obj->type == UV_SPHERE)
 		return ;
 	else if ((obj->type == SQUARE || (obj->type == TRIANGLE))
 	&& (obj->sp_type == PYRAMID))

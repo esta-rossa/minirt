@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 14:27:42 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/24 01:34:10 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/24 23:11:33 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	cam_pars(t_pars *pars, t_all *list, char **args)
 
 void	ambiant_pars(t_pars *pars, t_all *list, char **args)
 {
-	if (ft_tablen(args) != 3 || !valid_f(args[1]))
+	if (ft_tablen(args) != 3 || !valid_f(args[1]) || list->phong != NULL)
 		ft_pars_exit(*pars, E_PARS);
 	list->phong = (t_phong *)malloc(sizeof(t_phong));
 	list->phong->ambient_cof = ft_atof(args[1]);

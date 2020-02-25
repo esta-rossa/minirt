@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 05:26:55 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/24 03:01:59 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/25 00:36:47 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,6 @@ typedef	struct	s_last
 	void	*save;
 	int		type;
 }				t_last;
-
 
 typedef	struct	s_all
 {

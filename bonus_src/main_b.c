@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 04:24:23 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/24 05:15:12 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/24 18:03:02 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int		main(int argc, char **argv)
 	data_read(&pars, &all);
 	check_after_pars(&all, pars);
 	init_wind(all);
+	apply_texture(all);
 	here_we_go(&all);
 	put_image(&all);
 	hook(all);

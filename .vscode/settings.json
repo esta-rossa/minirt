@@ -1,7 +1,8 @@
 {
 	"files.associations": {
 		"__locale": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"zlib.h": "c"
 	},
 	"C_Cpp.dimInactiveRegions": false
 }

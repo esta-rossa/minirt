@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 02:21:13 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/18 00:15:54 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/24 23:06:40 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void		cyl_pars(t_pars *pars, t_all *list, char **args)
 
 void		resul_pars(t_pars *pars, t_all *list, char **args)
 {
-	if (ft_tablen(args) != 3)
+	if (ft_tablen(args) != 3 || list->wind != NULL)
 		ft_pars_exit(*pars, E_PARS);
 	if (!valid_d(args[1]) || !valid_d(args[2]) ||
 	args[1][0] == '-' || args[2][0] == '-')

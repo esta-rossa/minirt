@@ -7,7 +7,7 @@ LIBFT_HEADER = ./libft/header
 LIBFT_FOLDER = ./libft
 OBJECT_FOLDER = ./objects
 BONUS_OBJECT_FOLDER = ./bonus_objects
-LIBS = -framework OpenGL -framework Appkit
+LIBS = -lz -framework OpenGL -framework Appkit
 LIBFT_LIB = libft.a
 RED = \033[0;31m
 GREEN = \033[0;32m
@@ -133,7 +133,7 @@ fclean: clean
 	@(rm $(NAME)_bonus 2> /dev/null && echo "$(RED)deleting$(RESET): " $(NAME)_bonus) || true
 	@(rm $(LIBFT_FOLDER)/$(LIBFT_LIB) 2> /dev/null && echo "$(RED)deleting$(RESET): " $(LIBFT_LIB)) || true
 	@(rm $(MLX_FOLDER)/$(MLX_LIB) 2> /dev/null && echo "$(RED)deleting$(RESET): " $(MLX_LIB)) || true
-	@make -C $(MLX_FOLDER) clean
+	@make -C $(MLX_FOLDER) fclean
 
 re: fclean $(NAME)
 
