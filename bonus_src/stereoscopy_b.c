@@ -6,7 +6,7 @@
 /*   By: arraji <arraji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 06:38:38 by arraji            #+#    #+#             */
-/*   Updated: 2020/02/22 07:45:38 by arraji           ###   ########.fr       */
+/*   Updated: 2020/02/27 16:35:03 by arraji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void			stereoscopy_render(t_all *all)
 	vector_mltp(all->a_camera->right, 1));
 	threads_parent();
 	all->filter == 1 ? filter(all->wind->img_data) : 1;
-	pos = all->a_camera->pos;
+	all->a_camera->pos = pos;
 	merge_iamges(all->wind->img_data, copy);
 }
 
